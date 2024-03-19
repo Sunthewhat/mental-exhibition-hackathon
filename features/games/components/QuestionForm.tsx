@@ -8,12 +8,14 @@ interface QuestionFormProps {
   setEnterGame: (value: boolean) => void;
   handleUpdateAnswer: (questionNumber: number, choice: number) => void;
   isAnswerSelected: (questionNumber: number, choice: number) => boolean;
+  answers: number[];
 }
 
 const QuestionForm: React.FC<QuestionFormProps> = ({
   setEnterGame,
   handleUpdateAnswer,
   isAnswerSelected,
+  answers,
 }) => {
   const router = useRouter();
 
@@ -23,7 +25,10 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
   };
 
   const handleClickNext = () => {
-    if (isLast) router.push("/game/result");
+    if (isLast) {
+      if (answers.length === 0 || answers === null) return; // TODO: warn user
+      router.push("/game/result");
+    }
     next();
   };
 

@@ -25,6 +25,7 @@ const GamePage = () => {
           isAnswerSelected={isAnswerSelected}
           handleUpdateAnswer={handleUpdateAnswer}
           setEnterGame={setEnterGame}
+          answers={answers}
         />
       ) : (
         <EnterName name={name} setName={setName} setEnterGame={setEnterGame} />
