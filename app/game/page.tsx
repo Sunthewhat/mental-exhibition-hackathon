@@ -1,9 +1,8 @@
-"use client";
-
-import QuestionForm from "@/components/QuestionForm";
+import EnterName from "@/features/games/components/EnterName";
+import React from "react";
 
 const GamePage = () => {
-  return <QuestionForm />;
+  return <EnterName />;
 };
 
 export default GamePage;
