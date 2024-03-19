@@ -5,6 +5,7 @@ import React, { useState } from "react";
 
 const GamePage = () => {
   const [enterGame, setEnterGame] = useState<boolean>(false);
+  const [name, setName] = useState<string>("");
   const [answers, setAnswers] = useState<number[]>([]);
 
   const isAnswerSelected = (questionNumber: number, choice: number) => {
@@ -26,7 +27,7 @@ const GamePage = () => {
           setEnterGame={setEnterGame}
         />
       ) : (
-        <EnterName setEnterGame={setEnterGame} />
+        <EnterName name={name} setName={setName} setEnterGame={setEnterGame} />
       )}
     </>
   );

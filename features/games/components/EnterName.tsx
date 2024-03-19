@@ -7,10 +7,15 @@ import { normalStringValidator } from "../validators";
 
 interface EnterNameProp {
   setEnterGame: (value: boolean) => void;
+  name: string;
+  setName: (name: string) => void;
 }
 
-const EnterName: React.FC<EnterNameProp> = ({ setEnterGame }) => {
-  const [name, setName] = useState<string>("");
+const EnterName: React.FC<EnterNameProp> = ({
+  setEnterGame,
+  name,
+  setName,
+}) => {
   const [warn, setWarn] = useState(false);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -53,7 +58,7 @@ const EnterName: React.FC<EnterNameProp> = ({ setEnterGame }) => {
         <Label className="text-white font-bold text-md md:text-base lg:text-lg ">
           Enter your name
         </Label>
-        <Input onChange={handleChange} className="z-10" />
+        <Input onChange={handleChange} value={name} className="z-10" />
         {warn && (
           <Label className="text-red-500">
             กรุณาใส่ชื่อให้ถูกต้อง [ห้ามมีอัครพิเศษ]
