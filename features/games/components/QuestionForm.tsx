@@ -2,7 +2,7 @@ import questions from "@/constants/questions";
 import useMultiStepsForm from "@/hooks/useMultiStepsForm";
 import Question from "./Question";
 import { useRouter } from "next/navigation";
-import { Progress } from "./ui/progress";
+import { Progress } from "../../../components/ui/progress";
 
 interface QuestionFormProps {
   setEnterGame: (value: boolean) => void;
