@@ -1,0 +1,24 @@
+<svg width="1512" height="667" viewBox="0 0 1512 667" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_f_377_4530)">
+<ellipse cx="1478.56" cy="340.79" rx="90.5595" ry="85.071" transform="rotate(180 1478.56 340.79)" fill="white" fill-opacity="0.8"/>
+<ellipse cx="760.945" cy="543.357" rx="86.4431" ry="76.8383" transform="rotate(180 760.945 543.357)" fill="#F4D7F1" fill-opacity="0.15"/>
+<ellipse cx="1065.55" cy="321.075" rx="105.653" ry="96.0479" transform="rotate(180 1065.55 321.075)" fill="#F4D7F1" fill-opacity="0.15"/>
+<ellipse cx="623.733" cy="590.009" rx="86.4431" ry="76.8383" transform="rotate(180 623.733 590.009)" fill="#F4D7F1" fill-opacity="0.15"/>
+<ellipse cx="45.5364" cy="360.023" rx="101.536" ry="93.3037" transform="rotate(180 45.5364 360.023)" fill="#EFF9FF" fill-opacity="0.6"/>
+<ellipse cx="995.576" cy="441.821" rx="175.631" ry="164.654" transform="rotate(180 995.576 441.821)" fill="#FFFDDE" fill-opacity="0.19"/>
+<ellipse cx="374.009" cy="474.751" rx="163.281" ry="153.677" transform="rotate(180 374.009 474.751)" fill="#FBFDFF" fill-opacity="0.6"/>
+<ellipse cx="66.655" cy="222.283" rx="163.281" ry="153.677" transform="rotate(180 66.655 222.283)" fill="#F4D7F1" fill-opacity="0.15"/>
+<ellipse cx="1224.72" cy="194.84" rx="163.281" ry="153.677" transform="rotate(180 1224.72 194.84)" fill="#F4D7F1" fill-opacity="0.15"/>
+<ellipse cx="1090.25" cy="463.774" rx="163.281" ry="153.677" transform="rotate(180 1090.25 463.774)" fill="#F4FBFF" fill-opacity="0.6"/>
+<ellipse cx="443.986" cy="511.798" rx="123.49" ry="116.63" transform="rotate(180 443.986 511.798)" fill="#F1FAFF" fill-opacity="0.6"/>
+<ellipse cx="6.28148" cy="441.82" rx="163.281" ry="153.677" transform="rotate(180 6.28148 441.82)" fill="#FFFDDE" fill-opacity="0.19"/>
+<ellipse cx="1164.34" cy="522.775" rx="105.653" ry="97.42" transform="rotate(180 1164.34 522.775)" fill="#FFFDDE" fill-opacity="0.19"/>
+</g>
+<defs>
+<filter id="filter0_f_377_4530" x="-161" y="37.1636" width="1734.12" height="633.684" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_377_4530"/>
+</filter>
+</defs>
+</svg>
