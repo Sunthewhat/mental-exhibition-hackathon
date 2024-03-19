@@ -5,16 +5,19 @@ export interface QuestionType {
 
 const questions: QuestionType[] = [
   {
-    label: "question 1",
-    choices: ["choice 1", "choice 2", "choice 3", "choice 4"],
+    label:
+      "1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur illo! Libero amet dolores",
+    choices: ["choice 1", "choice 2", "choice 3"],
   },
   {
-    label: "question 2",
-    choices: ["choice 1", "choice 2", "choice 3", "choice 4"],
+    label:
+      "2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur illo! Libero amet dolores",
+    choices: ["choice 1", "choice 2", "choice 3"],
   },
   {
-    label: "question 3",
-    choices: ["choice 1", "choice 2", "choice 3", "choice 4"],
+    label:
+      "3. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur illo! Libero amet dolores",
+    choices: ["choice 1", "choice 2", "choice 3"],
   },
 ];
 
