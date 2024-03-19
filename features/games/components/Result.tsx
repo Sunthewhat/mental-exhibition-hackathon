@@ -8,7 +8,7 @@ import Contact from "./Contact";
 
 const Result = () => {
   const [name, setName] = useState<string | null>(null);
-  
+
   //Need to logic to choose the avatar to display
 
   useEffect(() => {
@@ -16,47 +16,50 @@ const Result = () => {
   }, []);
 
   return (
-    <div className="mx-auto w-4/5 h-full flex flex-col justify-center items-center py-[6em]">
-      <Label className="mt-20">
-        <span className="font-bold drop-shadow-2xl text-white text-base sm:text-lg md:text-3xl">
-          {name ?? "Guest User"}
-        </span>
-      </Label>
-      <div
-        className="w-full h-full flex flex-col items-center  
-        lg:flex-row lg:h-2/5 gap-[2rem] lg:mt-16"
-      >
-        <div className="relative w-3/5 h-auto">
-          <Image
-            src="/assets/game/peppy_cat.png"
-            alt="avatar"
-            width={500}
-            height={300}
-            layout="responsive"
-          />
-        </div>
-        <ScrollArea
-          className="bg-white opacity-70 rounded-xl shadow-md p-1
-        w-2/3 lg:w-3/4 h-1/2 xs:h-3/5 md:h-2/5 lg:h-3/5 2xl:h-full"
+    <div className="h-full w-full py-12 md:px-[2em] lg:px-[8em] lg:h-auto">
+      <div className="mx-auto flex flex-col justify-center items-center">
+        <Label className="md:mt-8 lg:mt-16">
+          <span className="font-extrabold drop-shadow-2xl text-white text-base sm:text-2xl md:text-3xl lg:text-4xl">
+            {name ?? "Guest User"}
+          </span>
+        </Label>
+
+        <div
+          className="w-full h-3/5 md:h-3/4 flex flex-col items-center  
+          gap-[2rem] lg:mt-16 xl:h-4/5 ipad-pro:flex-row "
         >
-          <div className="p-4">
-            <h4 className="mb-4 text-xs md:text-base font-small md:font-medium leading-none">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum
-              aliquam eum qui esse, pariatur illo! Libero amet dolores
-              doloremque illum, temporibus enim, voluptatum dolore aspernatur,
-              qui soluta nulla alias vero! Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur
-              illo! Libero amet dolores doloremque illum, temporibus enim,
-              voluptatum dolore aspernatur, qui soluta nulla alias vero! Lorem
-              ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam
-              eum qui esse, pariatur illo! Libero amet dolores doloremque illum,
-              temporibus enim, voluptatum dolore aspernatur, qui soluta nulla
-              alias vero!
-            </h4>
+          <div className="relative w-3/5 xl:w-1/2 h-auto bg-cover bg-result bg-transparent bg-opacity-70 rounded-full">
+            <Image
+              src="/assets/game/peppy_cat.png"
+              alt="avatar"
+              width={300}
+              height={200}
+              layout="responsive"
+            />
           </div>
-        </ScrollArea>
+          <ScrollArea
+            className="bg-white opacity-70 rounded-2xl shadow-md p-1
+        w-2/3 h-3/4 md:w-[90%] ipad-pro:w-4/5 2xl:w-1/2 2xl:h-full"
+          >
+            <div className="p-4">
+              <h4 className="mb-4 text-xs md:text-xl xl:text-2xl font-normal leading-none">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum
+                aliquam eum qui esse, pariatur illo! Libero amet dolores
+                doloremque illum, temporibus enim, voluptatum dolore aspernatur,
+                qui soluta nulla alias vero! Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Rerum aliquam eum qui esse,
+                pariatur illo! Libero amet dolores doloremque illum, temporibus
+                enim, voluptatum dolore aspernatur, qui soluta nulla alias vero!
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum
+                aliquam eum qui esse, pariatur illo! Libero amet dolores
+                doloremque illum, temporibus enim, voluptatum dolore aspernatur,
+                qui soluta nulla alias vero!
+              </h4>
+            </div>
+          </ScrollArea>
+        </div>
+        <Contact />
       </div>
-      <Contact />
     </div>
   );
 };

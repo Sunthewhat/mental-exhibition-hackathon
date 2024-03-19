@@ -4,7 +4,7 @@ import React from "react";
 const Bubble = () => {
   return (
     <>
-      <div className="absolute block lg:hidden bottom-[-12em] w-full h-full z-0">
+      <div className="absolute block xs:hidden bottom-0 w-screen h-2/5 z-0">
         <Image
           src="/assets/game/backgrounds/bubble_md.png "
           alt="bubble"
@@ -13,7 +13,7 @@ const Bubble = () => {
           className="object-cover z-0"
         />
       </div>
-      <div className="absolute hidden lg:block bottom-[-12em] w-full h-full z-0">
+      <div className="absolute hidden xs:block bottom-[-12em] w-screen h-screen z-0">
         <Image
           src="/assets/game/backgrounds/bubble_lg.png "
           alt="bubble"

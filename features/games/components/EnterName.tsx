@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import React, { useState } from "react";
 import { normalStringValidator } from "../validators";
+import { useToast } from "@/components/ui/use-toast";
 
 interface EnterNameProp {
   setEnterGame: (value: boolean) => void;
@@ -17,6 +18,7 @@ const EnterName: React.FC<EnterNameProp> = ({
   setName,
 }) => {
   const [warn, setWarn] = useState(false);
+  const { toast, dismiss } = useToast();
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     setName(e.currentTarget.value);
@@ -35,7 +37,17 @@ const EnterName: React.FC<EnterNameProp> = ({
 
   const handleClick = () => {
     if (warn || name === "") {
-      if (!warn) setWarn(true);
+      if (!warn) {
+        toast({
+          id: 1,
+          title: "Invalid Username",
+          description: "กรุณากรอกชื่อของคุณให้ถูกต้อง",
+          variant: "destructive",
+          duration: 3000,
+        });
+
+        setWarn(true);
+      }
       return;
     }
     window.localStorage.setItem("name", name);
@@ -43,7 +55,7 @@ const EnterName: React.FC<EnterNameProp> = ({
   };
 
   return (
-    <div className="px-8 pt-32 flex w-full flex-col items-center justify-center gap-[8rem] ">
+    <div className="px-8 pt-32 flex w-full flex-col items-center justify-center gap-[3rem] xs:gap-[5rem] xs:mt-[8rem] tablet:mt-[16rem]">
       <div className="relative w-[161px] h-[161px] md:w-[230px] md:h-[230px]">
         <Image
           src="/assets/icon.png"
@@ -67,15 +79,15 @@ const EnterName: React.FC<EnterNameProp> = ({
       </div>
 
       <button
-        className="relative w-[120px] h-[45px] md:w-[180px] md:h-[70px] border-r-emerald-500 z-100"
+        className="relative w-[120px] h-[45px] md:w-[180px] md:h-[70px] xs:mt-[-1em] z-10 "
         onClick={handleClick}
       >
         <Image
           src="/assets/game/click-here.png"
           alt="icon"
-          sizes="200px 50px"
-          fill
-          priority
+          width={300}
+          height={200}
+          layout="responsive"
         />
       </button>
     </div>

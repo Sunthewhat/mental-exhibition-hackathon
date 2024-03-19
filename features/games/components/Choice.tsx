@@ -21,7 +21,7 @@ const Choice: React.FC<ChoiceProp> = ({
 
   return (
     <div
-      className={`cursor-pointer py-5 px-32 border-2 rounded-2xl w-full ${
+      className={`cursor-pointer py-5 px-20 lg:px-64 border-2 rounded-2xl w-full  ${
         checked ? "border-amber-300" : "border-red-300"
       }`}
       onClick={() => onClick(Number(value))}

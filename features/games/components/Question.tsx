@@ -23,7 +23,7 @@ const Question: React.FC<QuestionProp> = ({
   return (
     <div className="px-8 pt-32 flex w-full flex-col items-center justify-center gap-10">
       <p>{label}</p>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 items-center">
         {choices.map((choice, choiceIdx) => {
           return (
             <Choice

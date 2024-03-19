@@ -3,6 +3,8 @@ import useMultiStepsForm from "@/hooks/useMultiStepsForm";
 import Question from "./Question";
 import { useRouter } from "next/navigation";
 import { Progress } from "../../../components/ui/progress";
+import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface QuestionFormProps {
   setEnterGame: (value: boolean) => void;
@@ -17,6 +19,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
   isAnswerSelected,
   answers,
 }) => {
+  const { toast } = useToast();
   const router = useRouter();
 
   const handleClickBack = () => {
@@ -26,10 +29,23 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
 
   const handleClickNext = () => {
     if (isLast) {
-      if (answers.length === 0 || answers === null) return; // TODO: warn user
+      if (!isCompleteAllAnswer()) {
+        toast({
+          title: "Form not completed",
+          description: "กรุณาตอบคำถามให้ครบทุกข้อ",
+          variant: "destructive",
+          duration: 3000,
+        });
+        return;
+      } // TODO: warn user
+
       router.push("/game/result");
     }
     next();
+  };
+
+  const isCompleteAllAnswer = (): boolean => {
+    return !(answers.length === 0 || answers === null);
   };
 
   const { currentStepIndex, step, steps, back, next, isFirst, isLast } =
@@ -46,13 +62,13 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
     );
 
   return (
-    <div className="px-8 pt-16 flex w-full flex-col items-center justify-center gap-[4rem]">
+    <div className="px-8 pt-16 flex w-full flex-col items-center justify-center gap-[4rem] lg:h-auto">
       <div className="text-center text-white font-bold text-md md:text-base lg:text-lg">
         <p>KMUTT</p>
         <p>MENTAL HEALTH</p>
         <p>EXHIBITION</p>
       </div>
-      <div className="pb-8 w-full md:w-1/2 lg:w-1/3 z-10 text-center font-bold text-md md:text-base lg:text-lg bg-white rounded-t-[200px] rounded-b-[15px]">
+      <div className="pb-8 w-full md:w-1/2 lg:w-2/3 z-10 text-center font-bold text-md md:text-base lg:text-lg bg-white rounded-t-[200px] rounded-b-[15px]">
         <form>{step}</form>
       </div>
       <div className="pb-8 z-10 flex flex-col items-center justify-center gap-3 w-full">
@@ -65,7 +81,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
             {currentStepIndex + 1}/{steps.length}
           </p>
         </div>
-        <div className="flex justtify-center items-center gap-8">
+        <div className="flex justify-center items-center gap-8">
           <button type="button" onClick={handleClickBack}>
             <div
               className="w-0 h-0 

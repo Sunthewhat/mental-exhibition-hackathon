@@ -10,7 +10,7 @@ interface GameLayoutProps {
 const GameLayout = ({ children }: GameLayoutProps) => {
   return (
     <div
-      className={`bg-gradient-to-b from-blue-400 via-pink-200 to-white bg-no-repeat bg-cover w-screen h-screen relative`}
+      className={`bg-gradient-to-b from-blue-400 via-pink-200 to-white bg-no-repeat bg-cover w-full min-h-screen relative overflow-auto`}
     >
       <Cloud />
       <Smoke />

@@ -22,12 +22,16 @@ const config = {
     },
     screens: {
       ...defaultTheme.screens,
-      tablet: "560px",
+      tablet: "640px",
+      "ipad-pro": "1366px",
+      laptop: "1024px",
+      desktop: "1280px",
       xs: "425px",
     },
     extend: {
       backgroundImage: {
         main: "url('/assets/game/backgrounds/main-background.png')",
+        result: "url('/assets/game/backgrounds/result_bg.png')",
       },
       colors: {
         border: "hsl(var(--border))",
