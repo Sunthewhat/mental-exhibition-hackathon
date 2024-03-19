@@ -1,4 +1,5 @@
 import { QuestionType } from "@/constants/questions";
+import Choice from "./Choice";
 
 interface QuestionProp {
   idx: number;
@@ -15,32 +16,29 @@ const Question: React.FC<QuestionProp> = ({
 }) => {
   const { label, choices } = question;
 
-  const handleClickAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleUpdateAnswer(idx, Number(event.currentTarget.value));
+  const handleClickAnswer = (choice: number) => {
+    handleUpdateAnswer(idx, choice);
   };
 
   return (
-    <>
+    <div className="px-8 pt-32 flex w-full flex-col items-center justify-center gap-10">
       <p>{label}</p>
-      {choices.map((choice, choiceIdx) => {
-        return (
-          <>
-            <input
-              type="radio"
+      <div className="flex flex-col gap-3">
+        {choices.map((choice, choiceIdx) => {
+          return (
+            <Choice
+              key={`${label}-${choiceIdx}`}
               id={`${label}-${choiceIdx}`}
               name={label}
-              value={choiceIdx}
-              onChange={handleClickAnswer}
+              value={String(choiceIdx)}
+              onClick={handleClickAnswer}
               checked={isAnswerSelected(idx, choiceIdx)}
+              choice={choice}
             />
-            <label htmlFor={`${label}-${choiceIdx}`} key={choiceIdx}>
-              {choice}
-            </label>
-            <br />
-          </>
-        );
-      })}
-    </>
+          );
+        })}
+      </div>
+    </div>
   );
 };
 

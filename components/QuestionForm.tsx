@@ -1,19 +1,29 @@
 import questions from "@/constants/questions";
 import useMultiStepsForm from "@/hooks/useMultiStepsForm";
-import { useState } from "react";
 import Question from "./Question";
+import { useRouter } from "next/navigation";
 
-const QuestionForm = () => {
-  const [answers, setAnswers] = useState<number[]>([]);
+interface QuestionFormProps {
+  setEnterGame: (value: boolean) => void;
+  handleUpdateAnswer: (questionNumber: number, choice: number) => void;
+  isAnswerSelected: (questionNumber: number, choice: number) => boolean;
+}
 
-  const isAnswerSelected = (questionNumber: number, choice: number) => {
-    return answers[questionNumber] === choice;
+const QuestionForm: React.FC<QuestionFormProps> = ({
+  setEnterGame,
+  handleUpdateAnswer,
+  isAnswerSelected,
+}) => {
+  const router = useRouter();
+
+  const handleClickBack = () => {
+    if (isFirst) setEnterGame(false);
+    back();
   };
 
-  const handleUpdateAnswer = (questionNumber: number, choice: number) => {
-    let changedAnswers = answers;
-    changedAnswers[questionNumber] = choice;
-    setAnswers([...changedAnswers]);
+  const handleClickNext = () => {
+    if (isLast) router.push("/game/result");
+    next();
   };
 
   const { currentStepIndex, step, steps, back, next, isFirst, isLast } =
@@ -30,23 +40,28 @@ const QuestionForm = () => {
     );
 
   return (
-    <form>
-      <div>
-        {currentStepIndex + 1}: {steps.length}
+    <div className="px-8 pt-16 flex w-full flex-col items-center justify-center gap-[4rem]">
+      <div className="text-center text-white font-bold text-md md:text-base lg:text-lg">
+        <p>KMUTT</p>
+        <p>MENTAL HEALTH</p>
+        <p>EXHIBITION</p>
       </div>
-      {step}
-      {!isFirst && (
-        <button type="button" onClick={back}>
+      <div className="pb-8 w-full w-3/4 md:w-2/3 lg:w-1/3 z-10 text-center font-bold text-md md:text-base lg:text-lg bg-white rounded-t-[200px] rounded-b-[15px]">
+        <form>{step}</form>
+      </div>
+      <div className="z-10 flex gap-3">
+        <div>
+          {currentStepIndex + 1}/{steps.length}
+        </div>
+        <button type="button" onClick={handleClickBack}>
           back
         </button>
-      )}
-      {!isLast && (
-        <button type="button" onClick={next}>
+        <button type="button" onClick={handleClickNext}>
           next
         </button>
-      )}
-    </form>
+      </div>
+    </div>
   );
 };
 
-export default QuestionForm
+export default QuestionForm;
