@@ -4,12 +4,14 @@ import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import React, { useState } from "react";
 import { normalStringValidator } from "../validators";
-import { useRouter } from "next/navigation";
 
-const EnterName = () => {
+interface EnterNameProp {
+  setEnterGame: (value: boolean) => void;
+}
+
+const EnterName: React.FC<EnterNameProp> = ({ setEnterGame }) => {
   const [name, setName] = useState<string>("");
   const [warn, setWarn] = useState(false);
-  const router = useRouter();
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     setName(e.currentTarget.value);
@@ -32,7 +34,7 @@ const EnterName = () => {
       return;
     }
     window.localStorage.setItem("name", name);
-    router.push("/game/result");
+    setEnterGame(true);
   };
 
   return (
