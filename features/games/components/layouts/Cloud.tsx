@@ -4,7 +4,7 @@ import React from "react";
 const Cloud = () => {
   return (
     <>
-      <div className="absolute block xs:hidden top-[-5.5em] h-2/5 w-full">
+      <div className="fixed block xs:hidden top-[-5.5em] h-2/5 w-full">
         <Image
           src="/assets/game/backgrounds/double-cloud.png "
           alt="double_cloud"
@@ -13,7 +13,7 @@ const Cloud = () => {
           className="object-cover"
         />
       </div>
-      <div className="absolute hidden h-[40%] w-full xs:block">
+      <div className="fixed hidden h-[40%] w-full xs:block">
         <Image
           src="/assets/game/backgrounds/double-cloud-large.png "
           alt="double_cloud_large"

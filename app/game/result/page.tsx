@@ -1,4 +1,4 @@
-import Result from "@/features/games/components/Result";
+import Result from "@/features/games/components/pages/Result";
 import React from "react";
 
 const ResultPage = () => {

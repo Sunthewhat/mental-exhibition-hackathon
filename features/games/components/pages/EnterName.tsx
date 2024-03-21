@@ -1,10 +1,10 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Image from "next/image";
-import React, { useState } from "react";
-import { normalStringValidator } from "../validators";
+import React, { useCallback, useEffect, useState } from "react";
+import { normalStringValidator } from "../../validators";
 import { useToast } from "@/components/ui/use-toast";
+import Image from "next/image";
 
 interface EnterNameProp {
   setEnterGame: (value: boolean) => void;
@@ -18,24 +18,9 @@ const EnterName: React.FC<EnterNameProp> = ({
   setName,
 }) => {
   const [warn, setWarn] = useState(false);
-  const { toast, dismiss } = useToast();
+  const { toast } = useToast();
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setName(e.currentTarget.value);
-    validateInput(e.currentTarget.value);
-  };
-
-  const validateInput = (input: string) => {
-    if (input === "") return;
-    try {
-      normalStringValidator.parse(input);
-      setWarn(false);
-    } catch (error) {
-      setWarn(true);
-    }
-  };
-
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     if (warn || name === "") {
       if (!warn) {
         toast({
@@ -45,24 +30,63 @@ const EnterName: React.FC<EnterNameProp> = ({
           variant: "destructive",
           duration: 3000,
         });
-
         setWarn(true);
       }
       return;
     }
     window.localStorage.setItem("name", name);
     setEnterGame(true);
-  };
+  }, [warn, name, setEnterGame, toast]);
+
+  const handleEnter = useCallback<React.KeyboardEventHandler<HTMLInputElement>>(
+    (e) => {
+      if (e.key === "Enter" || e.key === "ArrowRight") {
+        handleClick();
+      }
+    },
+    [handleClick]
+  );
+
+  const validateInput = useCallback((input: string) => {
+    if (!input) return;
+    try {
+      normalStringValidator.parse(input);
+      setWarn(false);
+    } catch (error) {
+      setWarn(true);
+    }
+  }, []);
+
+  const handleChange = useCallback(
+    (e: React.FormEvent<HTMLInputElement>) => {
+      const inputValue = e.currentTarget.value;
+      setName(inputValue);
+      validateInput(inputValue);
+    },
+    [setName, validateInput]
+  );
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      handleEnter(e);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleEnter]);
 
   return (
-    <div className="px-8 pt-32 flex w-full flex-col items-center justify-center gap-[3rem] xs:gap-[5rem] xs:mt-[8rem] tablet:mt-[16rem]">
-      <div className="relative w-[161px] h-[161px] md:w-[230px] md:h-[230px]">
+    <div className="px-8 py-16 flex w-full flex-col items-center justify-center gap-[3rem] xs:mt-[8rem] tablet:mt-[0rem]">
+      <div className="relative w-2/3 sm:w-2/5 lg:w-1/3 h-auto">
         <Image
           src="/assets/icon.png"
           alt="icon"
-          fill
-          sizes="(min-width: 808px) 50vw, 100vw"
-          priority
+          width={300}
+          height={200}
+          layout="responsive"
         />
       </div>
 
@@ -79,7 +103,7 @@ const EnterName: React.FC<EnterNameProp> = ({
       </div>
 
       <button
-        className="relative w-[120px] h-[45px] md:w-[180px] md:h-[70px] xs:mt-[-1em] z-10 "
+        className="relative w-[120px] h-[45px] md:w-[180px] md:h-[70px] mt-[4em] z-10"
         onClick={handleClick}
       >
         <Image

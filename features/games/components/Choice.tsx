@@ -22,7 +22,7 @@ const Choice: React.FC<ChoiceProp> = ({
   return (
     <div
       className={`cursor-pointer py-5 px-20 lg:px-64 border-2 rounded-2xl w-full  ${
-        checked ? "border-amber-300" : "border-red-300"
+        checked ? "border-amber-300" : "border-[#B9A5D6]"
       }`}
       onClick={() => onClick(Number(value))}
     >
@@ -33,9 +33,10 @@ const Choice: React.FC<ChoiceProp> = ({
         name={name}
         value={value}
         onChange={handleChoiceChange}
+        
         checked={checked}
       />
-      <label htmlFor={id} key={value} className="cursor-pointer">
+      <label htmlFor={id} key={value} className="cursor-pointer text-[#5A81BC]">
         {choice}
       </label>
     </div>

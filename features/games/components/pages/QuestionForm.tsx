@@ -1,10 +1,12 @@
+import { memo, useEffect, useMemo, useState } from "react";
 import questions from "@/constants/questions";
 import useMultiStepsForm from "@/hooks/useMultiStepsForm";
-import Question from "./Question";
+import Question from "../Question";
 import { useRouter } from "next/navigation";
-import { Progress } from "../../../components/ui/progress";
-import { useState } from "react";
+import { Progress } from "../../../../components/ui/progress";
 import { useToast } from "@/components/ui/use-toast";
+import Warning from "../Warning";
+import InterceptDialog from "@/features/ui/componets/InterceptDialog";
 
 interface QuestionFormProps {
   setEnterGame: (value: boolean) => void;
@@ -13,21 +15,63 @@ interface QuestionFormProps {
   answers: number[];
 }
 
+const MemoizedQuestion = memo(Question);
+
 const QuestionForm: React.FC<QuestionFormProps> = ({
   setEnterGame,
   handleUpdateAnswer,
   isAnswerSelected,
   answers,
 }) => {
+  const [warn, setWarn] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
 
-  const handleClickBack = () => {
-    if (isFirst) setEnterGame(false);
-    back();
-  };
+  const { currentStepIndex, step, steps, back, next, isFirst, isLast } =
+    useMultiStepsForm(
+      useMemo(
+        () =>
+          questions.map((question, idx) => (
+            <MemoizedQuestion
+              idx={idx}
+              key={`question-component-${idx}`}
+              question={question}
+              handleUpdateAnswer={handleUpdateAnswer}
+              isAnswerSelected={isAnswerSelected}
+            />
+          )),
+        [questions, handleUpdateAnswer, isAnswerSelected]
+      )
+    );
 
-  const handleClickNext = () => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        handleClick(true);
+      } else if (e.key === "ArrowRight" || e.key === "Enter") {
+        if (warn) {
+          setWarn(false);
+          return;
+        }
+        handleClick(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [currentStepIndex, warn]);
+
+  const handleClick = (previous: boolean) => {
+    if (previous) {
+      if (isFirst) setEnterGame(false);
+
+      back();
+      return;
+    }
+
     if (isLast) {
       if (!isCompleteAllAnswer()) {
         toast({
@@ -37,32 +81,32 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
           duration: 3000,
         });
         return;
-      } // TODO: warn user
+      }
 
       router.push("/game/result");
     }
+    setWarn(true);
+    console.log("");
     next();
   };
 
   const isCompleteAllAnswer = (): boolean => {
-    return !(answers.length === 0 || answers === null);
+    return !(
+      answers.length === 0 ||
+      answers === null ||
+      answers.length !== steps.length
+    );
   };
 
-  const { currentStepIndex, step, steps, back, next, isFirst, isLast } =
-    useMultiStepsForm(
-      questions.map((question, idx) => (
-        <Question
-          idx={idx}
-          key={`question-component-${idx}`}
-          question={question}
-          handleUpdateAnswer={handleUpdateAnswer}
-          isAnswerSelected={isAnswerSelected}
-        />
-      ))
-    );
-
   return (
-    <div className="px-8 pt-16 flex w-full flex-col items-center justify-center gap-[4rem] lg:h-auto">
+    <div
+      className={`relative px-8 pt-16 flex w-full flex-col items-center justify-center gap-[4rem] lg:h-auto`}
+    >
+      {warn && (
+        <InterceptDialog onClose={() => setWarn(false)}>
+          <Warning onClose={() => setWarn(false)} />
+        </InterceptDialog>
+      )}
       <div className="text-center text-white font-bold text-md md:text-base lg:text-lg">
         <p>KMUTT</p>
         <p>MENTAL HEALTH</p>
@@ -82,7 +126,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
           </p>
         </div>
         <div className="flex justify-center items-center gap-8">
-          <button type="button" onClick={handleClickBack}>
+          <button type="button" onClick={() => handleClick(true)}>
             <div
               className="w-0 h-0 
   border-t-[25px] border-t-transparent
@@ -90,7 +134,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
   border-b-[25px] border-b-transparent"
             ></div>
           </button>
-          <button type="button" onClick={handleClickNext}>
+          <button type="button" onClick={() => handleClick(false)}>
             <div
               className="w-0 h-0 
   border-t-[25px] border-t-transparent

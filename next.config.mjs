@@ -3,7 +3,7 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/instragram",
+        source: "/instagram",
         destination: "https://www.instagram.com/hackmindgallery.kmutt/",
         permanent: false,
         basePath: false,

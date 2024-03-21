@@ -4,7 +4,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { getDisplayName } from "@/features/games/helpers";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import Contact from "./Contact";
+import Contact from "../Contact";
+import Lighting from "../Lighting";
 
 const Result = () => {
   const [name, setName] = useState<string | null>(null);
@@ -28,7 +29,7 @@ const Result = () => {
           className="w-full h-3/5 md:h-3/4 flex flex-col items-center  
           gap-[2rem] lg:mt-16 xl:h-4/5 ipad-pro:flex-row "
         >
-          <div className="relative w-3/5 xl:w-1/2 h-auto bg-cover bg-result bg-transparent bg-opacity-70 rounded-full">
+          <Lighting className="relative w-3/5 xl:w-1/2 h-auto bg-cover  rounded-full">
             <Image
               src="/assets/game/peppy_cat.png"
               alt="avatar"
@@ -36,7 +37,7 @@ const Result = () => {
               height={200}
               layout="responsive"
             />
-          </div>
+          </Lighting>
           <ScrollArea
             className="bg-white opacity-70 rounded-2xl shadow-md p-1
         w-2/3 h-3/4 md:w-[90%] ipad-pro:w-4/5 2xl:w-1/2 2xl:h-full"
