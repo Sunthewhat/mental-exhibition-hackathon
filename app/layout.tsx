@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({subsets: ["latin"],});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +15,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning={true}>
+      <body className={inter.className}>
+        <main className="bg-main bg-cover bg-no-repeat flex justify-center items-center py-8 md:px-12 px-4 min-h-[100vh]">
+            {children}
+          </main>
+      </body>
     </html>
   );
 }
