@@ -80,10 +80,6 @@ const FormHackathon = () => {
       }, 1000); // Delay for 2 seconds
     }
     
-  useEffect(() => {
-    console.log(formData);
-    console.log(members)
-  }, [formData]);
 
   const handleClearStorage = () => {
     console.log("reset success");

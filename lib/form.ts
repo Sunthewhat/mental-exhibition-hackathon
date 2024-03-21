@@ -6,12 +6,12 @@ export const formSchema = z.object({
   fullname: z.string().min(1,{message:  "Full name is required"}),
   nickname: z.string().min(1,{message: "Nickname is required"}),
   university: z.string().min(1,{message: "University is required"}),
-  email: z.string({required_error:"Email is required"}).email({ message: "Invalid email address" }),
+  email: z.string({required_error:"Email is required"}).email({ message: "Invalid email address" }).toLowerCase(),
 
   student_id: z.string()
-    .min(11, { message: "Student ID must be exactly 11 digits long." })
-    .max(11, { message: "Student ID cannot exceed 11 digits." })
-    .refine((val) => /^\d{11}$/.test(val), { message: "Phone number must be a valid 11-digit number." }),
+    .min(2, { message: "Student ID must be exactly 11 digits long." })
+    .max(2, { message: "Student ID cannot exceed 11 digits." })
+    .refine((val) => /^\d{2}$/.test(val), { message: "Phone number must be a valid 11-digit number." }),
 
   phone: z
     .string()

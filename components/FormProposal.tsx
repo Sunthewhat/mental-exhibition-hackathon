@@ -1,5 +1,6 @@
-"use client";
-import React, { useState, useEffect } from "react";
+
+'use client'
+import React, { useState, useEffect, ChangeEventHandler } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,15 +16,25 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+
+
 const FormProposal = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [proposalForm, setProposalForm] = useState();
+  const [formData, setFormData] = useState<z.infer<typeof formSchema>[]>([]);
 
+  useEffect(() => {
+    const storedFormData = JSON.parse(localStorage.getItem("formData") || "[]");
+    if (Array.isArray(storedFormData)) {
+      setFormData(storedFormData);
+    } else {
+      setFormData([]);
+    }
+  }, []);
 
   const formSchema = z.object({
     ideaName: z.string().min(1, { message: "Team name is required" }),
-    linkSlide: z.string().min(1, { message: "Team name is required" }),
-    fileUpload: typeof window === 'undefined' ? z.any() : z.instanceof(FileList)
+    linkSlide: z.string().min(1, { message: "Link slide is required" }),
+    fileUpload:z.any(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -36,14 +47,51 @@ const FormProposal = () => {
   });
   const fileRef = form.register("fileUpload");
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true); // Set submitting state to true
+  
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+  
+    let urlName;
 
+    try {
+      const formData = new FormData();
+      formData.append('pdf', values.fileUpload[0]);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (response.ok) {
+        urlName = await response.text();
+        console.log('Image uploaded successfully');
+      } else {
+        console.error('Failed to upload image');
+      }
+    } catch (error) {
+      console.error('Error uploading image', error);
+    }
+
+    values.fileUpload = urlName;
+    setFormData((prevFormData) => {
+      if (!prevFormData) {
+        return [...[], values];
+      }
+    
+      // If prevFormData is not undefined or null, spread it and add the new values
+      return [...prevFormData, values];
+    });
+    const updatedFormData = [...(formData || []), values];
+    localStorage.setItem("formData", JSON.stringify(updatedFormData));
+  
     setTimeout(() => {
-      setIsSubmitting(false); // Reset submitting state after delay
-      window.location.href = "/form/success"; // Redirect to the next page
-    }, 1000); // Delay for 2 seconds
-  }
+      setIsSubmitting(false);
+      window.location.href = "/form/success";
+    }, 1000);
+  };
+  
+    
+
 
   return (
     <section className="space-y-6">
@@ -100,7 +148,7 @@ const FormProposal = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="font-semibold">
-                      แนบไฟล์ (.pdf)
+                        แนบไฟล์ (.pdf)
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -110,7 +158,9 @@ const FormProposal = () => {
                           accept="application/pdf"
                           className="w-full"
                           onChange={(event) => {
-                            field.onChange(event.target?.files?.[0] ?? undefined);
+                            field.onChange(
+                              event.target?.files?.[0] ?? undefined
+                            );
                           }}
                         />
                       </FormControl>

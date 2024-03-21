@@ -30,7 +30,6 @@ const FormExhibition = () => {
       phone: "",
       email: "",
       leader: false,
-      members: 0,
       formType:'',
       teamName:'',
     },
@@ -76,6 +75,7 @@ const FormExhibition = () => {
     
       setTimeout(() => {
         setIsSubmitting(false); // Reset submitting state after delay
+        // form.reset()
         next(); // Move to the next step (ConfirmTeam)
       }, 1000); // Delay for 2 seconds
     }

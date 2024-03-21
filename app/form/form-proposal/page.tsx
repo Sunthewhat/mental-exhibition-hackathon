@@ -11,7 +11,7 @@ const FormProposalPage = () => {
 
   return (
     <>
-    {formType === "exhibition" ? <FormProposal /> : "Is not exhibition"}
+    {formType === "exhibition" ? <FormProposal /> : "Error"}
     </>
   )
 }

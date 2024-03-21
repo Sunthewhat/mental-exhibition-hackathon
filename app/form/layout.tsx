@@ -14,6 +14,7 @@ const layout = ({ children }: FormLayout) => {
     const members = localStorage.getItem("members");
     const teamName = localStorage.getItem("team-name");
     if (!formType || !teamName || !members) {
+      localStorage.clear();
       router.replace("/form/detail");
     }
   }, []);
