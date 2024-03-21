@@ -90,7 +90,7 @@ const ChooseMemberAndTeam = () => {
                   ? "ระดับอุดมศึกษา"
                   : "ระดับมัธยมปลาย"}
               </h1>
-              <ul className="mx-auto lg:w-[800px] mb-6">
+              <ul className="mx-auto lg:w-[800px] mb-6 text-sm">
                 <li>- มีสมาชิกในทีม 3-5 คน</li>
                 <li>
                   - สมาชิกอย่างน้อย 3
