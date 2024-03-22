@@ -1,17 +1,18 @@
 'use client';
 
 import Image from "next/image";
-import logo from "../assets/logo.png";
-import styles from '../pages/pdpa_page/page.module.css';
-import OuterBox from "./outer_box";
-import GButton from "./g_button";
+import logo from "../../assets/logo.png";
+import styles from '../../pages/pdpa_page/page.module.css';
+import OuterBox from "../outer_box";
+import GButton from "../g_button";
 import Link from "next/link";
+import InnerBox from "../inner_box";
 
 const ExplainBox: React.FC = () => {
   
   return (
     <OuterBox>
-      <div className="flex flex-col gap-6 bg-[#FFFFFF] bg-opacity-70 lg:px-20 px-5 py-20 rounded-[10px]">
+      <InnerBox>
         <div className="flex flex-col justify-center items-center gap-3 border-b border-[#B9A5D6] pb-6">
           <div className="">
             <Image priority src={logo} alt="logo" />
@@ -80,10 +81,10 @@ const ExplainBox: React.FC = () => {
             ตลอดจนตามวัตถุประสงค์ดังต่อไปนี้{" "}
           </p>
         </div>
-      </div>  
+      </InnerBox>
       <div className="flex flex-row justify-between items-end">
-        <GButton title="ย้อนกลับ" command="/" type={1} />
-        <GButton title="ถัดไป" command="/" />
+        <GButton title="ย้อนกลับ" command="/hackathon_form/pages/pdpa_page" type='TYPE1' />
+        <GButton title="ถัดไป" command="/hackathon_form/pages/gradesel_page" />
       </div>
       
     </OuterBox>
