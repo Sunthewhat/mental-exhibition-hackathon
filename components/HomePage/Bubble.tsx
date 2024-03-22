@@ -2,33 +2,33 @@ import { motion } from "framer-motion";
 
 interface Props {
   filePath: string;
-  initialPos: {
-    posX: number;
-  };
+  position: {
+    startPosX: number;
+    destPosX: number;
+  }
 }
 
 export default function Bubble({
   filePath,
-  initialPos: { posX },
+  position: {
+    startPosX,
+    destPosX
+  }
 }: Props) {
-
-  const randNum = Math.random();
-
-  const destX = randNum < 0.5 ? posX + 100 : posX - 100;
 
   return (
     <motion.img
     
       initial=
       {{
-        left: posX,
+        left: startPosX,
         bottom: 0,
         opacity: 0
       }}
       
       animate=
       {{
-        left: destX,
+        left: destPosX,
         top: 0,
         opacity: [0, 100, 0]
       }}

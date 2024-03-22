@@ -4,7 +4,7 @@ import NavigationBar from "@/components/Navigation/NavigationBar";
 import styles from "./page.module.css";
 import Layer from "@/components/HomePage/Layer";
 import SmokeBackground from "@/components/HomePage/SmokeBackground";
-import { Noto_Sans } from "next/font/google";
+import { Noto_Sans_Thai } from "next/font/google";
 import BubbleBackground from "@/components/HomePage/BubbleBackground";
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "for your soul",
 };
 
-const noto_sans = Noto_Sans({ subsets: ["latin"] });
+const noto_sans = Noto_Sans_Thai({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -24,12 +24,10 @@ export default function RootLayout({
       <body className={`${styles.defaultBackground} ${noto_sans.className}`}>
         <SmokeBackground />
 
-        <BubbleBackground />
+        {/* <BubbleBackground /> */}
 
         <Layer depth={1}>
-          <NavigationBar>
-              {children}
-          </NavigationBar>
+          <NavigationBar>{children}</NavigationBar>
         </Layer>
       </body>
     </html>
