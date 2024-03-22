@@ -10,7 +10,7 @@ export default function Slider() {
   return (
     <>
         <Swiper 
-          spaceBetween={10}
+          spaceBetween={100}
           slidesPerView={1}
           loop={true}
           className="rounded-3xl w-full h-[250px] md:h-[340px] lg:h-[480px] shadow-md"

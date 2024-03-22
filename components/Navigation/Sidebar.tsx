@@ -10,8 +10,8 @@ interface Props {
 
 export default function Sidebar({state, setState}: Props) {
   
-  function onClickHandler(e: React.MouseEvent<HTMLDivElement>) {
-    setState(prev => false);
+  function onClickHandler(e: React.MouseEvent<HTMLDivElement | SVGSVGElement>) {
+    setState(() => false);
   }
   
   return (
@@ -29,7 +29,7 @@ export default function Sidebar({state, setState}: Props) {
           >
             
             <div className="flex flex-col">
-              <X color="#fff" size={24} strokeWidth={3}/>
+              <X color="#fff" size={24} strokeWidth={3} onClick={(e) => onClickHandler(e)}/>
               <ul className="mt-10 text-[#5A81BC] font-black text-xl">
                 <li>
                   <Link href='/'>Home</Link>

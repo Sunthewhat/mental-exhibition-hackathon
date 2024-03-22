@@ -5,13 +5,14 @@ import styles from "./page.module.css";
 import Layer from "@/components/HomePage/Layer";
 import SmokeBackground from "@/components/HomePage/SmokeBackground";
 import { Noto_Sans } from "next/font/google";
+import BubbleBackground from "@/components/HomePage/BubbleBackground";
 
 export const metadata: Metadata = {
   title: "Mental Exhibition",
   description: "for your soul",
 };
 
-const noto_sans = Noto_Sans({subsets: ['latin']});
+const noto_sans = Noto_Sans({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -23,8 +24,12 @@ export default function RootLayout({
       <body className={`${styles.defaultBackground} ${noto_sans.className}`}>
         <SmokeBackground />
 
+        <BubbleBackground />
+
         <Layer depth={1}>
-          <NavigationBar>{children}</NavigationBar>
+          <NavigationBar>
+              {children}
+          </NavigationBar>
         </Layer>
       </body>
     </html>
