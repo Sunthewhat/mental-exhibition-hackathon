@@ -1,10 +1,11 @@
 import Image from "next/image";
 import logo from "../assets/logo.png";
 import styles from '../pages/pdpa_page/page.module.css';
+import OuterBox from "./outer_box";
 
 const PdpaBox: React.FC = () => {
   return (
-    <div className="flex flex-col ml-5 mr-5 mt-[-34px] mb-[-34px] gap-10">
+    <OuterBox>
       <div className="flex flex-col gap-6 bg-[#FFFFFF] bg-opacity-70 p-5 rounded-[10px]">
         <div className="flex flex-col justify-center items-center gap-3 border-b border-[#B9A5D6] pb-6">
           <div className="">
@@ -84,7 +85,7 @@ const PdpaBox: React.FC = () => {
             <a className="text-white text-[16px] font-bold" href="/hackathon_form/pages/form_page">ยอมรับและถัดไป</a>
         </button>
       </div>
-    </div>
+    </OuterBox>
   );
 };
 
