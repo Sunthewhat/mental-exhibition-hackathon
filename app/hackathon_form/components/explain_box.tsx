@@ -7,7 +7,7 @@ import OuterBox from "./outer_box";
 import GButton from "./g_button";
 import Link from "next/link";
 
-const PdpaBox: React.FC = () => {
+const ExplainBox: React.FC = () => {
   
   return (
     <OuterBox>
@@ -81,8 +81,9 @@ const PdpaBox: React.FC = () => {
           </p>
         </div>
       </div>  
-      <div className="flex flex-col justify-center items-end">
-        <GButton title="ยอมรับและถัดไป" command="/hackathon_form/pages/explain_page" />
+      <div className="flex flex-row justify-between items-end">
+        <GButton title="ย้อนกลับ" command="/" type={1} />
+        <GButton title="ถัดไป" command="/" />
       </div>
       
     </OuterBox>
@@ -90,4 +91,4 @@ const PdpaBox: React.FC = () => {
   );
 };
 
-export default PdpaBox;
+export default ExplainBox;
