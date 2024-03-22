@@ -5,27 +5,23 @@ import OuterBox from "./outer_box";
 
 const PdpaBox: React.FC = () => {
   return (
-    <OuterBox>
-      <div className="flex flex-col gap-6 bg-[#FFFFFF] bg-opacity-70 p-5 rounded-[10px]">
+    <div className="flex flex-col md:ml-[4%] md:mr-[4%] lg:ml-[8%] lg:mr-[8%] ml-5 mr-5 mt-[-34px] mb-[-34px] gap-10">
+      <div className="flex flex-col gap-6 bg-[#FFFFFF] bg-opacity-70 lg:px-20 px-5 py-20 rounded-[10px]">
         <div className="flex flex-col justify-center items-center gap-3 border-b border-[#B9A5D6] pb-6">
           <div className="">
             <Image priority src={logo} alt="logo" />
           </div>
-          <h2 className=" text-center">
-            แบบฟอร์มลงทะเบียน
-            <br />
-            Mental Health Hackathon Challenge
+          <h2 className=" text-center ">
+            แบบฟอร์มลงทะเบียน<br className="md:hidden" /> Mental Health Hackathon Challenge
           </h2>
           <p className=" text-center">
-            Innovation hackathon challenge
-            <br />
-            “นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”
+            Innovation hackathon challenge<br className="md:hidden" /> “นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”
           </p>
         </div>
         <div className="flex flex-col items-start justify-start text-left gap-3">
           <h2>
             หนังสือยินยอมเพื่อขอใช้ประโยชน์
-            <br />
+            <br className="md:hidden" />
             ข้อมูลส่วนบุคคล
           </h2>
           <p>คณะเทคโนโลยีสารสนเทศ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี</p>
