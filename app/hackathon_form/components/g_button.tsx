@@ -9,6 +9,7 @@ interface Props {
 }
 
 export default function GButton({ title, command, type}: Props) {
+    
     if (type == 'TYPE1') {
         return(
         <Link className="text-[#B9A5D6] text-[16px] font-bold z-20" href={command}>

@@ -5,3 +5,32 @@
 .btn_gradient {
     background: var(--button, linear-gradient(90deg, #DDCDFA 0%, #F1D2EE 34%, #EBD3F5 60%, #D5CAFC 98%));
 }
+
+.radioButton{
+  border:2px solid white;
+  box-shadow:0 0 0 1px rgba(0,0,0,0.7);
+  appearance:none;
+  border-radius:50%;
+  width:12px;
+  height:12px;
+  background-color:#fff;
+  transition:all ease-in 0.2s;
+
+}
+.radioButton:checked{
+  box-shadow:0 0 0 1px #B9A5D6;
+  background-color:#B9A5D6;
+}
+
+.file_upload input {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+}

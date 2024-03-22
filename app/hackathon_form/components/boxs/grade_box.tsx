@@ -5,11 +5,24 @@ import logo from "../../assets/logo.png";
 import styles from '../../pages/pdpa_page/page.module.css';
 import OuterBox from "../outer_box";
 import GButton from "../g_button";
-import Link from "next/link";
 import InnerBox from "../inner_box";
+import { useRouter } from "next/navigation";
 
 const GradeBox: React.FC = () => {
-  
+  const router = useRouter()
+
+  const handleChange = (event: { target: { value: string; }; }) => {
+    localStorage.setItem('educationLevel', event.target.value);
+    //console.log(localStorage.getItem('educationLevel'));
+  }
+
+  const clickHandle = () => {
+    if (localStorage.getItem('educationLevel') === 'highSchool') {
+      router.push('/hackathon_form/pages/pdpa_page')
+    } else if (localStorage.getItem('educationLevel') === 'university') {
+      router.push('/hackathon_form/pages/uniteam_page')
+    }
+  }
   
   return (
     <OuterBox>
@@ -28,18 +41,23 @@ const GradeBox: React.FC = () => {
         <div className="flex flex-col items-center">
           <h2>โปรดเลือกระดับการศึกษา</h2>
           <div className="flex flex-col items-start">
-            <div className="flex gap-3">
-              <input type="radio" id="highSchool" name="educationLevel" value="highSchool" />
-              <label htmlFor="highSchool">High School</label>
+            <div className="flex gap-3 justify-center items-center">
+              <input type="radio" className={styles.radioButton} id="highSchool" name="educationLevel" value="university" onChange={handleChange} />
+              <label htmlFor="highSchool">ระดับอุดมศึกษา</label>
             </div>
-            <div className="flex gap-3">
-              <input type="radio" className="" id="university" name="educationLevel" value="university" />
-              <label htmlFor="university">University</label>
+            <div className="flex gap-3 justify-center items-center">
+              <input type="radio" className={styles.radioButton} id="university" name="educationLevel" value="highSchool" onChange={handleChange} />
+              <label htmlFor="university">ระดับมัธยมศึกษาตอนปลาย</label>
             </div>
-            
           </div>
         </div>
       </InnerBox>
+      <div className="flex flex-row justify-between items-end">
+        <GButton title="ย้อนกลับ" command="/hackathon_form/pages/pdpa_page" type='TYPE1' />
+        <button className={`${styles.btn_gradient} px-[60px] py-[15px] rounded-[8px] z-20`} onClick={clickHandle}>
+            <p className="text-white text-[16px] font-bold z-20">ถัดไป</p>
+        </button>
+      </div>
     </OuterBox>
   );
 };
