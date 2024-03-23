@@ -13,15 +13,15 @@ const ExplainBox: React.FC = () => {
   return (
     <OuterBox>
       <InnerBox>
-        <div className="flex flex-col justify-center items-center gap-3 border-b border-[#B9A5D6] pb-6">
+      <div className="flex flex-col justify-center items-center gap-3 border-b border-[#B9A5D6] pb-6">
           <div className="">
             <Image priority src={logo} alt="logo" />
           </div>
-          <h2 className=" text-center ">
+          <h2 className=" text-center text-[#5A81BC] font-bold">
             แบบฟอร์มลงทะเบียน<br className="md:hidden" /> Mental Health Hackathon Challenge
           </h2>
           <p className=" text-center">
-            Innovation hackathon challenge<br className="md:hidden" /> “นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”
+            Innovation hackathon challenge<br className="md:hidden" /> <span className=" text-[#5A81BC] font-bold">“นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”</span>
           </p>
         </div>
         <div className="flex flex-col items-start justify-start text-left gap-3">

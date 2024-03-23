@@ -13,7 +13,7 @@ interface Props {
     num: string;
 }
 
-const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
+const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
 
   var titleName;
   const router = useRouter()
@@ -22,7 +22,7 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
     if (parseInt(num) == parseInt(localStorage.getItem('teamMembers') || '0')) {
         router.push('/hackathon_form/pages/filesent_page');
     }else {
-        router.push(`/hackathon_form/pages/uniteam_data_page?num=${parseInt(num) + 1}`);
+        router.push(`/hackathon_form/pages/highteam_data_page?num=${parseInt(num) + 1}`);
     }
   }
 
@@ -33,22 +33,22 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
   const handleChange = (event: { target: { id: string, value: string; }; }) => {
     console.log(event.target.id);
     if (event.target.id === 'fullname') {
-        localStorage.setItem('uni_fullname_'+num, event.target.value);
+        localStorage.setItem('high_fullname_'+num, event.target.value);
     }
     if (event.target.id === 'nickname') {
-        localStorage.setItem('uni_nickname_'+num, event.target.value);
+        localStorage.setItem('high_nickname_'+num, event.target.value);
     }
     if (event.target.id === 'university') {
-        localStorage.setItem('uni_university_'+num, event.target.value);
+        localStorage.setItem('high_university_'+num, event.target.value);
     }
     if (event.target.id === 'studentcode') {
-        localStorage.setItem('uni_studentcode_'+num, event.target.value);
+        localStorage.setItem('high_studentcode_'+num, event.target.value);
     }
     if (event.target.id === 'tel') {
-        localStorage.setItem('uni_tel_'+num, event.target.value);
+        localStorage.setItem('high_tel_'+num, event.target.value);
     }
     if (event.target.id === 'email') {
-        localStorage.setItem('uni_email_'+num, event.target.value);
+        localStorage.setItem('high_email_'+num, event.target.value);
     }
   }
 
@@ -98,11 +98,11 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
           </button>
           <button className={`${styles.btn_gradient} px-[60px] py-[15px] rounded-[8px] z-20`} onClick={clickHandle}>
             <p className="text-white text-[16px] font-bold z-20">ถัดไป</p>
-        </button>
+          </button>
         </div>
       </OuterBox>
     </section>
   );
 };
 
-export default UniTeamData;
+export default HighTeamData;
