@@ -4,16 +4,16 @@ import React from "react";
 const Cloud = () => {
   return (
     <>
-      <div className="fixed block xs:hidden top-[-5.5em] h-2/5 w-full z-20">
+      <div className="fixed block xs:hidden top-[-5.5em] h-2/5 w-full">
         <Image
           src="/assets/game/backgrounds/double-cloud.png "
           alt="double_cloud"
           fill
           sizes="(min-width: 808px) 50vw, 100vw"
-          className="object-cover z-20"
+          className="object-cover"
         />
       </div>
-      <div className="fixed hidden h-[40%] w-full xs:block z-20">
+      <div className="fixed hidden h-[40%] w-full xs:block">
         <Image
           src="/assets/game/backgrounds/double-cloud-large.png"
           alt="double_cloud_large"
@@ -24,7 +24,7 @@ const Cloud = () => {
           }}
           width={100}
           height={100}
-          className="z-20"
+          className="object-cover"
         />
       </div>
     </>
