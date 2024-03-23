@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { normalStringValidator } from "../../validators";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
+import ShineBox from "@/features/ui/componets/Shinebox";
 
 interface EnterNameProp {
   setEnterGame: (value: boolean) => void;
@@ -34,7 +35,9 @@ const EnterName: React.FC<EnterNameProp> = ({
       }
       return;
     }
+
     window.localStorage.setItem("name", name);
+    window.localStorage.removeItem("answers");
     setEnterGame(true);
   }, [warn, name, setEnterGame, toast]);
 
@@ -102,18 +105,20 @@ const EnterName: React.FC<EnterNameProp> = ({
         )}
       </div>
 
-      <button
-        className="relative w-[120px] h-[45px] md:w-[180px] md:h-[70px] mt-[4em] z-10"
-        onClick={handleClick}
-      >
-        <Image
-          src="/assets/game/click-here.png"
-          alt="icon"
-          width={300}
-          height={200}
-          layout="responsive"
-        />
-      </button>
+      <ShineBox blurAmount="blur-3xl" boxSize={120}>
+        <button
+          className="relative w-[120px] h-[45px] md:w-[180px] md:h-[70px] mt-[4em] z-10"
+          onClick={handleClick}
+        >
+          <Image
+            src="/assets/game/click-here.png"
+            alt="icon"
+            width={300}
+            height={200}
+            layout="responsive"
+          />
+        </button>
+      </ShineBox>
     </div>
   );
 };

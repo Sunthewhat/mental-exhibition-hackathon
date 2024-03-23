@@ -1,12 +1,14 @@
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import questions from "@/constants/questions";
 import useMultiStepsForm from "@/hooks/useMultiStepsForm";
 import Question from "../Question";
 import { useRouter } from "next/navigation";
 import { Progress } from "../../../../components/ui/progress";
 import { useToast } from "@/components/ui/use-toast";
+import { getScore } from "@/features/games/helpers";
 import Warning from "../Warning";
 import InterceptDialog from "@/features/ui/componets/InterceptDialog";
+import { useSeason } from "@/hooks/useSeason";
 
 interface QuestionFormProps {
   setEnterGame: (value: boolean) => void;
@@ -23,9 +25,11 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
   isAnswerSelected,
   answers,
 }) => {
+  const score = getScore();
+  const router = useRouter();
   const [warn, setWarn] = useState(false);
   const { toast } = useToast();
-  const router = useRouter();
+  const { id } = useSeason(score);
 
   const { currentStepIndex, step, steps, back, next, isFirst, isLast } =
     useMultiStepsForm(
@@ -40,9 +44,58 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
               isAnswerSelected={isAnswerSelected}
             />
           )),
-        [questions, handleUpdateAnswer, isAnswerSelected]
+        [handleUpdateAnswer, isAnswerSelected]
       )
     );
+
+  const isCompleteAllAnswer = useCallback((): boolean => {
+    return (
+      answers.length === steps.length &&
+      answers.every((answer) => answer !== undefined)
+    );
+  }, [answers, steps]);
+
+  const handleClick = useCallback(
+    (previous: boolean) => {
+      if (previous) {
+        if (isFirst) setEnterGame(false);
+
+        back();
+        return;
+      }
+
+      if (isLast) {
+        if (!isCompleteAllAnswer()) {
+          toast({
+            title: "Form not completed",
+            description: "กรุณาตอบคำถามให้ครบทุกข้อ",
+            variant: "destructive",
+            duration: 3000,
+          });
+          return;
+        }
+
+        if (id === 1) {
+          setWarn(true);
+        } else {
+          router.push("/game/result");
+        }
+      }
+
+      next();
+    },
+    [
+      back,
+      isFirst,
+      isLast,
+      isCompleteAllAnswer,
+      next,
+      router,
+      setEnterGame,
+      toast,
+      isCompleteAllAnswer,
+    ]
+  );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -62,51 +115,28 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [currentStepIndex, warn]);
-
-  const handleClick = (previous: boolean) => {
-    if (previous) {
-      if (isFirst) setEnterGame(false);
-
-      back();
-      return;
-    }
-
-    if (isLast) {
-      if (!isCompleteAllAnswer()) {
-        toast({
-          title: "Form not completed",
-          description: "กรุณาตอบคำถามให้ครบทุกข้อ",
-          variant: "destructive",
-          duration: 3000,
-        });
-        return;
-      }
-
-      router.push("/game/result");
-    }
-    setWarn(true);
-    console.log("");
-    next();
-  };
-
-  const isCompleteAllAnswer = (): boolean => {
-    return !(
-      answers.length === 0 ||
-      answers === null ||
-      answers.length !== steps.length
-    );
-  };
+  }, [handleClick, currentStepIndex, warn]);
 
   return (
     <div
       className={`relative px-8 pt-16 flex w-full flex-col items-center justify-center gap-[4rem] lg:h-auto`}
     >
       {warn && (
-        <InterceptDialog onClose={() => setWarn(false)}>
-          <Warning onClose={() => setWarn(false)} />
+        <InterceptDialog
+          onClose={() => {
+            setWarn(false);
+            router.push("/game/result");
+          }}
+        >
+          <Warning
+            onClose={() => {
+              setWarn(false);
+              router.push("/game/result");
+            }}
+          />
         </InterceptDialog>
       )}
+
       <div className="text-center text-white font-bold text-md md:text-base lg:text-lg">
         <p>KMUTT</p>
         <p>MENTAL HEALTH</p>

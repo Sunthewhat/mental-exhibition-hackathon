@@ -27,6 +27,7 @@ const Question: React.FC<QuestionProp> = ({
         {choices.map((choice, choiceIdx) => {
           return (
             <Choice
+              questionNumber={idx}
               key={`${label}-${choiceIdx}`}
               id={`${label}-${choiceIdx}`}
               name={label}

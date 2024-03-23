@@ -3,11 +3,7 @@
 import StartGame from "@/features/games/components/pages/StartGame";
 
 const StartPage = () => {
-  return (
-    <>
-      <StartGame />
-    </>
-  );
+  return <StartGame />;
 };
 
 export default StartPage;

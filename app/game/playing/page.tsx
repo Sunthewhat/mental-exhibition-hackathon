@@ -1,8 +1,7 @@
 "use client";
 import EnterName from "@/features/games/components/pages/EnterName";
 import QuestionForm from "@/features/games/components/pages/QuestionForm";
-import Warning from "@/features/games/components/Warning";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const GamePage = () => {
   const [enterGame, setEnterGame] = useState<boolean>(false);
