@@ -17,10 +17,10 @@ const SummitBox: React.FC = () => {
           <div className="">
             <Image priority src={logo} alt="logo" />
           </div>
-          <h2 className=" text-center text-[#5A81BC] font-bold">
+          <h2 className=" text-[12px] md:text-[20px] lg:text-[24px] text-center text-[#5A81BC] font-bold">
             แบบฟอร์มลงทะเบียน<br className="md:hidden" /> Mental Health Hackathon Challenge
           </h2>
-          <p className=" text-center">
+          <p className=" text-center text-[10px] md:text-[15px] lg:text-[16px]">
             Innovation hackathon challenge<br className="md:hidden" /> <span className=" text-[#5A81BC] font-bold">“นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”</span>
           </p>
         </div>
@@ -34,10 +34,10 @@ const SummitBox: React.FC = () => {
             />
             </div>
             <h2 className="font-bold text-[20px] text-[#5A81BC]">ดำเนินการเสร็จสิ้น</h2>
-            <div>
+            <div className="text-[10px] md:text-[14px] lg:text-[24px] text-[#34312F]">
                 <p>เราได้รับคำตอบของคุณแล้ว ติดตามข่าวสารของเราได้ที่</p>
-                <p>Website: www.hackmindgallery.com</p>
-                <p>Instagram: hackmindgallery.kmutt</p>
+                <p><span className="font-bold">Website:</span> www.hackmindgallery.com</p>
+                <p><span className="font-bold">Instagram</span>: hackmindgallery.kmutt</p>
             </div>
         </div>
       </InnerBox>

@@ -17,15 +17,15 @@ const PdpaBox: React.FC = () => {
           <div className="">
             <Image priority src={logo} alt="logo" />
           </div>
-          <h2 className=" text-center text-[#5A81BC] font-bold">
+          <h2 className=" text-[12px] md:text-[20px] lg:text-[24px] text-center text-[#5A81BC] font-bold">
             แบบฟอร์มลงทะเบียน<br className="md:hidden" /> Mental Health Hackathon Challenge
           </h2>
-          <p className=" text-center">
+          <p className=" text-center text-[10px] md:text-[15px] lg:text-[16px]">
             Innovation hackathon challenge<br className="md:hidden" /> <span className=" text-[#5A81BC] font-bold">“นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”</span>
           </p>
         </div>
-        <div className="flex flex-col items-start justify-start text-left gap-3">
-          <h2>
+        <div className="flex flex-col items-start justify-start text-left gap-3 text-[#3E3C3D] text-[16px]">
+          <h2 className="text-[20px] font-bold text-[#5A81BC]">
             หนังสือยินยอมเพื่อขอใช้ประโยชน์
             <br className="md:hidden" />
             ข้อมูลส่วนบุคคล

@@ -4,17 +4,46 @@ import styles from '../../pages/pdpa_page/page.module.css';
 import OuterBox from "../outer_box";
 import InnerBox from "../inner_box";
 import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from 'react';
 
 interface Props {
     num: string;
 }
 
 const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
+  const [fullname, setFullName] = useState('');
+  const [nickname, setNickName] = useState('');
+  const [university, setUniversity] = useState('');
+  const [tel, setTel] = useState('');
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState(false);
 
   var titleName;
   const router = useRouter()
 
+  useEffect(() => {
+    const storedFullName = localStorage.getItem('high_fullname_'+num);
+    const storedNickName = localStorage.getItem('high_nickname_'+num);
+    const storedUniversity = localStorage.getItem('high_university_'+num);
+    const storedTel = localStorage.getItem('high_tel_'+num);
+    const storedEmail = localStorage.getItem('high_email_'+num);
+
+    if (storedFullName) setFullName(storedFullName);
+    if (storedNickName) setNickName(storedNickName);
+    if (storedUniversity) setUniversity(storedUniversity);
+    if (storedTel) setTel(storedTel);
+    if (storedEmail) setEmail(storedEmail);
+  }, [num]);
+
   const clickHandle = () => {
+    if (validateForm() === false) return;
+
+    localStorage.setItem('high_fullname_'+num, fullname);
+    localStorage.setItem('high_nickname_'+num, nickname);
+    localStorage.setItem('high_university_'+num, university);
+    localStorage.setItem('high_tel_'+num, tel);
+    localStorage.setItem('high_email_'+num, email);
+
     if (parseInt(num) == parseInt(localStorage.getItem('teamMembers') || '0')) {
         router.push('/hackathon_form/pages/filesent_page');
     }else {
@@ -36,29 +65,46 @@ const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
     router.back();
   }
 
+  const validateForm = () => {
+    if (!fullname || !nickname || !university || !tel || !email) {
+      setError(true);
+      return false;
+    }
+    if (!tel.match('[0-9]{10}')) {
+      setError(true);
+      return false;
+    } 
+    if (!/\S+@\S+\.\S+/.test(email)) { 
+      setError(true);
+      return false;
+    }
+    setError(false);
+    return true;
+  }
+
   const handleChange = (event: { target: { id: string, value: string; }; }) => {
     console.log(event.target.id);
     if (event.target.id === 'fullname') {
-        localStorage.setItem('high_fullname_'+num, event.target.value);
+        setFullName(event.target.value);
     }
     if (event.target.id === 'nickname') {
-        localStorage.setItem('high_nickname_'+num, event.target.value);
+        setNickName(event.target.value);
     }
     if (event.target.id === 'university') {
-        localStorage.setItem('high_university_'+num, event.target.value);
+        setUniversity(event.target.value);
     }
     if (event.target.id === 'tel') {
-        localStorage.setItem('high_tel_'+num, event.target.value);
+        setTel(event.target.value);
     }
     if (event.target.id === 'email') {
-        localStorage.setItem('high_email_'+num, event.target.value);
+        setEmail(event.target.value);
     }
   }
 
   if (num === '1') {
-    titleName = <h1 className="text-[#5A81BC] text-[24px] font-bold">ข้อมูลผู้เข้าแข่งขันคนที่ 1 (หัวหน้าทีม)</h1>;
+    titleName = <h1 className="text-[#5A81BC] text-[18px] md:text-[24px] font-bold">ข้อมูลผู้เข้าแข่งขันคนที่ 1 (หัวหน้าทีม)</h1>;
   }else{
-    titleName = <h1 className="text-[#5A81BC] text-[24px] font-bold">ข้อมูลผู้เข้าแข่งขันคนที่ {num}</h1>;
+    titleName = <h1 className="text-[#5A81BC] text-[18px] md:text-[24px] font-bold">ข้อมูลผู้เข้าแข่งขันคนที่ {num}</h1>;
   }
   
   return (
@@ -71,31 +117,38 @@ const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
           <div className="flex flex-col gap-5">
             <div>
               <h2 className=" font-medium text-[12px]">ชื่อ-นามสกุล</h2>
-              <input id="fullname" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="ชื่อ-นามสกุล" onChange={handleChange} />
+              <input value={fullname} id="fullname" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="ชื่อ-นามสกุล" onChange={handleChange} />
+              {error && !fullname && <p className="my-4 text-red-500 font-bold">กรุณากรอกชื่อ-นามสกุล</p>}
             </div>
             <div>
               <h2 className=" font-medium text-[12px]">ชื่อเล่น</h2>
-              <input id="nickname" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="ชื่อเล่น" onChange={handleChange} />
+              <input value={nickname} id="nickname" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="ชื่อเล่น" onChange={handleChange} />
+              {error && !nickname && <p className="my-4 text-red-500 font-bold">กรุณากรอกชื่อเล่น</p>}
             </div>
             <div>
               <h2 className=" font-medium text-[12px]">สถานศึกษา</h2>
-              <input id="university" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="สถาบันการศึกษา" onChange={handleChange} />
+              <input value={university} id="university" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="สถาบันการศึกษา" onChange={handleChange} />
+              {error && !university && <p className="my-4 text-red-500 font-bold">กรุณากรอกสถาบันการศึกษา</p>}
             </div>
             <div>
               <h2 className=" font-medium text-[12px]">เบอร์ติดต่อ</h2>
-              <input id="tel" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="เบอร์ติดต่อ" onChange={handleChange} />
+              <input value={tel} id="tel" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="เบอร์ติดต่อ" onChange={handleChange} />
+              {error && !tel && <p className="my-4 text-red-500 font-bold">กรุณากรอกเบอร์ติดต่อ</p>}
+              {error && tel && !tel.match('[0-9]{10}') && <p className="my-4 text-red-500 font-bold">กรุณากรอกเบอร์ติดต่อให้ถูกต้อง</p>}  
             </div>
             <div>
               <h2 className=" font-medium text-[12px]">อีเมล</h2>
-              <input id='email' type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="อีเมล" onChange={handleChange} />
+              <input value={email} id='email' type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="อีเมล" onChange={handleChange} />
+              {error && !email && <p className="my-4 text-red-500 font-bold">กรุณากรอกอีเมล</p>}
+              {error && email && !/\S+@\S+\.\S+/.test(email) && <p className="my-4 text-red-500 font-bold">กรุณากรอกอีเมลให้ถูกต้อง</p>}
             </div>
           </div>
         </InnerBox>
         <div className="flex flex-row justify-between items-end">
-          <button className={`px-[60px] py-[15px] rounded-[16px] border-[#B9A5D6] border-[2px] z-20`} onClick={backClickHandle}>
+          <button className={`px-[40px] md:px-[60px] py-[15px] rounded-[16px] border-[#B9A5D6] border-[2px] z-20`} onClick={backClickHandle}>
             <p className="text-[#B9A5D6] text-[16px] font-bold z-20">ย้อนกลับ</p>
           </button>
-          <button className={`${styles.btn_gradient} px-[60px] py-[15px] rounded-[8px] z-20`} onClick={clickHandle}>
+          <button className={`${styles.btn_gradient} px-[50px] md:px-[60px] py-[15px] rounded-[8px] z-20`} onClick={clickHandle}>
             <p className="text-white text-[16px] font-bold z-20">ถัดไป</p>
           </button>
         </div>

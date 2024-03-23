@@ -17,27 +17,27 @@ const ExplainBox: React.FC = () => {
           <div className="">
             <Image priority src={logo} alt="logo" />
           </div>
-          <h2 className=" text-center text-[#5A81BC] font-bold">
+          <h2 className=" text-[12px] md:text-[20px] lg:text-[24px] text-center text-[#5A81BC] font-bold">
             แบบฟอร์มลงทะเบียน<br className="md:hidden" /> Mental Health Hackathon Challenge
           </h2>
-          <p className=" text-center">
+          <p className=" text-center text-[10px] md:text-[15px] lg:text-[16px]">
             Innovation hackathon challenge<br className="md:hidden" /> <span className=" text-[#5A81BC] font-bold">“นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”</span>
           </p>
         </div>
-        <div className="flex flex-col gap-6">
-          <h1 className="text-xl font-bold text-[#5a81bc]">
+        <div className="flex flex-col gap-6 text-[#34312F] text-[10px]">
+          <h1 className="text-[12px] font-bold text-[#5a81bc]">
             Mental Health Hackathon Challenge
           </h1>
-          <h2 className="text-sm">
+          <h2 className="text-[10px]">
             การแข่งขันแฮกกาธอนสุดตื่นเต้น! ภายใต้โจทย์
-            <span className="ml-2 text-[18px] font-semibold text-[#b9a5d6]">
+            <span className="ml-2 font-semibold text-[#b9a5d6] text-[10px]">
               Innovation hackathon challenge
               “นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”
             </span>
           </h2>
           <div className="text-sm flex flex-col gap-7 mb-10">
             <div className=" space-y-5 leading-5">
-              <h1 className="text-xl font-bold text-[#5a81bc]">
+              <h1 className="text-[12px] font-bold text-[#5a81bc]">
                 เงื่อนไขและคุณสมบัติของผู้ร่วมกิจกรรม 
               </h1>
               <ol className="space-y-2">
@@ -48,13 +48,13 @@ const ExplainBox: React.FC = () => {
                   <i>
                     *กรณีที่สมาชิกภายในกลุ่มมีนักศึกษาจะนับเป็น ระดับอุดมศึกษา
                   </i><br />
-                  <span className="text-[#b9a5d6] font-semibold">
+                  <span className="text-[#b9a5d6] text-[10px] font-semibold">
                     ระดับอุดมศึกษา
                   </span>{" "}
                   <br /> - สมาชิกอย่างน้อย 3
                   คนต้องศึกษาอยู่ในมหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
                   <br />
-                  <span className="text-[#b9a5d6] font-semibold">
+                  <span className="text-[#b9a5d6] text-[10px] font-semibold">
                     ระดับมัธยมศึกษาตอนปลาย
                   </span>
                       <br /> -
@@ -70,7 +70,7 @@ const ExplainBox: React.FC = () => {
               </ol>
             </div>
             <div className=" space-y-4 leading-5">
-              <h1 className="text-xl font-bold text-[#5a81bc]">
+              <h1 className="text-[12px] font-bold text-[#5a81bc]">
                 กำหนดการสำคัญ
               </h1>
               <ol className="space-y-5 md:space-y-2">
@@ -82,7 +82,7 @@ const ExplainBox: React.FC = () => {
                     width={24}
                     height={24}
                   />
-                  <span className="text-[#8E7AAB] font-semibold">
+                  <span className="text-[#8E7AAB] text-[10px] font-semibold">
                     รับสมัคร:
                   </span>
                   <p>วันจันทร์ที่ 25 มีนาคม - 15 เมษายน 2567 เปิดรับสมัคร</p>
@@ -94,7 +94,7 @@ const ExplainBox: React.FC = () => {
                     width={24}
                     height={24}
                   />
-                  <span className="text-[#8E7AAB] font-semibold">
+                  <span className="text-[#8E7AAB] text-[10px] font-semibold">
                   ประกาศทีมที่ผ่านการคัดเลือก จำนวน 40 ทีม:
                   </span>
                   <p>วันพุธที่ 17 เมษายน 2567</p>
@@ -106,7 +106,7 @@ const ExplainBox: React.FC = () => {
                     width={24}
                     height={24}
                   />
-                  <span className="text-[#8E7AAB] font-semibold">
+                  <span className="text-[#8E7AAB] text-[10px] font-semibold">
                   เริ่มกิจกรรม Hackathon:
                   </span>
                   <p>วันเสาร์ที่ 20 เมษายน 2567 (On-site)</p>
@@ -118,7 +118,7 @@ const ExplainBox: React.FC = () => {
                     width={24}
                     height={24}
                   />
-                  <span className="text-[#8E7AAB] font-semibold">
+                  <span className="text-[#8E7AAB] text-[10px] font-semibold">
                   Pitching รอบที่1 และ ประกาศทีมที่ผ่านการคัดเลือกเข้าสู่รอบที่ 2 จำนวน 10 ทีม:
                   </span>
                   <p>วันอาทิตย์ที่ 21 เมษายน 2567 (On-site)</p>
@@ -130,15 +130,15 @@ const ExplainBox: React.FC = () => {
                     width={24}
                     height={24}
                   />
-                  <span className="text-[#8E7AAB] font-semibold">
+                  <span className="text-[#8E7AAB] text-[10px] font-semibold">
                   Pitching รอบที่2 และ ประกาศผู้ชนะในการแข่งขัน:
                   </span>
                   <p>วันจันทร์ที่ 22 เมษายน 2567 (On-site) </p>
                 </li>
               </ol>
             </div>
-            <div className=" space-y-4 leading-5">
-              <h1 className="text-xl font-bold text-[#5a81bc]">
+            <div className=" space-y-4 leading-5 text-[10px]">
+              <h1 className="text-[12px] font-bold text-[#5a81bc]">
               รางวัล
               </h1>
               <ol className="space-y-4 md:space-y-2">
@@ -150,7 +150,7 @@ const ExplainBox: React.FC = () => {
                     width={24}
                     height={24}
                   />
-                  <span className="text-[#8E7AAB] font-semibold">
+                  <span className="text-[#8E7AAB] text-[10px] font-semibold">
                   รางวัลชนะเลิศอันดับที่ 1
                   </span>
                   <p>โล่รางวัลพร้อมเงินรางวัล 10,000 บาท</p>
@@ -162,7 +162,7 @@ const ExplainBox: React.FC = () => {
                     width={24}
                     height={24}
                   />
-                  <span className="text-[#8E7AAB] font-semibold">
+                  <span className="text-[#8E7AAB] text-[10px] font-semibold">
                   รางวัลชนะเลิศอันดับที่ 2
                   </span>
                   <p>โล่รางวัลพร้อมเงินรางวัล 8,000 บาท</p>
@@ -174,7 +174,7 @@ const ExplainBox: React.FC = () => {
                     width={24}
                     height={24}
                   />
-                  <span className="text-[#8E7AAB] font-semibold">
+                  <span className="text-[#8E7AAB] text-[10px] font-semibold">
                   รางวัลชนะเลิศอันดับที่ 3
                   </span>
                   <p>โล่รางวัลพร้อมเงินรางวัล 5,000 บาท</p>
@@ -182,7 +182,7 @@ const ExplainBox: React.FC = () => {
               </ol>
             </div>
             <div className=" space-y-4 leading-5 ">
-              <h1 className="text-xl font-bold text-[#5a81bc]">
+              <h1 className="text-[12px] font-bold text-[#5a81bc]">
               รางวัล
               </h1>
               <ol className="space-y-4 md:space-y-2">
@@ -194,7 +194,7 @@ const ExplainBox: React.FC = () => {
                     width={24}
                     height={24}
                   />
-                  <span className="text-[#8E7AAB] font-semibold">
+                  <span className="text-[#8E7AAB] text-[10px] font-semibold">
                   Website:
                   </span>
                   <a href="#" target="_blank" className="hover:text-blue-600">modmood.kmutt.ac.th</a>
@@ -206,7 +206,7 @@ const ExplainBox: React.FC = () => {
                     width={24}
                     height={24}
                   />
-                  <span className="text-[#8E7AAB] font-semibold">
+                  <span className="text-[#8E7AAB] text-[10px] font-semibold">
                   Instagram:
                   </span>
                   <a href="#" target="_blank" className="hover:text-blue-600">hackmindgallery.kmutt</a>

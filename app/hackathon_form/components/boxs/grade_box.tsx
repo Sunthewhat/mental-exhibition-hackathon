@@ -7,20 +7,32 @@ import OuterBox from "../outer_box";
 import GButton from "../g_button";
 import InnerBox from "../inner_box";
 import { useRouter } from "next/navigation";
+import React, { useState } from 'react';
 
 const GradeBox: React.FC = () => {
+  const [selected, setSelected] = useState(false);
+  const [error, setError] = useState(false);
+
   const router = useRouter()
 
   const handleChange = (event: { target: { value: string; }; }) => {
+    setSelected(true);
+    setError(false);
     localStorage.setItem('educationLevel', event.target.value);
     //console.log(localStorage.getItem('educationLevel'));
   }
 
   const clickHandle = () => {
-    if (localStorage.getItem('educationLevel') === 'highSchool') {
-      router.push('/hackathon_form/pages/highteam_page')
-    } else if (localStorage.getItem('educationLevel') === 'university') {
-      router.push('/hackathon_form/pages/uniteam_page')
+    if (!selected) {
+      setError(true);
+      return;
+    }
+    else{
+      if (localStorage.getItem('educationLevel') === 'highSchool') {
+        router.push('/hackathon_form/pages/highteam_page')
+      } else if (localStorage.getItem('educationLevel') === 'university') {
+        router.push('/hackathon_form/pages/uniteam_page')
+      }
     }
   }
   
@@ -31,16 +43,16 @@ const GradeBox: React.FC = () => {
           <div className="">
             <Image priority src={logo} alt="logo" />
           </div>
-          <h2 className=" text-center text-[#5A81BC] font-bold">
+          <h2 className=" text-[12px] md:text-[20px] lg:text-[24px] text-center text-[#5A81BC] font-bold">
             แบบฟอร์มลงทะเบียน<br className="md:hidden" /> Mental Health Hackathon Challenge
           </h2>
-          <p className=" text-center">
+          <p className=" text-center text-[10px] md:text-[15px] lg:text-[16px]">
             Innovation hackathon challenge<br className="md:hidden" /> <span className=" text-[#5A81BC] font-bold">“นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”</span>
           </p>
         </div>
         <div className="flex flex-col items-center">
-          <h2 className="text-[#5A81BC] font-bold text-[24px] mb-5">โปรดเลือกระดับการศึกษา</h2>
-          <div className="flex flex-col items-start gap-3">
+          <h2 className="text-[#5A81BC] font-bold text-[12px] md:text-[20px] lg:text-[24px] mb-5">โปรดเลือกระดับการศึกษา</h2>
+          <div className="flex flex-col items-start gap-3 text-[10px] md:text-[16px]">
             <div className="flex gap-3 justify-center items-center">
               <input type="radio" className={styles.radioButton} id="highSchool" name="educationLevel" value="university" onChange={handleChange} />
               <label htmlFor="highSchool">ระดับอุดมศึกษา</label>
@@ -50,6 +62,7 @@ const GradeBox: React.FC = () => {
               <label htmlFor="university">ระดับมัธยมศึกษาตอนปลาย</label>
             </div>
           </div>
+          {error && <p className="my-4 text-red-500 font-bold">กรุณาเลือกระดับการศึกษา</p>}
         </div>
       </InnerBox>
       <div className="flex flex-row justify-between items-end">
