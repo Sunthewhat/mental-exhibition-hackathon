@@ -17,7 +17,7 @@ export default function UniTeam_Data_Page() {
   return (
     <main className={noto_thai.className}>
         <Header />
-        <HighTeamData num={number} />
+        <UniTeamData num={number} />
         <Footer />
     </main>
   );

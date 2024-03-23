@@ -1,11 +1,7 @@
 'use client';
 
-import Image from "next/image";
-import logo from "../../assets/logo.png";
 import styles from '../../pages/pdpa_page/page.module.css';
 import OuterBox from "../outer_box";
-import GButton from "../g_button";
-import Link from "next/link";
 import InnerBox from "../inner_box";
 import { useRouter } from "next/navigation";
 
@@ -22,11 +18,21 @@ const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
     if (parseInt(num) == parseInt(localStorage.getItem('teamMembers') || '0')) {
         router.push('/hackathon_form/pages/filesent_page');
     }else {
+        let inputs = document.getElementsByTagName('input');
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].value = '';
+        }
+
         router.push(`/hackathon_form/pages/highteam_data_page?num=${parseInt(num) + 1}`);
     }
   }
 
   const backClickHandle = () => {
+    let inputs = document.getElementsByTagName('input');
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].value = '';
+    }
+
     router.back();
   }
 
@@ -40,9 +46,6 @@ const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
     }
     if (event.target.id === 'university') {
         localStorage.setItem('high_university_'+num, event.target.value);
-    }
-    if (event.target.id === 'studentcode') {
-        localStorage.setItem('high_studentcode_'+num, event.target.value);
     }
     if (event.target.id === 'tel') {
         localStorage.setItem('high_tel_'+num, event.target.value);
@@ -77,10 +80,6 @@ const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
             <div>
               <h2 className=" font-medium text-[12px]">สถานศึกษา</h2>
               <input id="university" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="สถาบันการศึกษา" onChange={handleChange} />
-            </div>
-            <div>
-              <h2 className=" font-medium text-[12px]">รหัสนักศึกษา</h2>
-              <input id="studentcode" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="รหัสนักศึกษา" onChange={handleChange} />
             </div>
             <div>
               <h2 className=" font-medium text-[12px]">เบอร์ติดต่อ</h2>

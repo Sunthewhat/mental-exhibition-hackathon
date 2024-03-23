@@ -21,26 +21,75 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Additional validation logic
 };
 
-const sentToForms = async () => {
-  try {
-    const prefilledLink = "https://docs.google.com/forms/d/e/1FAIpQLSeisXSSnIgj40V5_zvJbmj18qzNcYnjuqSGA1zDJWyTDD-sbA//formResponse?usp=pp_url&entry.1074003173=%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A1%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2&entry.1738580510=afdsfa&entry.1088984327=3&entry.2092238618=fadsf&entry.345067144=afdsf&entry.1122129402=adfsadf&entry.1093082736=fadfads&entry.1550610923=asdfadsf&entry.416472573=adfasdfsdaf&entry.916735898=adfasdfsdaf&entry.2096266230=adfasdfsdaf&entry.1376184245=adfasdfsdaf&entry.1245284820=adfasdfsdaf&entry.1558967097=adfasdfsdaf&entry.1573341874=adfasdfsdaf&entry.1152629801=adfasdfsdaf&entry.1044899895=adfasdfsdaf&entry.275731210=adfasdfsdaf&entry.845462045=adfasdfsdaf&entry.688762263=adfasdfsdaf&entry.717812639=adfasdfsdaf&entry.1899444650=adfasdfsdaf&entry.1761295364=adfasdfsdaf&entry.1672473860=adfasdfsdaf&submit=Submit"
+const handleReadyInformation = () => {
+  const formData = new FormData();
 
-    const res = await fetch(prefilledLink)
-    console.log(res);
-  } catch (error: any) {
-    console.log(error);
+  var edu = localStorage.getItem("educationLevel") || ''
+
+  formData.append('educationLevel', edu);
+  formData.append('teamName', localStorage.getItem("teamName") || '');
+  formData.append('teamMembers', localStorage.getItem("teamMembers") || '');
+  formData.append('ideaName', localStorage.getItem("ideaName") || '');
+  formData.append('slideLink', localStorage.getItem("slideLink") || '');
+  
+  const members = [];
+  if (edu == 'university') {
+    for (let i = 1; i <= 5; i++) {
+      const fullname = localStorage.getItem(`uni_fullname_${i}`) || "";
+      const nickname = localStorage.getItem(`uni_nickname_${i}`) || "";
+      const university = localStorage.getItem(`uni_university_${i}`) || "";
+      const studentcode = localStorage.getItem(`uni_studentcode_${i}`) || "";
+      const tel = localStorage.getItem(`uni_tel_${i}`) || "";
+      const email = localStorage.getItem(`uni_email_${i}`) || "";
+    
+      const member = {
+        fullname,
+        nickname,
+        university,
+        studentcode,
+        tel,
+        email,
+      };
+    
+      members.push(member);
+    }
+  }else {
+    for (let i = 1; i <= 5; i++) {
+      const fullname = localStorage.getItem(`high_fullname_${i}`) || "";
+      const nickname = localStorage.getItem(`high_nickname_${i}`) || "";
+      const university = localStorage.getItem(`high_university_${i}`) || "";
+      const studentcode = "";
+      const tel = localStorage.getItem(`high_tel_${i}`) || "";
+      const email = localStorage.getItem(`high_email_${i}`) || "";
+    
+      const member = {
+        fullname,
+        nickname,
+        university,
+        studentcode,
+        tel,
+        email,
+      };
+    
+      members.push(member);
+    }
   }
-  router.push(`/hackathon_form/pages/summit_page`);
+  
+  // Convert the members array to JSON (assuming the server expects JSON format)
+  const membersJSON = JSON.stringify(members);
+  formData.append('members', membersJSON);
+
+  return formData;
 }
 
 const handleUpload = async () => {
   
   try {
     if (!selectedFile) return;
-    const formData = new FormData();
+    const formData = handleReadyInformation();
     formData.append("pdf", selectedFile);
-    const { data } = await axios.post("/api/upload", formData);
-    localStorage.setItem("pdfLink", data.message);
+    await axios.post("/api/upload", formData);
+    router.push(`/hackathon_form/pages/summit_page`);
   } catch (error: any) {
     console.log(error.response?.data);
   }

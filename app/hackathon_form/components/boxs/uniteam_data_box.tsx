@@ -22,16 +22,25 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
     if (parseInt(num) == parseInt(localStorage.getItem('teamMembers') || '0')) {
         router.push('/hackathon_form/pages/filesent_page');
     }else {
-        router.push(`/hackathon_form/pages/uniteam_data_page?num=${parseInt(num) + 1}`);
+      let inputs = document.getElementsByTagName('input');
+      for (let i = 0; i < inputs.length; i++) {
+        inputs[i].value = '';
+      }
+      
+      router.push(`/hackathon_form/pages/uniteam_data_page?num=${parseInt(num) + 1}`);
     }
   }
 
   const backClickHandle = () => {
+    let inputs = document.getElementsByTagName('input');
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].value = '';
+    }
+    
     router.back();
   }
 
   const handleChange = (event: { target: { id: string, value: string; }; }) => {
-    console.log(event.target.id);
     if (event.target.id === 'fullname') {
         localStorage.setItem('uni_fullname_'+num, event.target.value);
     }
