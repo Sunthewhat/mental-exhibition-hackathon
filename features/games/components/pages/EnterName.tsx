@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { normalStringValidator } from "../../validators";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
-import ShineBox from "@/features/ui/componets/Shinebox";
+import ShineBox from "@/features/ui/components/Shinebox";
 
 interface EnterNameProp {
   setEnterGame: (value: boolean) => void;
@@ -25,7 +25,6 @@ const EnterName: React.FC<EnterNameProp> = ({
     if (warn || name === "") {
       if (!warn) {
         toast({
-          id: 1,
           title: "Invalid Username",
           description: "กรุณากรอกชื่อของคุณให้ถูกต้อง",
           variant: "destructive",
@@ -41,8 +40,8 @@ const EnterName: React.FC<EnterNameProp> = ({
     setEnterGame(true);
   }, [warn, name, setEnterGame, toast]);
 
-  const handleEnter = useCallback<React.KeyboardEventHandler<HTMLInputElement>>(
-    (e) => {
+  const handleEnter = useCallback(
+    (e: any) => {
       if (e.key === "Enter" || e.key === "ArrowRight") {
         handleClick();
       }

@@ -7,7 +7,7 @@ import { Progress } from "../../../../components/ui/progress";
 import { useToast } from "@/components/ui/use-toast";
 import { getScore } from "@/features/games/helpers";
 import Warning from "../Warning";
-import InterceptDialog from "@/features/ui/componets/InterceptDialog";
+import InterceptDialog from "@/features/ui/components/InterceptDialog";
 import { useSeason } from "@/hooks/useSeason";
 
 interface QuestionFormProps {
