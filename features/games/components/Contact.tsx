@@ -20,7 +20,7 @@ const Contact = () => {
 
   return (
     <button
-      className="flex flex-col gap-3 sm:gap-6 items-center w-3/5 my-[3rem] lg:mt-[6rem] z-100"
+      className="flex flex-col gap-3 sm:gap-6 items-center w-3/5 my-[3rem] lg:mt-[6rem] z-50"
       onClick={handleClick}
     >
       <Download className="block md:hidden" color="#B9A5D6" size={24} />
