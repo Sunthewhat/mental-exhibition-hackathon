@@ -1,5 +1,14 @@
+const isBrowser = typeof window !== "undefined";
+
 const getValueFromLocal = (key: string): string | null => {
-  const value = window.localStorage.getItem(key);
+  if (!isBrowser) {
+    console.log(
+      "Not running in the browser environment. Cannot access localStorage."
+    );
+    return null;
+  }
+
+  const value = localStorage.getItem(key);
   if (value === null) {
     console.log(`No value found in localStorage for key: ${key}`);
     return null;

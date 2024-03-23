@@ -1,7 +1,6 @@
 "use client";
 import EnterName from "@/features/games/components/pages/EnterName";
 import QuestionForm from "@/features/games/components/pages/QuestionForm";
-import { getCurrentQuestion } from "@/features/games/helpers";
 import React, { useState } from "react";
 
 const GamePage = () => {

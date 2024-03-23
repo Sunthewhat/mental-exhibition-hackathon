@@ -2,23 +2,32 @@
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getDisplayName, getScore } from "@/features/games/helpers";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Contact from "../Contact";
 import Lighting from "../Lighting";
 import { useSeason } from "@/hooks/useSeason";
-import { Noto_Sans_Thai } from "next/font/google";
 import { motion } from "framer-motion";
 import { useFonts } from "@/hooks/useFont";
-
-
-
-const paragraphFont = Noto_Sans_Thai({ subsets: ["latin"], weight: "400" });
+import { useRouter } from "next/navigation";
 
 const Result = () => {
-  const score = getScore();
-  const userName = getDisplayName();
-  const { headerFont } = useFonts();
+  const router = useRouter();
+  const [userName, setUsername] = useState<string | null>("Unknown Guest");
+  const [score, setScore] = useState<number>(0);
+  const { headerFont, paragraphFont } = useFonts();
   const { name, description, img } = useSeason(score);
+
+  useEffect(() => {
+    const userName = getDisplayName();
+    const localScore = getScore();
+    if (userName === null || localScore == null) {
+      router.replace("/game");
+      return;
+    }
+
+    setScore(localScore);
+    setUsername(userName);
+  }, []);
 
   return (
     <div className="h-full w-full py-12 md:px-[2em] lg:px-[8em] lg:h-auto">

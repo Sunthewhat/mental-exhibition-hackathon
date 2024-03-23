@@ -46,6 +46,7 @@ const Choice: React.FC<ChoiceProp> = ({
       onClick={() => {
         onClick(Number(value));
         handleUpdateScore();
+        
       }}
     >
       <input

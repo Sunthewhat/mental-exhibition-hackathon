@@ -17,7 +17,6 @@ interface QuestionFormProps {
   handleUpdateAnswer: (questionNumber: number, choice: number) => void;
   isAnswerSelected: (questionNumber: number, choice: number) => boolean;
   answers: number[];
-  currentQuestion: number;
 }
 
 const MemoizedQuestion = memo(Question);
@@ -50,17 +49,6 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
 
   const { currentStepIndex, steps, back, next, isFirst, isLast } =
     useMultiStepsForm(questions.length);
-
-  const step = questions.map((question, idx) => (
-    <MemoizedQuestion
-      idx={idx}
-      key={`question-component-${idx}`}
-      question={question}
-      handleNextQuestion={next}
-      handleUpdateAnswer={handleUpdateAnswer}
-      isAnswerSelected={isAnswerSelected}
-    />
-  ));
 
   const isCompleteAllAnswer = useCallback((): boolean => {
     return (
@@ -106,6 +94,17 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
       id,
     ]
   );
+
+  const step = questions.map((question, idx) => (
+    <MemoizedQuestion
+      idx={idx}
+      key={`question-component-${idx}`}
+      question={question}
+      handleNextQuestion={() => handleClick(false)}
+      handleUpdateAnswer={handleUpdateAnswer}
+      isAnswerSelected={isAnswerSelected}
+    />
+  ));
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

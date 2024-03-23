@@ -5,9 +5,21 @@ import { useFonts } from "@/hooks/useFont";
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+interface ItemProps {
+  boxSize: number;
+  size: number;
+}
 
 const StartGame = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const [style, setStyle] = useState("");
+  const [prop, setProp] = useState<ItemProps>({
+    boxSize: 180,
+    size: 140,
+  });
   const { subHeader } = useFonts();
 
   const res_buttonStyle = {
@@ -16,28 +28,42 @@ const StartGame = () => {
     tablet: `text-[32px] w-[230px] h-[75px]`,
   };
 
-  const isMobile = window.innerWidth <= 430;
-  const isTablet = window.innerWidth <= 1024 && !isMobile;
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      setIsMobile(window.innerWidth <= 430);
+      setIsTablet(window.innerWidth <= 1024 && !isMobile);
 
-  const style =
-    window.innerWidth >= 768
-      ? `${res_buttonStyle.base} ${res_buttonStyle.tablet}`
-      : `${res_buttonStyle.mobile} ${res_buttonStyle.base}`;
+      const computedStyle =
+        window.innerWidth >= 768
+          ? `${res_buttonStyle.base} ${res_buttonStyle.tablet}`
+          : `${res_buttonStyle.mobile} ${res_buttonStyle.base}`;
+      setStyle(computedStyle);
 
-  const prop = isMobile
-    ? {
-        boxSize: 280,
-        size: 140,
-      }
-    : isTablet
-    ? {
-        boxSize: 280,
-        size: 240,
-      }
-    : {
-        boxSize: 330,
-        size: 300,
-      };
+      const computedProp = isMobile
+        ? {
+            boxSize: 180,
+            size: 140,
+          }
+        : isTablet
+        ? {
+            boxSize: 280,
+            size: 240,
+          }
+        : {
+            boxSize: 330,
+            size: 300,
+          };
+      setProp(computedProp);
+    };
+    // Initial call to set dimensions and styles
+    updateWindowDimensions();
+
+    window.addEventListener("resize", updateWindowDimensions);
+
+    return () => {
+      window.removeEventListener("resize", updateWindowDimensions);
+    };
+  }, [isMobile, isTablet]);
 
   return (
     <div className="relative flex flex-col gap-12 w-full h-[470px] md:h-[730px] items-center justify-center">
