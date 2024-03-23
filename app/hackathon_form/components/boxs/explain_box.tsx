@@ -24,62 +24,196 @@ const ExplainBox: React.FC = () => {
             Innovation hackathon challenge<br className="md:hidden" /> <span className=" text-[#5A81BC] font-bold">“นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”</span>
           </p>
         </div>
-        <div className="flex flex-col items-start justify-start text-left gap-3">
-          <h2>
-            หนังสือยินยอมเพื่อขอใช้ประโยชน์
-            <br className="md:hidden" />
-            ข้อมูลส่วนบุคคล
+        <div className="flex flex-col gap-6">
+          <h1 className="text-xl font-bold text-[#5a81bc]">
+            Mental Health Hackathon Challenge
+          </h1>
+          <h2 className="text-sm">
+            การแข่งขันแฮกกาธอนสุดตื่นเต้น! ภายใต้โจทย์
+            <span className="ml-2 text-[18px] font-semibold text-[#b9a5d6]">
+              Innovation hackathon challenge
+              “นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม”
+            </span>
           </h2>
-          <p>คณะเทคโนโลยีสารสนเทศ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี</p>
-          <p>
-            ทั้งนี้ ท่านมีสิทธิที่จะถอนความยินยอมหรือขอให้คณะ ฯ
-            ลบข้อมูลเมื่อใดก็ได้ตลอดระยะเวลาที่ข้อมูลส่วนบุคคลของท่านอยู่กับคณะ
-            ฯ
-            อย่างไรก็ตามการถอนความยินยอมของท่านอาจส่งผลกระทบต่อท่านจากการใช้บริการต่าง
-            ๆ เช่น ท่านจะไม่ได้รับสิทธิประโยชน์ที่ทางคณะ ฯ ให้บริการอยู่
-            หรือไม่ได้รับข้อมูลข่าวสารอันเป็นประโยชน์แก่ท่าน เป็นต้น
-            ดังนั้นเพื่อประโยชน์ของท่านจึงควรศึกษาและสอบถามถึงผลกระทบ
-            ก่อนเพิกถอนความยินยอมดังกล่าว
-            กรณีที่ท่านต้องการถอนความยินยอมกรุณาติดต่อผ่านอีเมล
-            info@sit.kmutt.ac.th
-          </p>
-          <ol className="list-decimal p-4">
-            <li>
-              เพื่อประโยชน์ทางการศึกษา การวิเคราะห์ ประมวลผล จัดทำสถิติ
-              รวมไปถึงการจัดบริการต่าง ๆ เช่น การแนะแนว การสมัครงาน
-              การพัฒนาทักษะด้านต่าง ๆ
-            </li>
-            <li>
-              เพื่อจัดทำสื่อโฆษณา การเผยแพร่การประชาสัมพันธ์ต่อสาธารณะ
-              ผ่านช่องทางสื่ออิเล็กทรอนิกส์ สื่อออนไลน์ สื่อวิดีโอ
-              สื่อสิ่งพิมพ์ต่าง ๆ เช่น เว็บไซต์ Social Media การติดประกาศ
-              และช่องทางอื่น ๆ
-            </li>
-            <li>
-              เพื่อใช้ข้อมูลของท่านในการแจ้งข้อมูลข่าวสาร การเรียนการสอน
-              บริการของคณะ ฯ และการโฆษณาประชาสัมพันธ์ เช่น
-              การเปิดรับสมัครนักศึกษาใหม่ การอบรม หรือกิจกรรมที่เกี่ยวข้อง
-            </li>
-            <li>
-              วัตถุประสงค์อื่น ๆ เพื่อประโยชน์ของคณะฯ และ/หรือมหาวิทยาลัย
-              และ/หรือนักศึกษา
-            </li>
-          </ol>
-          <p>
-            คณะเทคโนโลยีสารสนเทศ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
-            ให้ความสำคัญด้านการเคารพสิทธิในความเป็นส่วนตัว
-            และการรักษาความปลอดภัยของข้อมูลส่วนบุคคลของท่าน โดยคณะฯ
-            ได้กำหนดนโยบาย ระเบียบ และหลักเกณฑ์ต่าง ๆ ในการดำเนินงาน ของคณะ ฯ
-            เพื่อให้เป็นไปตามมาตรฐาน ในการรักษาความปลอดภัยของข้อมูลส่วนบุคคล
-            เพื่อให้ท่านได้มั่นใจว่า ข้อมูลส่วนบุคคลของท่านที่คณะ ฯ
-            ได้รับจะถูกนำไปใช้ ตรงตามความต้องการของท่าน และถูกต้องตามกฎหมาย
-            โดยคณะ ฯ จะจัดเก็บข้อมูลส่วนบุคคลของท่านตลอดระยะเวลา ที่จำเป็น
-            ในการดำเนินการตามวัตถุประสงค์ของคณะ ฯ รวมถึงงานต่าง ๆ ที่จำเป็น
-            ทางคณะ ฯ เก็บ รวบรวมและใช้ข้อมูลส่วนบุคคลของท่าน รวมทั้งภาพถ่าย
-            และวีดีโอ ที่เกิดจากการเข้าร่วมกิจกรรมของท่าน ซึ่งจัดโดยมหาวิทยาลัย
-            คณะ ฯ และ/หรือนักศึกษา เพื่อวัตถุประสงค์ของคณะฯ
-            ตลอดจนตามวัตถุประสงค์ดังต่อไปนี้{" "}
-          </p>
+          <div className="text-sm flex flex-col gap-7 mb-10">
+            <div className=" space-y-5 leading-5">
+              <h1 className="text-xl font-bold text-[#5a81bc]">
+                เงื่อนไขและคุณสมบัติของผู้ร่วมกิจกรรม 
+              </h1>
+              <ol className="space-y-2">
+                <li className=" leading-5">
+                  1. สมาชิกในทีม 3-5 คน
+                  โดย สมาชิกในทีมต้องศึกษาอยู่ในระดับชั้นมัธยมศึกษาตอนปลาย จนถึง
+                  ระดับอุดมศึกษา{" "}
+                  <i>
+                    *กรณีที่สมาชิกภายในกลุ่มมีนักศึกษาจะนับเป็น ระดับอุดมศึกษา
+                  </i><br />
+                  <span className="text-[#b9a5d6] font-semibold">
+                    ระดับอุดมศึกษา
+                  </span>{" "}
+                  <br /> - สมาชิกอย่างน้อย 3
+                  คนต้องศึกษาอยู่ในมหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
+                  <br />
+                  <span className="text-[#b9a5d6] font-semibold">
+                    ระดับมัธยมศึกษาตอนปลาย
+                  </span>
+                      <br /> -
+                  สมาชิกทุกคนต้องอยู่ในระดับมัธยมศึกษาตอนปลายเท่านั้น 
+                </li>
+                <li>2. ไม่จำกัดสัญชาติ </li>
+                <li>3. ผู้สมัครต้องมีรายชื่ออยู่เพียงทีมเดียวเท่านั้น </li>
+                <li>
+                  4. สามารถเข้าร่วมกิจกรรม Hackathon ในวันที่ 20 - 22 เมษายน
+                  2567 ได้ (เฉพาะทีมที่เข้ารอบจะได้ Pitch ใน วันที่ 22 เมษายน)
+                </li>
+                <li>5. สามารถนำเสนอเป็นภาษาไทยหรือภาษาอังกฤษก็ได้</li>
+              </ol>
+            </div>
+            <div className=" space-y-4 leading-5">
+              <h1 className="text-xl font-bold text-[#5a81bc]">
+                กำหนดการสำคัญ
+              </h1>
+              <ol className="space-y-5 md:space-y-2">
+                
+              <li className="flex gap-1 items-center flex-wrap">
+                  <Image
+                    src="/icons/icon1.png"
+                    alt="icon1"
+                    width={24}
+                    height={24}
+                  />
+                  <span className="text-[#8E7AAB] font-semibold">
+                    รับสมัคร:
+                  </span>
+                  <p>วันจันทร์ที่ 25 มีนาคม - 15 เมษายน 2567 เปิดรับสมัคร</p>
+                </li>
+                <li className="flex gap-1 items-center flex-wrap">
+                  <Image
+                    src="/icons/icon2.png"
+                    alt="icon2"
+                    width={24}
+                    height={24}
+                  />
+                  <span className="text-[#8E7AAB] font-semibold">
+                  ประกาศทีมที่ผ่านการคัดเลือก จำนวน 40 ทีม:
+                  </span>
+                  <p>วันพุธที่ 17 เมษายน 2567</p>
+                </li>
+                <li className="flex gap-1 items-center flex-wrap">
+                  <Image
+                    src="/icons/icon3.png"
+                    alt="icon3"
+                    width={24}
+                    height={24}
+                  />
+                  <span className="text-[#8E7AAB] font-semibold">
+                  เริ่มกิจกรรม Hackathon:
+                  </span>
+                  <p>วันเสาร์ที่ 20 เมษายน 2567 (On-site)</p>
+                </li>
+                <li className="flex gap-1 items-center flex-wrap">
+                  <Image
+                    src="/icons/icon5.png"
+                    alt="icon4"
+                    width={24}
+                    height={24}
+                  />
+                  <span className="text-[#8E7AAB] font-semibold">
+                  Pitching รอบที่1 และ ประกาศทีมที่ผ่านการคัดเลือกเข้าสู่รอบที่ 2 จำนวน 10 ทีม:
+                  </span>
+                  <p>วันอาทิตย์ที่ 21 เมษายน 2567 (On-site)</p>
+                </li>
+                <li className="flex gap-1 items-center flex-wrap">
+                  <Image
+                    src="/icons/icon4.png"
+                    alt="icon5"
+                    width={24}
+                    height={24}
+                  />
+                  <span className="text-[#8E7AAB] font-semibold">
+                  Pitching รอบที่2 และ ประกาศผู้ชนะในการแข่งขัน:
+                  </span>
+                  <p>วันจันทร์ที่ 22 เมษายน 2567 (On-site) </p>
+                </li>
+              </ol>
+            </div>
+            <div className=" space-y-4 leading-5">
+              <h1 className="text-xl font-bold text-[#5a81bc]">
+              รางวัล
+              </h1>
+              <ol className="space-y-4 md:space-y-2">
+                
+              <li className="flex gap-1 items-center flex-wrap">
+                  <Image
+                    src="/icons/king.png"
+                    alt="icon"
+                    width={24}
+                    height={24}
+                  />
+                  <span className="text-[#8E7AAB] font-semibold">
+                  รางวัลชนะเลิศอันดับที่ 1
+                  </span>
+                  <p>โล่รางวัลพร้อมเงินรางวัล 10,000 บาท</p>
+                </li>
+                <li className="flex gap-1 items-center flex-wrap">
+                  <Image
+                    src="/icons/king.png"
+                    alt="icon"
+                    width={24}
+                    height={24}
+                  />
+                  <span className="text-[#8E7AAB] font-semibold">
+                  รางวัลชนะเลิศอันดับที่ 2
+                  </span>
+                  <p>โล่รางวัลพร้อมเงินรางวัล 8,000 บาท</p>
+                </li>
+                <li className="flex gap-1 items-center flex-wrap">
+                  <Image
+                    src="/icons/king.png"
+                    alt="icon"
+                    width={24}
+                    height={24}
+                  />
+                  <span className="text-[#8E7AAB] font-semibold">
+                  รางวัลชนะเลิศอันดับที่ 3
+                  </span>
+                  <p>โล่รางวัลพร้อมเงินรางวัล 5,000 บาท</p>
+                </li>
+              </ol>
+            </div>
+            <div className=" space-y-4 leading-5 ">
+              <h1 className="text-xl font-bold text-[#5a81bc]">
+              รางวัล
+              </h1>
+              <ol className="space-y-4 md:space-y-2">
+                
+              <li className="flex gap-1 items-center flex-wrap">
+                  <Image
+                    src="/icons/global.png"
+                    alt="icon"
+                    width={24}
+                    height={24}
+                  />
+                  <span className="text-[#8E7AAB] font-semibold">
+                  Website:
+                  </span>
+                  <a href="#" target="_blank" className="hover:text-blue-600">modmood.kmutt.ac.th</a>
+                </li>
+                <li className="flex gap-1 items-center flex-wrap">
+                  <Image
+                    src="/icons/ig.png"
+                    alt="icon"
+                    width={24}
+                    height={24}
+                  />
+                  <span className="text-[#8E7AAB] font-semibold">
+                  Instagram:
+                  </span>
+                  <a href="#" target="_blank" className="hover:text-blue-600">hackmindgallery.kmutt</a>
+                </li>
+              </ol>
+            </div>
+          </div>
         </div>
       </InnerBox>
       <div className="flex flex-row justify-between items-end">

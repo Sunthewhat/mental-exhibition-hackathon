@@ -39,8 +39,8 @@ const GradeBox: React.FC = () => {
           </p>
         </div>
         <div className="flex flex-col items-center">
-          <h2>โปรดเลือกระดับการศึกษา</h2>
-          <div className="flex flex-col items-start">
+          <h2 className="text-[#5A81BC] font-bold text-[24px] mb-5">โปรดเลือกระดับการศึกษา</h2>
+          <div className="flex flex-col items-start gap-3">
             <div className="flex gap-3 justify-center items-center">
               <input type="radio" className={styles.radioButton} id="highSchool" name="educationLevel" value="university" onChange={handleChange} />
               <label htmlFor="highSchool">ระดับอุดมศึกษา</label>
@@ -53,7 +53,7 @@ const GradeBox: React.FC = () => {
         </div>
       </InnerBox>
       <div className="flex flex-row justify-between items-end">
-        <GButton title="ย้อนกลับ" command="/hackathon_form/pages/pdpa_page" type='TYPE1' />
+        <GButton title="ย้อนกลับ" command="/hackathon_form/pages/explain_page" type='TYPE1' />
         <button className={`${styles.btn_gradient} px-[60px] py-[15px] rounded-[8px] z-20`} onClick={clickHandle}>
             <p className="text-white text-[16px] font-bold z-20">ถัดไป</p>
         </button>
