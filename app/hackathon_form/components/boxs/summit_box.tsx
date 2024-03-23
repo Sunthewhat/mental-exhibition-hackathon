@@ -4,8 +4,6 @@ import Image from "next/image";
 import logo from "../../assets/logo.png";
 import check_icon from "../../assets/check_ring.svg";
 import OuterBox from "../outer_box";
-import GButton from "../g_button";
-import Link from "next/link";
 import InnerBox from "../inner_box";
 
 const SummitBox: React.FC = () => {

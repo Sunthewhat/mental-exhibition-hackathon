@@ -2,7 +2,6 @@
 
 import styles from "../../pages/pdpa_page/page.module.css";
 import OuterBox from "../outer_box";
-import GButton from "../g_button";;
 import InnerBox from "../inner_box";
 import { useRouter } from "next/navigation";
 import { useState , useEffect } from "react";

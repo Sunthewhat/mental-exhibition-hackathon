@@ -1,11 +1,7 @@
 'use client';
 
-import Image from "next/image";
-import logo from "../../assets/logo.png";
 import styles from '../../pages/pdpa_page/page.module.css';
 import OuterBox from "../outer_box";
-import GButton from "../g_button";
-import Link from "next/link";
 import InnerBox from "../inner_box";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from 'react';
@@ -33,13 +29,14 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
     const storedStudentCode = localStorage.getItem('uni_studentcode_'+num);
     const storedTel = localStorage.getItem('uni_tel_'+num);
     const storedEmail = localStorage.getItem('uni_email_'+num);
+    console.log(num, storedFullName, storedNickName, storedUniversity, storedStudentCode, storedTel, storedEmail)
 
-    if (storedFullName) setFullName(storedFullName);
-    if (storedNickName) setNickName(storedNickName);
-    if (storedUniversity) setUniversity(storedUniversity);
-    if (storedStudentCode) setStudentCode(storedStudentCode);
-    if (storedTel) setTel(storedTel);
-    if (storedEmail) setEmail(storedEmail);
+    if (storedFullName) setFullName(storedFullName); else setFullName('');
+    if (storedNickName) setNickName(storedNickName); else setNickName('');
+    if (storedUniversity) setUniversity(storedUniversity); else setUniversity('');
+    if (storedStudentCode) setStudentCode(storedStudentCode); else setStudentCode('');
+    if (storedTel) setTel(storedTel); else setTel('');
+    if (storedEmail) setEmail(storedEmail); else setEmail('');
   }, [num]);
 
   const clickHandle = () => {
@@ -79,7 +76,7 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
       setError(true);
       return false;
     } 
-    if (!tel.match('[0-9]{10}')) {
+    if (!tel.match('[0-9]{10}') || !/^\d+$/.test(studentcode)) {
       setError(true);
       return false;
     } 
@@ -87,7 +84,7 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
       setError(true);
       return false;
     }
-    if (!studentcode.match('[0-9]')) { 
+    if (!/^\d+$/.test(studentcode)) { 
       setError(true);
       return false;
     }
@@ -150,13 +147,13 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
               <h2 className=" font-medium text-[12px]">รหัสนักศึกษา</h2>
               <input value={studentcode} id="studentcode" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="รหัสนักศึกษา" onChange={handleChange} />
               {error && !studentcode && <p className="my-4 text-red-500 font-bold">กรุณากรอกรหัสนักศึกษา</p>}
-              {error && studentcode && !studentcode.match('[0-9]') && <p className="my-4 text-red-500 font-bold">กรุณากรอกรหัสนักศึกษาให้ถูกต้อง</p> }
+              {error && studentcode && !/^\d+$/.test(studentcode) && <p className="my-4 text-red-500 font-bold">กรุณากรอกรหัสนักศึกษาให้ถูกต้อง</p> }
             </div>
             <div>
               <h2 className=" font-medium text-[12px]">เบอร์ติดต่อ</h2>
               <input value={tel} id="tel" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="เบอร์ติดต่อ" onChange={handleChange} />
               {error && !tel && <p className="my-4 text-red-500 font-bold">กรุณากรอกเบอร์ติดต่อ</p>}
-              {error && tel && !tel.match('[0-9]{10}') && <p className="my-4 text-red-500 font-bold">กรุณากรอกเบอร์ติดต่อให้ถูกต้อง</p>}
+              {error && tel && (!tel.match('[0-9]{10}') || !/^\d+$/.test(tel)) && <p className="my-4 text-red-500 font-bold">กรุณากรอกเบอร์ติดต่อให้ถูกต้อง</p>}
             </div>
             <div>
               <h2 className=" font-medium text-[12px]">อีเมล</h2>

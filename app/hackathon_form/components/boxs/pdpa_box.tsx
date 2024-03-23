@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import logo from "../../assets/logo.png";
-import styles from '../../pages/pdpa_page/page.module.css';
 import OuterBox from "../outer_box";
 import GButton from "../g_button";
-import Link from "next/link";
 import InnerBox from "../inner_box";
 
 const PdpaBox: React.FC = () => {

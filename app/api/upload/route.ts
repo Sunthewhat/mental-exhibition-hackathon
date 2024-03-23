@@ -1,5 +1,5 @@
 import path from "path";
-import fs, { appendFile, writeFile } from "fs/promises";
+import { writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 import { v4 } from "uuid";
 

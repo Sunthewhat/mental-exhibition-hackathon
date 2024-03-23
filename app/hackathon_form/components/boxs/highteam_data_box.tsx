@@ -28,11 +28,11 @@ const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
     const storedTel = localStorage.getItem('high_tel_'+num);
     const storedEmail = localStorage.getItem('high_email_'+num);
 
-    if (storedFullName) setFullName(storedFullName);
-    if (storedNickName) setNickName(storedNickName);
-    if (storedUniversity) setUniversity(storedUniversity);
-    if (storedTel) setTel(storedTel);
-    if (storedEmail) setEmail(storedEmail);
+    if (storedFullName) setFullName(storedFullName); else setFullName('');
+    if (storedNickName) setNickName(storedNickName); else setNickName('');
+    if (storedUniversity) setUniversity(storedUniversity); else setUniversity('');
+    if (storedTel) setTel(storedTel); else setTel('');
+    if (storedEmail) setEmail(storedEmail); else setEmail('');
   }, [num]);
 
   const clickHandle = () => {
@@ -70,7 +70,7 @@ const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
       setError(true);
       return false;
     }
-    if (!tel.match('[0-9]{10}')) {
+    if (!tel.match('[0-9]{10}') || !/^\d+$/.test(tel)) {
       setError(true);
       return false;
     } 
@@ -83,7 +83,6 @@ const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
   }
 
   const handleChange = (event: { target: { id: string, value: string; }; }) => {
-    console.log(event.target.id);
     if (event.target.id === 'fullname') {
         setFullName(event.target.value);
     }
@@ -134,7 +133,7 @@ const HighTeamData: React.FC<{ num: string }> = ({ num }) => {
               <h2 className=" font-medium text-[12px]">เบอร์ติดต่อ</h2>
               <input value={tel} id="tel" type="text" className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`} placeholder="เบอร์ติดต่อ" onChange={handleChange} />
               {error && !tel && <p className="my-4 text-red-500 font-bold">กรุณากรอกเบอร์ติดต่อ</p>}
-              {error && tel && !tel.match('[0-9]{10}') && <p className="my-4 text-red-500 font-bold">กรุณากรอกเบอร์ติดต่อให้ถูกต้อง</p>}  
+              {error && tel && (!tel.match('[0-9]{10}') || !/^\d+$/.test(tel)) && <p className="my-4 text-red-500 font-bold">กรุณากรอกเบอร์ติดต่อให้ถูกต้อง</p>}  
             </div>
             <div>
               <h2 className=" font-medium text-[12px]">อีเมล</h2>
