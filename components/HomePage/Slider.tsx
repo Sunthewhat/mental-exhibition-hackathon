@@ -1,25 +1,44 @@
-'use client';
+"use client";
 
 import "swiper/css";
-import 'swiper/css/pagination';
+import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
+import { Autoplay } from "swiper/modules";
 
 export default function Slider() {
 
+
   return (
     <>
-        <Swiper 
-          spaceBetween={100}
-          slidesPerView={1}
-          loop={true}
-          className="rounded-3xl w-full h-[250px] md:h-[340px] lg:h-[480px] shadow-md object-cover"
-        >
-          <SwiperSlide><Image fill className="object-cover" src='/banner.png' alt='banner' quality={100}/></SwiperSlide>
-          <SwiperSlide><Image fill className="object-cover" src='/banner.png' alt='banner' quality={100}/></SwiperSlide>
-          <SwiperSlide><Image fill className="object-cover" src='/banner.png' alt='banner' quality={100}/></SwiperSlide>
-          <SwiperSlide><Image fill className="object-cover" src='/banner.png' alt='banner' quality={100}/></SwiperSlide>
-        </Swiper>
+      <Swiper
+        autoplay={{ delay: 3000 }}
+        spaceBetween={10}
+        slidesPerView={1}
+        loop={true}
+        className="md:rounded-3xl w-full h-[200px] md:h-[360px]"
+        modules={[Autoplay]}
+      >
+        <SwiperSlide>
+          <Image
+            fill
+            className="w-auto h-auto object-cover"
+            src="/banner_1.svg"
+            alt="banner"
+            quality={100}
+            priority
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image
+            fill
+            className="w-auto h-auto object-cover"
+            src="/banner_2.svg"
+            alt="banner"
+            quality={100}
+          />
+        </SwiperSlide>
+      </Swiper>
     </>
   );
 }

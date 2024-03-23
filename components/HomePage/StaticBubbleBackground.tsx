@@ -20,7 +20,7 @@ export default function StaticBubbleBackground() {
   return (
     <>
       <BubbleImage cssStyling="absolute -top-[25px] -left-[25px]" />
-      <BubbleImage cssStyling="absolute top-[60%] -left-[40px]" />
+      <BubbleImage cssStyling="absolute top-[60%] -left-[30px]" />
       <BubbleImage cssStyling="absolute top-[33%] -right-[25px]" />
       <BubbleImage cssStyling="absolute top-[92%] -right-[25px]" />
     </>

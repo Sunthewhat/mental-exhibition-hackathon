@@ -5,7 +5,7 @@ import Hero from "@/components/HomePage/Hero";
 
 export default function HomePage() {
   return (
-    <div className="overflow-x-hidden mt-8 px-[30px] md:px-[60px] py-2 flex flex-col gap-4 items-center w-full max-w-[1024px] min-w-[350px]">
+    <div className="overflow-x-hidden mt-8 py-2 flex flex-col gap-4 items-center w-full max-w-[1020px] min-w-[350px]">
       <Slider />
       <Hero />
       <Information />
