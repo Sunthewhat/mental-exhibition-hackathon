@@ -21,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${styles.defaultBackground} ${noto_sans.className}`}>
+      <body
+        className={`${styles.defaultBackground} ${noto_sans.className}`}
+      >
         <SmokeBackground />
 
         {/* <BubbleBackground /> */}

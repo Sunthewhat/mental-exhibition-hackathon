@@ -1,11 +1,17 @@
+import StaticBubbleBackground from "./StaticBubbleBackground";
+
 export default function Information() {
   return (
-    <div className="pt-6 pb-3 px-4 lg:px-36 shadow-md bg-white rounded-3xl">
+    <div className="relative pt-6 pb-3 px-4 lg:px-36 shadow-md bg-white rounded-3xl">
+      <StaticBubbleBackground />
 
       <div className="NotoSansThai text-sm  font-bold text-center text-[#5A81BC]">
         <span>Innovation Hackathon Challenge</span>
         <br />
-        <span className="text-xs sm:text-sm">&quot;นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม&quot;</span>
+        <span className="text-xs sm:text-sm">
+          &quot;นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม&quot;
+        </span>
+        St
       </div>
 
       <div className="NotoSansThai text-xs text-center text-[#5A81BC] py-4">
@@ -23,51 +29,43 @@ export default function Information() {
 
       <div className="NotoSansThai text-xs text-left text-[#5A81BC] py-4 leading-6">
         <ol>
-          
           <li>
-            <p>1. มีสมาชิกในทีม 3-5 คน โดยแบ่งการตัดสินตามระดับการศึกษา ดังนี้</p>
+            <p>
+              1. มีสมาชิกในทีม 3-5 คน โดยแบ่งการตัดสินตามระดับการศึกษา ดังนี้
+            </p>
             <ul>
-              
-              <li>&emsp;ระดับอุดมศึกษา</li>
+              <li>&emsp;&emsp;ระดับอุดมศึกษา</li>
               <ul>
                 <li>
-                  &emsp;&emsp; - สมาชิกอย่างน้อย 3 คนต้องมาจากมหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
+                  &emsp;&emsp;&emsp;&emsp;- สมาชิกอย่างน้อย 3
+                  คนต้องมาจากมหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
                 </li>
                 <li>
-                  &emsp;&emsp; - สามารถร่วมทีมกับนักเรียนระดับมัธยมศึกษาตอนปลายได้ 
+                  &emsp;&emsp;&emsp;&emsp;-
+                  สามารถร่วมทีมกับนักเรียนระดับมัธยมศึกษาตอนปลายได้
                 </li>
               </ul>
 
-              <li>
-                  &emsp;ระดับมัธยมศึกษาตอนปลาย 
-              </li>
+              <li>&emsp;&emsp;ระดับมัธยมศึกษาตอนปลาย</li>
               <ul>
-                  &emsp;&emsp; - สมาชิกทุกคนต้องอยู่ในระดับมัธยมศึกษาตอนปลายเท่านั้น
+                &emsp;&emsp;&emsp;&emsp;-
+                สมาชิกทุกคนต้องอยู่ในระดับมัธยมศึกษาตอนปลายเท่านั้น
               </ul>
-              
             </ul>
           </li>
-          
-          <li>
-            2. ไม่จำกัดสัญชาติ 
-          </li>
 
-          <li>
-            3. ผู้สมัครต้องมีรายชื่ออยู่เพียงทีมเดียวเท่านั้น
-          </li>
+          <li>2. ไม่จำกัดสัญชาติ</li>
+
+          <li>3. ผู้สมัครต้องมีรายชื่ออยู่เพียงทีมเดียวเท่านั้น</li>
 
           <li>
             4. สามารถเข้าร่วมกิจกรรม Hackathon ในวันที่ 20 - 22 เมษายน 2567 ได้
             (เฉพาะทีมที่เข้ารอบจะได้ Pitch ใน วันที่ 22 เมษายน)
           </li>
 
-          <li>
-            5. สามารถนำเสนอเป็นภาษาไทยหรือภาษาอังกฤษก็ได้
-          </li>
-          
+          <li>5. สามารถนำเสนอเป็นภาษาไทยหรือภาษาอังกฤษก็ได้</li>
         </ol>
       </div>
-
     </div>
-  )
+  );
 }
