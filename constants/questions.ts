@@ -7,6 +7,7 @@ export interface ChoiceType {
   label: string;
   point: number;
 }
+
 const questions: QuestionType[] = [
   {
     label: "1.ถ้าเทียบความรักของคุณตอนนี้ เป็นสีคุณจะนึกถึงสีอะไร",

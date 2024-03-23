@@ -1,4 +1,4 @@
-const getValueFromLocalStorage = (key: string): string | null => {
+const getValueFromLocal = (key: string): string | null => {
   const value = window.localStorage.getItem(key);
   if (value === null) {
     console.log(`No value found in localStorage for key: ${key}`);
@@ -9,11 +9,11 @@ const getValueFromLocalStorage = (key: string): string | null => {
 };
 
 export const getDisplayName = (): string | null => {
-  return getValueFromLocalStorage("name");
+  return getValueFromLocal("name");
 };
 
 export const getAnswers = (): number[] | null => {
-  let answers = getValueFromLocalStorage("answers");
+  let answers = getValueFromLocal("answers");
 
   if (!answers) return null;
 

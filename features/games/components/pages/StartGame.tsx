@@ -1,17 +1,17 @@
 "use client";
 
 import ShineBox from "@/features/ui/components/Shinebox";
-import { Shippori_Mincho } from "next/font/google";
+import { useFonts } from "@/hooks/useFont";
 
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const shippori = Shippori_Mincho({ weight: ["600"], subsets: ["latin"] });
-
 const StartGame = () => {
+  const { subHeader } = useFonts();
+
   const res_buttonStyle = {
-    base: `relative flex items-center justify-center ${shippori.className} text-white rounded-[20px] bg-gradient-to-r from-[#ddcdfa] via-[#f1d2ee] to-[#ddcdfa]`,
+    base: `relative flex items-center justify-center ${subHeader.className} text-white rounded-[20px] bg-gradient-to-r from-[#ddcdfa] via-[#f1d2ee] to-[#ddcdfa]`,
     mobile: `text-base w-[130px] h-[44px]`,
     tablet: `text-[32px] w-[230px] h-[75px]`,
   };

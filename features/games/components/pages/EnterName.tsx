@@ -6,15 +6,13 @@ import { normalStringValidator } from "../../validators";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import ShineBox from "@/features/ui/components/Shinebox";
-import { Shippori_Mincho } from "next/font/google";
+import { useFonts } from "@/hooks/useFont";
 
 interface EnterNameProp {
   setEnterGame: (value: boolean) => void;
   name: string;
   setName: (name: string) => void;
 }
-
-const subHeader = Shippori_Mincho({ subsets: ["latin"], weight: "800" });
 
 const EnterName: React.FC<EnterNameProp> = ({
   setEnterGame,
@@ -23,6 +21,26 @@ const EnterName: React.FC<EnterNameProp> = ({
 }) => {
   const [warn, setWarn] = useState(false);
   const { toast } = useToast();
+  const { subHeader } = useFonts();
+
+  const isMobile = window.innerWidth <= 430;
+  const isTablet = window.innerWidth <= 1024 && !isMobile;
+
+  const prop = isMobile
+    ? {
+        boxSize: 180,
+        size: 140,
+      }
+    : isTablet
+    ? {
+        boxSize: 280,
+        size: 240,
+      }
+    : {
+        boxSize: 330,
+        size: 300,
+      };
+      
 
   const handleClick = useCallback(() => {
     if (warn || name === "") {
@@ -78,6 +96,10 @@ const EnterName: React.FC<EnterNameProp> = ({
 
     window.addEventListener("keydown", handleKeyDown);
 
+    // Clear cached when we go back to first page
+    window.localStorage.removeItem("name");
+    window.localStorage.removeItem("answers");
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -85,15 +107,14 @@ const EnterName: React.FC<EnterNameProp> = ({
 
   return (
     <div className="px-8 py-16 flex w-full flex-col items-center justify-center gap-[3rem] xs:mt-[8rem] tablet:mt-[0rem]">
-      <div className="relative w-2/3 sm:w-2/5 lg:w-1/3 h-auto">
+      <ShineBox blurAmount="blur-xl" boxSize={prop.boxSize}>
         <Image
-          src="/assets/icon.png"
-          alt="icon"
-          width={300}
-          height={200}
-          layout="responsive"
+          src="/assets/logo.svg"
+          alt="logo"
+          width={prop.size}
+          height={prop.size}
         />
-      </div>
+      </ShineBox>
 
       <div className="w-3/5 flex flex-col gap-2 z-10">
         <Label

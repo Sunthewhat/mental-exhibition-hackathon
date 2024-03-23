@@ -7,21 +7,18 @@ import Contact from "../Contact";
 import Lighting from "../Lighting";
 import { useSeason } from "@/hooks/useSeason";
 import { Noto_Sans_Thai } from "next/font/google";
-import localFont from "next/font/local";
 import { motion } from "framer-motion";
+import { useFonts } from "@/hooks/useFont";
 
-const headerFont = localFont({
-  src: "../../../../app/fonts/golden-bridge-font.ttf",
-  weight: "300",
-  display: "swap",
-});
+
 
 const paragraphFont = Noto_Sans_Thai({ subsets: ["latin"], weight: "400" });
 
 const Result = () => {
   const score = getScore();
   const userName = getDisplayName();
-  const { name, desc, img } = useSeason(score);
+  const { headerFont } = useFonts();
+  const { name, description, img } = useSeason(score);
 
   return (
     <div className="h-full w-full py-12 md:px-[2em] lg:px-[8em] lg:h-auto">
@@ -56,7 +53,7 @@ const Result = () => {
               <h4
                 className={`mb-4 text-xs md:text-xl font-normal leading-none ${paragraphFont.className}`}
               >
-                {desc}
+                {description}
               </h4>
             </div>
           </ScrollArea>

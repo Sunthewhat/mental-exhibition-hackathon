@@ -1,44 +1,61 @@
 import { QuestionType } from "@/constants/questions";
 import Choice from "./Choice";
-import { Noto_Sans_Thai } from "next/font/google";
+import { useFonts } from "@/hooks/useFont";
+import { motion } from "framer-motion";
 
 interface QuestionProp {
   idx: number;
   question: QuestionType;
+  handleNextQuestion: () => void;
   handleUpdateAnswer: (questionNumber: number, choice: number) => void;
   isAnswerSelected: (questionNumber: number, choice: number) => boolean;
 }
 
-const paragraphFont = Noto_Sans_Thai({ subsets: ["latin"], weight: "400" });
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 const Question: React.FC<QuestionProp> = ({
   idx,
   question,
+  handleNextQuestion,
   handleUpdateAnswer,
   isAnswerSelected,
 }) => {
   const { label, choices } = question;
+  const { paragraphFont } = useFonts();
 
   const handleClickAnswer = (choice: number) => {
     handleUpdateAnswer(idx, choice);
+    handleNextQuestion();
   };
 
   return (
     <div className="px-8 pt-32 flex w-full flex-col items-center justify-center gap-10">
       <p className={paragraphFont.className}>{label}</p>
+
       <div className="flex flex-col gap-3 items-center">
         {choices.map((choice, choiceIdx) => {
           return (
-            <Choice
-              questionNumber={idx}
-              key={`${label}-${choiceIdx}`}
-              id={`${label}-${choiceIdx}`}
-              name={label}
-              value={String(choiceIdx)}
-              onClick={handleClickAnswer}
-              checked={isAnswerSelected(idx, choiceIdx)}
-              choice={choice}
-            />
+            <motion.div
+              key={`${choice.label}-${choiceIdx}-motion`}
+              variants={item}
+            >
+              <Choice
+                question={idx}
+                id={`${label}-${choiceIdx}`}
+                key={`${label}-${choiceIdx}`}
+                name={label}
+                value={String(choiceIdx)}
+                onClick={handleClickAnswer}
+                checked={isAnswerSelected(idx, choiceIdx)}
+                choice={choice}
+              />
+            </motion.div>
           );
         })}
       </div>

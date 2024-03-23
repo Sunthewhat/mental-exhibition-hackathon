@@ -7,12 +7,8 @@ export const useSeason = (score: number) => {
     (s) => scoreAsPercent <= s.percent
   );
 
-  if (!season) return { id: -1, name: "Unknown", desc: "Unknown", img: "" };
+  if (!season)
+    return { id: -1, name: "Unknown", description: "Unknown", img: "" };
 
-  return {
-    id: season.id,
-    name: season.name,
-    desc: season.description,
-    img: season.img,
-  };
+  return season;
 };

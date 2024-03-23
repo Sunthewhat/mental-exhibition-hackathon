@@ -1,8 +1,9 @@
 import { ChoiceType } from "@/constants/questions";
 import { getAnswers } from "@/features/games/helpers";
-import { Noto_Sans_Thai } from "next/font/google";
+import { useFonts } from "@/hooks/useFont";
+
 interface ChoiceProp {
-  questionNumber: number;
+  question: number;
   id: string;
   name: string;
   value: string;
@@ -11,10 +12,8 @@ interface ChoiceProp {
   choice: ChoiceType;
 }
 
-const paragraphFont = Noto_Sans_Thai({ subsets: ["latin"], weight: "300" });
-
 const Choice: React.FC<ChoiceProp> = ({
-  questionNumber,
+  question,
   id,
   name,
   value,
@@ -22,6 +21,8 @@ const Choice: React.FC<ChoiceProp> = ({
   checked,
   choice,
 }) => {
+  const { paragraphFont } = useFonts();
+
   const handleChoiceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onClick(Number(event.currentTarget.value));
   };
@@ -33,7 +34,7 @@ const Choice: React.FC<ChoiceProp> = ({
     }
 
     let changedAnswers = answers;
-    changedAnswers[questionNumber] = choice.point;
+    changedAnswers[question] = choice.point;
     window.localStorage.setItem("answers", JSON.stringify(changedAnswers));
   };
 

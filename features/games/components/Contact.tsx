@@ -2,16 +2,13 @@
 import React from "react";
 import { Download, Instagram } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import localFont from "next/font/local";
 import { motion } from "framer-motion";
+import { useFonts } from "@/hooks/useFont";
 import Link from "next/link";
-const headerFont = localFont({
-  src: "../../../app/fonts/golden-bridge-font.ttf",
-  weight: "800",
-  display: "swap",
-});
 
 const Contact = () => {
+  const { headerFont } = useFonts();
+
   return (
     <div className="flex flex-col gap-3 sm:gap-6 items-center w-3/5 my-[3rem] lg:mt-[6rem] z-50">
       <motion.div
