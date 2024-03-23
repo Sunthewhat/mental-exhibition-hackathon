@@ -1,13 +1,16 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
+
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./features/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -17,7 +20,19 @@ const config = {
         "2xl": "1400px",
       },
     },
+    screens: {
+      ...defaultTheme.screens,
+      tablet: "640px",
+      "ipad-pro": "1366px",
+      laptop: "1024px",
+      desktop: "1280px",
+      xs: "425px",
+    },
     extend: {
+      backgroundImage: {
+        main: "url('/assets/game/backgrounds/main-background.png')",
+        result: "url('/assets/game/backgrounds/result_bg.png')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -75,6 +90,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
