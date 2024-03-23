@@ -1,5 +1,6 @@
 import { ChoiceType } from "@/constants/questions";
 import { getAnswers } from "@/features/games/helpers";
+import { Noto_Sans_Thai } from "next/font/google";
 interface ChoiceProp {
   questionNumber: number;
   id: string;
@@ -9,6 +10,8 @@ interface ChoiceProp {
   checked: boolean;
   choice: ChoiceType;
 }
+
+const paragraphFont = Noto_Sans_Thai({ subsets: ["latin"], weight: "300" });
 
 const Choice: React.FC<ChoiceProp> = ({
   questionNumber,
@@ -53,7 +56,11 @@ const Choice: React.FC<ChoiceProp> = ({
         onChange={handleChoiceChange}
         checked={checked}
       />
-      <label htmlFor={id} key={value} className="cursor-pointer text-[#5A81BC]">
+      <label
+        htmlFor={id}
+        key={value}
+        className={`cursor-pointer text-[#5A81BC] ${paragraphFont.className}`}
+      >
         {choice.label}
       </label>
     </div>

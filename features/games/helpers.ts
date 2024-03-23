@@ -1,10 +1,4 @@
-const isBrowser = typeof window !== "undefined";
-
 const getValueFromLocalStorage = (key: string): string | null => {
-  if (!isBrowser) {
-    return null;
-  }
-
   const value = window.localStorage.getItem(key);
   if (value === null) {
     console.log(`No value found in localStorage for key: ${key}`);

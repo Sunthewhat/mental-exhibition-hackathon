@@ -6,12 +6,15 @@ import { normalStringValidator } from "../../validators";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import ShineBox from "@/features/ui/components/Shinebox";
+import { Shippori_Mincho } from "next/font/google";
 
 interface EnterNameProp {
   setEnterGame: (value: boolean) => void;
   name: string;
   setName: (name: string) => void;
 }
+
+const subHeader = Shippori_Mincho({ subsets: ["latin"], weight: "800" });
 
 const EnterName: React.FC<EnterNameProp> = ({
   setEnterGame,
@@ -93,7 +96,10 @@ const EnterName: React.FC<EnterNameProp> = ({
       </div>
 
       <div className="w-3/5 flex flex-col gap-2 z-10">
-        <Label className="text-white font-bold text-md md:text-base lg:text-lg ">
+        <Label
+          className={`text-white font-bold text-md md:text-base lg:text-lg
+          ${subHeader.className}`}
+        >
           Enter your name
         </Label>
         <Input onChange={handleChange} value={name} className="z-10" />

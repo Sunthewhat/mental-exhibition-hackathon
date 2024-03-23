@@ -9,8 +9,7 @@ export interface ChoiceType {
 }
 const questions: QuestionType[] = [
   {
-    label:
-      "1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur illo! Libero amet dolores",
+    label: "1.ถ้าเทียบความรักของคุณตอนนี้ เป็นสีคุณจะนึกถึงสีอะไร",
     choices: [
       {
         label: "choice 1",

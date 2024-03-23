@@ -1,5 +1,6 @@
 import { QuestionType } from "@/constants/questions";
 import Choice from "./Choice";
+import { Noto_Sans_Thai } from "next/font/google";
 
 interface QuestionProp {
   idx: number;
@@ -7,6 +8,8 @@ interface QuestionProp {
   handleUpdateAnswer: (questionNumber: number, choice: number) => void;
   isAnswerSelected: (questionNumber: number, choice: number) => boolean;
 }
+
+const paragraphFont = Noto_Sans_Thai({ subsets: ["latin"], weight: "400" });
 
 const Question: React.FC<QuestionProp> = ({
   idx,
@@ -22,7 +25,7 @@ const Question: React.FC<QuestionProp> = ({
 
   return (
     <div className="px-8 pt-32 flex w-full flex-col items-center justify-center gap-10">
-      <p>{label}</p>
+      <p className={paragraphFont.className}>{label}</p>
       <div className="flex flex-col gap-3 items-center">
         {choices.map((choice, choiceIdx) => {
           return (

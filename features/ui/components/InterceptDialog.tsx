@@ -1,4 +1,3 @@
-"use client";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import React, { ReactNode } from "react";

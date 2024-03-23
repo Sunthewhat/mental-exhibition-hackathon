@@ -8,7 +8,9 @@ import { useToast } from "@/components/ui/use-toast";
 import { getScore } from "@/features/games/helpers";
 import Warning from "../Warning";
 import InterceptDialog from "@/features/ui/components/InterceptDialog";
+import localFont from "next/font/local";
 import { useSeason } from "@/hooks/useSeason";
+import { Noto_Sans_Thai } from "next/font/google";
 
 interface QuestionFormProps {
   setEnterGame: (value: boolean) => void;
@@ -16,6 +18,12 @@ interface QuestionFormProps {
   isAnswerSelected: (questionNumber: number, choice: number) => boolean;
   answers: number[];
 }
+
+const headerFont = localFont({
+  src: "../../../../app/fonts/golden-bridge-font.ttf",
+  weight: "300",
+  display: "swap",
+});
 
 const MemoizedQuestion = memo(Question);
 
@@ -137,7 +145,9 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
         </InterceptDialog>
       )}
 
-      <div className="text-center text-white font-bold text-md md:text-base lg:text-lg">
+      <div
+        className={`text-center text-white font-bold text-xl md:text-base lg:text-3xl ${headerFont.className}`}
+      >
         <p>KMUTT</p>
         <p>MENTAL HEALTH</p>
         <p>EXHIBITION</p>
