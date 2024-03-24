@@ -11,13 +11,14 @@
     return (
       <div className="flex gap-4">
         <Link
-          href="/regisster"
+          href="/hackathon/pdpa"
         className={`${buttonStyle.base} ${buttonStyle.clickToRegis}`}
       >
         สมัครเลย
       </Link>
       <Link
-        href="/information"
+        target="_blank"
+        href="https://drive.google.com/file/d/1wZF60345p7VkJTyY2YcYvkrkoHWCvEhR/view"
         className={`${buttonStyle.base} ${buttonStyle.clickForInfo}`}
       >
         รายละเอียดการแข่งขัน
