@@ -6,6 +6,7 @@ WORKDIR /app
 
 COPY package.json ./
 RUN yarn
+RUN yarn add sharp
 
 FROM base AS builder
 
