@@ -38,12 +38,12 @@ const Result = () => {
           >
             <span className="text-center">{userName ?? "Guest User"}</span>
             <br />
-            <span>Your season is {name}</span>
+            <span>{name}</span>
           </span>
         </Label>
 
         <div
-          className="w-full h-3/5 md:h-3/4 flex flex-col items-center  
+          className="w-full h-3/5 md:h-3/4 flex flex-col items-center
             gap-[2rem] lg:mt-16 xl:h-4/5 lg:flex-row "
         >
           <Lighting className="relative w-3/5 lg:w-1/2 h-auto bg-cover rounded-full z-50">

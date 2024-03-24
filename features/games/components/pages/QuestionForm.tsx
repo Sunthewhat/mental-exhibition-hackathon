@@ -70,7 +70,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
         if (!isCompleteAllAnswer()) {
           toast({
             title: "Form not completed",
-            description: "กรุณาตอบคำถามให้ครบทุกข้อ",
+            description: "Plase complete all the form before submitting",
             variant: "destructive",
             duration: 3000,
           });
@@ -178,7 +178,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
           <div className="flex justify-center items-center gap-8">
             <button type="button" onClick={() => handleClick(true)}>
               <div
-                className="w-0 h-0 
+                className="w-0 h-0
   border-t-[25px] border-t-transparent
   border-r-[30px] border-r-rose-300
   border-b-[25px] border-b-transparent"
@@ -186,7 +186,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
             </button>
             <button type="button" onClick={() => handleClick(false)}>
               <div
-                className="w-0 h-0 
+                className="w-0 h-0
   border-t-[25px] border-t-transparent
   border-l-[30px] border-l-rose-300
   border-b-[25px] border-b-transparent"
