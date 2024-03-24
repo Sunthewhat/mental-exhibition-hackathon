@@ -5,8 +5,8 @@ FROM base AS deps
 WORKDIR /app
 
 COPY package.json ./
-RUN yarn
-RUN yarn add sharp
+RUN npm i
+RUN npm i sharp
 
 FROM base AS builder
 
@@ -16,7 +16,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-RUN yarn build
+RUN npm run build
 
 RUN ls .next -a
 
