@@ -63,10 +63,11 @@ export default function Hero() {
           alt="logo"
           width={prop.size}
           height={prop.size}
+          className="btn-hover"
         />
       </ShineBox>
 
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center btn-hover">
         <div className="absolute w-[120%] h-[120%] bg-white blur-xl">I</div>
         <Link href="/game" className={style}>
           <Image

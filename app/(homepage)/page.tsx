@@ -6,7 +6,8 @@ import React from "react";
 
 const HomePage = () => {
   return (
-    <div className="overflow-x-hidden mt-8 py-2 flex flex-col gap-4 items-center w-full max-w-[1080px] min-w-[350px]">
+
+    <div className="overflow-x-hidden mt-8 py-2 flex flex-col gap-4 items-center w-full max-w-[1500px] min-w-[350px]">
       <Slider />
       <Hero />
       <Information />

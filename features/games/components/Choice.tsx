@@ -40,8 +40,8 @@ const Choice: React.FC<ChoiceProp> = ({
 
   return (
     <div
-      className={`cursor-pointer py-5 px-20 ipad:px-[6rem] lg:px-[13rem]
-      xl:px-[19rem] border-2 rounded-2xl w-full  ${
+      className={`cursor-pointer py-5 px-20 border-2 rounded-2xl w-full choice-hover
+      ipad:px-[6rem] lg:px-[13rem] xl:px-[19rem] 2xl:px-[31rem]  ${
         checked ? "border-amber-300" : "border-[#B9A5D6]"
       } `}
       onClick={() => {

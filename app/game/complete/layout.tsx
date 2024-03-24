@@ -1,5 +1,7 @@
 "use client";
 import { getDisplayName } from "@/features/games/helpers";
+import NavigationBar from "@/features/home/components/navigation/NavigationBar";
+import Layer from "@/features/shared/components/Layer";
 import { useRouter } from "next/navigation";
 import React, { ReactNode, useEffect } from "react";
 
@@ -8,16 +10,22 @@ interface GameResultLayoutProps {
 }
 
 const GameCompleteLayout = ({ children }: GameResultLayoutProps) => {
-  const userName = getDisplayName();
   const router = useRouter();
 
   useEffect(() => {
+    const userName = getDisplayName();
+    
+
     if (userName === null) {
       router.replace("/game");
     }
   });
-
-  return <>{children}</>;
+  
+  return (
+    <>
+      {children}
+    </>
+  );
 };
 
 export default GameCompleteLayout;

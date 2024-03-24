@@ -77,3 +77,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .btn-hover {
+    @apply duration-500 hover:scale-125 transition
+  }
+  .choice-hover {
+    @apply duration-500 hover:scale-90 transition
+  }
+}

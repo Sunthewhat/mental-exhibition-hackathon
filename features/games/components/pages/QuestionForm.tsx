@@ -177,21 +177,21 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
             </p>
           </div>
           <div className="flex justify-center items-center gap-8">
-            <button type="button" onClick={() => handleClick(true)}>
+            <button id="back" type="button" onClick={() => handleClick(true)}>
               <div
-                className="w-0 h-0
+                className="w-0 h-0 btn-hover
   border-t-[25px] border-t-transparent
   border-r-[30px] border-r-rose-300
-  border-b-[25px] border-b-transparent"
-              ></div>
+  border-b-[25px] border-b-transparent text-transparent"
+              >T</div>
             </button>
             <button type="button" onClick={() => handleClick(false)}>
               <div
-                className="w-0 h-0
+                className="w-0 h-0 btn-hover
   border-t-[25px] border-t-transparent
   border-l-[30px] border-l-rose-300
-  border-b-[25px] border-b-transparent"
-              ></div>
+  border-b-[25px] border-b-transparent text-transparent"
+              >T</div>
             </button>
           </div>
         </div>

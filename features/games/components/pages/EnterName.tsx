@@ -150,9 +150,10 @@ const EnterName: React.FC<EnterNameProp> = ({
 
         <ShineBox blurAmount="blur-3xl" boxSize={180}>
           <button
-            className="relative w-[120px] h-[45px] md:w-[180px] md:h-[70px] mt-[4em] z-10"
+            className="relative w-[120px] h-[45px] md:w-[180px] md:h-[70px] mt-[4em] z-10 text-transparent btn-hover"
             onClick={handleClick}
           >
+            T
             <Image
               src="/assets/game/click-here.png"
               alt="icon"

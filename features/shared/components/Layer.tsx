@@ -15,5 +15,4 @@ export default function Layer({children, position, depth} : Props) {
       {children}
     </div>
   )
-
 }
