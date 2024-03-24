@@ -142,13 +142,13 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
           <InterceptDialog
             onClose={() => {
               setWarn(false);
-              router.push("/game/result");
+              router.push("/game/complete");
             }}
           >
             <Warning
               onClose={() => {
                 setWarn(false);
-                router.push("/game/result");
+                router.push("/game/complete");
               }}
             />
           </InterceptDialog>
