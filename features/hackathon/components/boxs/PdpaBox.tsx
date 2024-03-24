@@ -84,7 +84,8 @@ const PdpaBox: React.FC = () => {
           </p>
         </div>
       </InnerBox>
-      <div className="flex flex-col justify-center items-end">
+      <div className="flex flex-row justify-between items-end">
+        <GButton title="ย้อนกลับ" command="/" type="TYPE1" />
         <GButton title="ยอมรับและถัดไป" command="/hackathon/explain" />
       </div>
     </OuterBox>
