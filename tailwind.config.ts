@@ -22,7 +22,7 @@ const config = {
     screens: {
       ...defaultTheme.screens,
       tablet: "640px",
-      "ipad-pro": "1366px",
+      ipad: "820px",
       laptop: "1024px",
       desktop: "1280px",
       xs: "425px",
