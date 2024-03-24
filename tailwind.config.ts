@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 const config = {
   darkMode: ["class"],
@@ -7,6 +8,7 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./features/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -17,7 +19,19 @@ const config = {
         "2xl": "1400px",
       },
     },
+    screens: {
+      ...defaultTheme.screens,
+      tablet: "640px",
+      "ipad-pro": "1366px",
+      laptop: "1024px",
+      desktop: "1280px",
+      xs: "425px",
+    },
     extend: {
+      backgroundImage: {
+        main: "url('/assets/game/backgrounds/main-background.png')",
+        result: "url('/assets/game/backgrounds/result_bg.png')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
