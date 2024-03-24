@@ -1,0 +1,12 @@
+.defaultBackground {
+  padding: 60px 0px;
+  position: relative;
+  background-image: linear-gradient(
+    to bottom,
+    #89b6fb 10% 10%,
+    #f4d7f1 72% 72%,
+    #fff 101% 101%,
+    #cfc7ff 33% 33%
+  );
+  background-repeat: no-repeat;
+}
