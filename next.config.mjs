@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	
 	async redirects() {
 		return [
 			{
@@ -11,6 +12,9 @@ const nextConfig = {
 		];
 	},
 	output: 'standalone',
+	experimental: {
+		serverMinification: false,
+	},
 };
 
 export default nextConfig;
