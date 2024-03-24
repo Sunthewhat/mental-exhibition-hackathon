@@ -1,11 +1,11 @@
-FROM oven/bun:1 as base
+FROM node:latest as base
 
 FROM base AS deps
 
 WORKDIR /app
 
 COPY package.json ./
-RUN bun install
+RUN yarn
 
 FROM base AS builder
 
@@ -15,7 +15,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-RUN bun run build
+RUN yarn build
 
 RUN ls .next -a
 
@@ -38,4 +38,4 @@ ENV PORT 3000
 
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["bun", "server.js"]
+CMD ["node", "server.js"]
