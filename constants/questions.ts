@@ -10,126 +10,126 @@ export interface ChoiceType {
 
 const questions: QuestionType[] = [
   {
-    label: "1.ถ้าเทียบความรักของคุณตอนนี้ เป็นสีคุณจะนึกถึงสีอะไร",
+    label: "ช่วงนี้...เป็นยังไงบ้างนะ",
     choices: [
       {
-        label: "choice 1",
+        label: "ทุกๆวันของฉันผ่านไปอย่างไม่เหนื่อยมากนัก",
         point: 0,
       },
       {
-        label: "choice 2",
+        label: "ทุกวันนี้ฉันมีความสุขดี ",
         point: 1,
       },
       {
-        label: "choice 3",
+        label: "ฉันมีเรื่องให้วิตกกังวลอยู่บ้าง",
         point: 2,
       },
     ],
   },
   {
     label:
-      "2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur illo! Libero amet dolores",
+      "หากคุณได้รับดอกไม้มาหนึ่งช่อ จะทำอย่างไรกับมัน",
     choices: [
       {
-        label: "choice 1",
+        label: "นำมาประดับใส่แจกัน ",
         point: 2,
       },
       {
-        label: "choice 2",
+        label: "วางทิ้งไว้เฉย ๆ จนแห้งเหี่ยวไปเอง",
         point: 0,
       },
       {
-        label: "choice 3",
+        label: "นำไปทำให้แห้งและประดับใส่กรอบ",
         point: 1,
       },
     ],
   },
   {
     label:
-      "3. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur illo! Libero amet dolores",
+      "ถ้าคุณเป็นดอกไม้ คุณคิดว่าคุณจะสวยงามที่สุดตอนไหน",
     choices: [
       {
-        label: "choice 1",
+        label: "ฤดูหนาวที่ขาวโพลนด้วยหิมะ",
         point: 0,
       },
       {
-        label: "choice 2",
+        label: "ฤดูใบไม้ผลิอันร้อนระอุ",
         point: 1,
       },
       {
-        label: "choice 3",
+        label: "ฤดูฝนที่เปียกโชกไปทั้งวัน",
         point: 2,
       },
     ],
   },
   {
     label:
-      "4. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur illo! Libero amet dolores",
+      "หากเพื่อนสนิทที่คุณไม่ได้คุยด้วยมา 10 ปี โทรมาหาคุณ สิ่งที่คุณอยากคุยกับเขามากที่สุดคือ",
     choices: [
       {
-        label: "choice 1",
+        label: "ชีวิตของเขาตอนนี้เป็นอย่างไรบ้าง",
         point: 1,
       },
       {
-        label: "choice 2",
+        label: "คุยถึงเรื่องราวสมัยเด็ก",
         point: 0,
       },
       {
-        label: "choice 3",
+        label: "นัดเขาไปทานข้าวด้วยกันซักที่",
         point: 2,
       },
     ],
   },
   {
     label:
-      "5. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur illo! Libero amet dolores",
+      "คนอื่นมักบอกคุณว่า",
     choices: [
       {
-        label: "choice 1",
+        label: "คุณมักเป็นคนสดใสร่าเริง",
         point: 1,
       },
       {
-        label: "choice 2",
+        label: "คุณเป็นคนที่แสดงความรู้สึกออกมาอย่างชัดเจน",
         point: 2,
       },
       {
-        label: "choice 3",
+        label: "คุณดูมีเรื่องเครียดหรือเศร้าใจอยู่บ้าง",
         point: 0,
       },
     ],
   },
   {
     label:
-      "6. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur illo! Libero amet dolores",
+      "สิ่งที่คุณทำเมื่อรู้สึกเศร้า ",
     choices: [
       {
-        label: "choice 1",
+        label: "แชร์เรื่องนี้ให้คนที่คุณไว้ใจฟัง ",
         point: 2,
       },
       {
-        label: "choice 2",
+        label: "เปิดเพลงช้า ๆ นั่งฟัง",
         point: 1,
       },
       {
-        label: "choice 3",
+        label: "ร้องไห้คนเดียวบนเตียง",
         point: 0,
       },
     ],
   },
   {
     label:
-      "7. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aliquam eum qui esse, pariatur illo! Libero amet dolores",
+      "ภาพถ่ายที่คุณชอบกลับไปดูมากที่สุด",
     choices: [
       {
-        label: "choice 1",
+        label: "รูปสัตว์หรือโมเม้นต่าง ๆ กับคนรอบตัว",
         point: 1,
       },
       {
-        label: "choice 2",
+        label: "รูปวิวสวยๆที่ถ่ายเก็บไว้ในแต่ละวัน",
         point: 0,
       },
       {
-        label: "choice 3",
+        label: "รูปของคุณที่ถ่ายออกมาถูกใจ",
         point: 2,
       },
     ],

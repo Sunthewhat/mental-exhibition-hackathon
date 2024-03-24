@@ -84,7 +84,7 @@ const EnterName: React.FC<EnterNameProp> = ({
       if (!warn) {
         toast({
           title: "Invalid Username",
-          description: "กรุณากรอกชื่อของคุณให้ถูกต้อง",
+          description: "Please input your name correctly",
           variant: "destructive",
           duration: 3000,
         });
@@ -164,7 +164,7 @@ const EnterName: React.FC<EnterNameProp> = ({
           <Input onChange={handleChange} value={name} className="z-10" />
           {warn && (
             <Label className="text-red-500">
-              กรุณาใส่ชื่อให้ถูกต้อง [ห้ามมีอัครพิเศษ]
+              Please input your name
             </Label>
           )}
         </div>
