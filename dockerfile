@@ -1,15 +1,12 @@
-FROM node:20-alpine AS base
+FROM oven/bun:1 as base
 
 FROM base AS deps
 
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
-RUN \
-  if [ -f package-lock.json ]; then npm ci; \
-  else echo "Lockfile not found.❌" && exit 1; \
-  fi
+COPY package.json ./
+RUN bun install
 
 FROM base AS builder
 
@@ -19,7 +16,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-RUN npm run build
+RUN bun run build
 
 RUN ls .next -a
 
@@ -42,4 +39,4 @@ ENV PORT 3000
 
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["node", "server.js"]
+CMD ["bun", "server.js"]
