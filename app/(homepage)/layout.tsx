@@ -17,7 +17,6 @@ const HomePageLayout = ({ children }: HomeLayoutProps) => {
   return (
     <div className={`${styles.defaultBackground} ${noto_sans.className}`}>
       <SmokeBackground />
-      {/* <BubbleBackground /> */}
 
       <Layer depth={1}>
         <NavigationBar>{children}</NavigationBar>
