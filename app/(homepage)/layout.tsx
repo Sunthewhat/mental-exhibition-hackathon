@@ -10,7 +10,7 @@ interface HomeLayoutProps {
 
 import React from "react";
 import SmokeBackground from "@/features/home/components/SmokeBackground";
-import Layer from "@/features/ui/components/Layer";
+import Layer from "@/features/shared/components/Layer";
 import NavigationBar from "@/features/home/components/navigation/NavigationBar";
 
 const HomePageLayout = ({ children }: HomeLayoutProps) => {

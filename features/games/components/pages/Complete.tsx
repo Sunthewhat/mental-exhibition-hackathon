@@ -5,10 +5,10 @@ import { getDisplayName, getScore } from "@/features/games/helpers";
 import React, { useEffect, useState } from "react";
 import Contact from "../Contact";
 import Lighting from "../Lighting";
-import { useSeason } from "@/hooks/useSeason";
 import { motion } from "framer-motion";
-import { useFonts } from "@/hooks/useFont";
+import { useFonts } from "@/features/shared/hooks/useFont";
 import { useRouter } from "next/navigation";
+import { useSeason } from "@/features/games/hooks/useSeason";
 
 const Complete = () => {
   const router = useRouter();

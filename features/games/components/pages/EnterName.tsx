@@ -5,8 +5,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { normalStringValidator } from "../../validators";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
-import ShineBox from "@/features/ui/components/Shinebox";
-import { useFonts } from "@/hooks/useFont";
+import ShineBox from "@/features/shared/components/Shinebox";
+import { useFonts } from "@/features/shared/hooks/useFont";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 

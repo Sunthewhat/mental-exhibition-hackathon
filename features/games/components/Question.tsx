@@ -1,6 +1,6 @@
 import { QuestionType } from "@/constants/questions";
 import Choice from "./Choice";
-import { useFonts } from "@/hooks/useFont";
+import { useFonts } from "@/features/shared/hooks/useFont";
 import { motion } from "framer-motion";
 
 interface QuestionProp {

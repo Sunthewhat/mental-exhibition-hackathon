@@ -1,6 +1,6 @@
 import { ChoiceType } from "@/constants/questions";
 import { getAnswers } from "@/features/games/helpers";
-import { useFonts } from "@/hooks/useFont";
+import { useFonts } from "@/features/shared/hooks/useFont";
 
 interface ChoiceProp {
   question: number;
@@ -46,7 +46,6 @@ const Choice: React.FC<ChoiceProp> = ({
       onClick={() => {
         onClick(Number(value));
         handleUpdateScore();
-        
       }}
     >
       <input
