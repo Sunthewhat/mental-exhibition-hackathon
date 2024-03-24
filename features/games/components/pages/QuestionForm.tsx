@@ -78,7 +78,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
           return;
         }
 
-        id === 1 ? setWarn(true) : router.push("/game/result");
+        id === 1 ? setWarn(true) : router.push("/game/complete");
       }
 
       next();
