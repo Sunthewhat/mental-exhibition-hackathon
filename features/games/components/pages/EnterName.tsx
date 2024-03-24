@@ -8,6 +8,8 @@ import Image from "next/image";
 import ShineBox from "@/features/ui/components/Shinebox";
 import { useFonts } from "@/hooks/useFont";
 import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
+
 interface EnterNameProp {
   setEnterGame: (value: boolean) => void;
   name: string;
@@ -33,51 +35,30 @@ const container = {
 
 const EnterName: React.FC<EnterNameProp> = ({
   setEnterGame,
-  name,
   setName,
+  name,
 }) => {
   const [warn, setWarn] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
+  const isMobile = useMediaQuery({ query: "(max-width: 430px)" });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
 
-  const [prop, setProp] = useState<ItemProps>({
-    boxSize: 180,
-    size: 140,
-  });
+  const prop = isMobile
+    ? {
+        boxSize: 180,
+        size: 140,
+      }
+    : isTablet
+    ? {
+        boxSize: 280,
+        size: 240,
+      }
+    : {
+        boxSize: 330,
+        size: 300,
+      };
 
   const { toast } = useToast();
   const { subHeader } = useFonts();
-
-  useEffect(() => {
-    const updateWindowDimensions = () => {
-      setIsMobile(window.innerWidth <= 430);
-      setIsTablet(window.innerWidth <= 1024 && !isMobile);
-
-      const computedProp = isMobile
-        ? {
-            boxSize: 180,
-            size: 140,
-          }
-        : isTablet
-        ? {
-            boxSize: 280,
-            size: 240,
-          }
-        : {
-            boxSize: 330,
-            size: 300,
-          };
-      setProp(computedProp);
-    };
-    // Initial call to set dimensions and styles
-    updateWindowDimensions();
-
-    window.addEventListener("resize", updateWindowDimensions);
-
-    return () => {
-      window.removeEventListener("resize", updateWindowDimensions);
-    };
-  }, [isMobile, isTablet]);
 
   const handleClick = useCallback(() => {
     if (warn || name === "") {
@@ -163,13 +144,11 @@ const EnterName: React.FC<EnterNameProp> = ({
           </Label>
           <Input onChange={handleChange} value={name} className="z-10" />
           {warn && (
-            <Label className="text-red-500">
-              Please input your name
-            </Label>
+            <Label className="text-red-500">Please input your name</Label>
           )}
         </div>
 
-        <ShineBox blurAmount="blur-3xl" boxSize={120}>
+        <ShineBox blurAmount="blur-3xl" boxSize={180}>
           <button
             className="relative w-[120px] h-[45px] md:w-[180px] md:h-[70px] mt-[4em] z-10"
             onClick={handleClick}

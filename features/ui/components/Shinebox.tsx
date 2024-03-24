@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
 interface Props {
@@ -12,15 +13,21 @@ interface Props {
     | "blur-2xl"
     | "blur-3xl";
   boxSize: number;
+  className?: string;
 }
 
-export default function ShineBox({ children, blurAmount, boxSize }: Props) {
+export default function ShineBox({
+  children,
+  blurAmount,
+  boxSize,
+  className,
+}: Props) {
   const style = `absolute rounded-full bg-white ${blurAmount}`;
 
   return (
     <div className={`relative flex items-center justify-center`}>
       <div
-        className={style}
+        className={cn(style, className)}
         style={{
           width: `${boxSize}px`,
           height: `${boxSize}px`,

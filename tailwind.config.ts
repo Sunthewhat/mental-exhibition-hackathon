@@ -31,6 +31,8 @@ const config = {
       backgroundImage: {
         main: "url('/assets/game/backgrounds/main-background.png')",
         result: "url('/assets/game/backgrounds/result_bg.png')",
+        "banner-1": "url('/public/assets/home/banner.png')",
+        "banner-2": "url('/public/assets/home/banner_2.png')",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -85,10 +87,6 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-      },
-      backgroundImage: {
-        "banner-1": "url('/public/banner.png')",
-        "banner-2": "url('/public/banner_2.png')",
       },
     },
   },

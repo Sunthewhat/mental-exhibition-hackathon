@@ -1,9 +1,9 @@
 "use client";
 
-import StartGame from "@/features/games/components/pages/StartGame";
+import EnterGame from "@/features/games/components/pages/EnterGame";
 
-const StartPage = () => {
-  return <StartGame />;
+const EnterGamePage = () => {
+  return <EnterGame />;
 };
 
-export default StartPage;
+export default EnterGamePage;
