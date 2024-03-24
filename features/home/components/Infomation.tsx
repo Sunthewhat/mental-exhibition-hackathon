@@ -12,7 +12,7 @@ export default function Information() {
           <span className="text-xs sm:text-sm">
             &quot;นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม&quot;
           </span>
-          St
+          
         </div>
 
         <div className="NotoSansThai text-xs text-center text-[#5A81BC] py-4">

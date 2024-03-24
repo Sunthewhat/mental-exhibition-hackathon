@@ -14,7 +14,7 @@ export default function Slider() {
         spaceBetween={10}
         slidesPerView={1}
         loop={true}
-        className="md:rounded-3xl w-full h-[200px] md:h-[360px] "
+        className="md:rounded-3xl w-full h-[200px] md:h-[360px] xl:h-[480px]"
         modules={[Autoplay]}
       >
         <SwiperSlide>

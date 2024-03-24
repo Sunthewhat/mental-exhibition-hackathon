@@ -11,7 +11,7 @@
     return (
       <div className="flex gap-4">
         <Link
-          href="/regisster"
+          href="/register"
         className={`${buttonStyle.base} ${buttonStyle.clickToRegis}`}
       >
         สมัครเลย

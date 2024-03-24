@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import logo from "@/public/assets/hackathon/logo.png";
+import logo from "@/public/assets/logo.svg";
 import OuterBox from "../OuterBox";
 import GButton from "../GButton";
 import InnerBox from "../InnerBox";
@@ -12,7 +12,7 @@ const PdpaBox: React.FC = () => {
       <InnerBox>
         <div className="flex flex-col justify-center items-center gap-3 border-b border-[#B9A5D6] pb-6">
           <div className="">
-            <Image priority src={logo} alt="logo" />
+            <Image priority src={logo} width={220} height={220} alt="logo" />
           </div>
           <h2 className=" text-[12px] md:text-[20px] lg:text-[24px] text-center text-[#5A81BC] font-bold">
             แบบฟอร์มลงทะเบียน
