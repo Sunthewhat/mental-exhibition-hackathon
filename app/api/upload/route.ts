@@ -32,7 +32,7 @@ export const POST = async (req: Request, _res: Response) => {
 
     //Upload File
     const storage = new Storage({
-      keyFilename: path.join(process.cwd(), "awesome-gate-418214-84632efc0f93.json"),
+      keyFilename: path.join(process.cwd(), "/app/api/upload/awesome-gate-418214-84632efc0f93.json"),
       projectId: 'awesome-gate-418214'
     });
 
