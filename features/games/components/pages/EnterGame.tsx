@@ -1,11 +1,11 @@
 "use client";
 
-import ShineBox from "@/features/ui/components/Shinebox";
-import { useFonts } from "@/hooks/useFont";
+import ShineBox from "@/features/shared/components/Shinebox";
+import { useFonts } from "@/features/shared/hooks/useFont";
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 const EnterGame = () => {

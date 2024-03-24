@@ -3,7 +3,7 @@ import React from "react";
 import { Download, Instagram } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { motion } from "framer-motion";
-import { useFonts } from "@/hooks/useFont";
+import { useFonts } from "@/features/shared/hooks/useFont";
 import Link from "next/link";
 
 const Contact = () => {

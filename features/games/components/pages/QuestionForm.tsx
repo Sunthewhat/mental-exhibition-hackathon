@@ -1,16 +1,17 @@
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import questions from "@/constants/questions";
-import useMultiStepsForm from "@/hooks/useMultiStepsForm";
+import Warning from "../Warning";
+import InterceptDialog from "@/features/shared/components/InterceptDialog";
 import Question from "../Question";
 import { useRouter } from "next/navigation";
 import { Progress } from "../../../../components/ui/progress";
 import { useToast } from "@/components/ui/use-toast";
 import { getScore } from "@/features/games/helpers";
-import Warning from "../Warning";
-import InterceptDialog from "@/features/ui/components/InterceptDialog";
-import { useSeason } from "@/hooks/useSeason";
-import { useFonts } from "@/hooks/useFont";
+
+import { useFonts } from "@/features/shared/hooks/useFont";
 import { motion } from "framer-motion";
+import useMultiStepsForm from "../../hooks/useMultiStepsForm";
+import { useSeason } from "../../hooks/useSeason";
 
 interface QuestionFormProps {
   setEnterGame: (value: boolean) => void;

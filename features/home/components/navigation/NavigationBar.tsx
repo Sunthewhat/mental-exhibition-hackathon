@@ -41,7 +41,7 @@ export default function NavigationBar({ children }: Props) {
           className={`${notoThai.className} text-sm text-white hidden lg:flex items-center justify-between gap-[90px]`}
         >
           <Link href="/">Home</Link>
-          <Link href="/">Hackathon</Link>
+          <Link href="/hackathon/pdpa">Hackathon</Link>
           <Link href="/game">Game</Link>
         </div>
       </div>

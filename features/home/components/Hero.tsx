@@ -5,37 +5,55 @@ import ShineBox from "./ShineBox";
 import Link from "next/link";
 import { Shippori_Mincho } from "next/font/google";
 import { useMediaQuery } from "react-responsive";
+import { useEffect, useState } from "react";
 
 const shippori = Shippori_Mincho({ weight: ["600"], subsets: ["latin"] });
 
+interface Props {
+  boxSize: number;
+  size: number;
+}
+
 export default function Hero() {
-  const isMobile = useMediaQuery({ query: "(max-width: 430px)" });
+  const isMobile = useMediaQuery({ maxWidth: 430 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
+  const [prop, setProp] = useState<Props>({
+    boxSize: 210,
+    size: 170,
+  });
 
-  const prop = isMobile
-    ? {
-        boxSize: 210,
-        size: 170,
-      }
-    : isTablet
-    ? {
-        boxSize: 280,
-        size: 240,
-      }
-    : {
-        boxSize: 330,
-        size: 300,
-      };
+  const [style, setStyle] = useState("");
 
-  const res_buttonStyle = {
-    base: `relative flex items-center justify-center ${shippori.className} text-white rounded-[20px] bg-gradient-to-r from-[#ddcdfa] via-[#f1d2ee] to-[#ddcdfa]`,
-    mobile: `text-base w-[130px] h-[44px]`,
-    tablet: `text-[32px] w-[230px] h-[75px]`,
-  };
+  useEffect(() => {
+    const res_buttonStyle = {
+      base: `relative flex items-center justify-center ${shippori.className} text-white rounded-[20px] bg-gradient-to-r from-[#ddcdfa] via-[#f1d2ee] to-[#ddcdfa]`,
+      mobile: `text-base w-[130px] h-[44px]`,
+      tablet: `text-[32px] w-[230px] h-[75px]`,
+    };
 
-  const style = isMobile
-    ? `${res_buttonStyle.mobile} ${res_buttonStyle.base}`
-    : `${res_buttonStyle.base} ${res_buttonStyle.tablet}`;
+    setProp(
+      isMobile
+        ? {
+            boxSize: 210,
+            size: 170,
+          }
+        : isTablet
+        ? {
+            boxSize: 280,
+            size: 240,
+          }
+        : {
+            boxSize: 330,
+            size: 300,
+          }
+    );
+
+    setStyle(
+      isMobile
+        ? `${res_buttonStyle.mobile} ${res_buttonStyle.base}`
+        : `${res_buttonStyle.base} ${res_buttonStyle.tablet}`
+    );
+  }, []);
 
   return (
     <div className="relative flex flex-col gap-12 w-full h-[470px] md:h-[730px] items-center justify-center">
