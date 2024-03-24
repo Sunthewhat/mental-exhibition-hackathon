@@ -31,9 +31,27 @@ export const POST = async (req: Request, _res: Response) => {
     // );
 
     //Upload File
+
+    const serviceAccount = {
+        "type": "service_account",
+        "project_id": "awesome-gate-418214",
+        "private_key_id": "84632efc0f937d97fd580dfd315f677c9c06d412",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQD4N15UXi888MdR\nVk/gJ09BpTx6Lw30b3HTOd30dFiKqsOjOzj3qwHkOX4IZ6FUpIkCyZ5hq6lPZJfP\n4Fl2kaTv+H6/mKCrPcUTvOuy90ti+A/20xz5BInoexGepBuhIl2UroZE1i4ihqQ4\n1BY0kkvz4glCx8Ot6MwDeaSauOtgEWRVLfF47Itk7i60YZlZw/Y1gUwWh+r8td4Q\nwDZkZC+9KlqNjWFINykClKm+uZcvqL4b+Fiafx7VbgBpGsk6doCT18jq5kqMR64X\nl9hY9XpC6MDdQCdlCf6fNLe379L+fiIyYgMwXWrbrbYYqTOJiTmr6OJI1OsLC11w\n5EZJkwWPAgMBAAECggEAAXDDfGEw4af9ZXccbuRA19RZ/dTeE4gTX11w8KU9ik3O\nutjHeNsmNKkyFmG7lEksKQxQff1IC0I9201QV5l6x+W88+cH2laObpHkcEfHyTg/\n/M0MLanIFHBPvDL0R21yoOqZCYyQp09OuVcJwJ5aEH1EU9M4Sym/CATMXsAp+txm\nt/o6FFllTrUDkclupJV7nCRE2hYV8GF5lOhF/3gWCfel8Tw//Phkm+LAgQsVnaK/\ncGwjfmL0T5VVi75ZLKxiL1XFm4ed/WsudlmuBReBFqNanTBsB7AD5T8RYpkTJfGc\nSALgS8Fv10QnCRGKMI4jf8SIvvtn261BB9NVNy55UQKBgQD81dCZxImyphgd9Wso\nuFDn4WMJHkVI7GNw24ff9wblvZIHB6hqJKA+hJUFndd4lwYmHlKoNaPyBvNiwyzp\nYg8kr5H+kgj5Jo2wXzRkdvqunHH/WVc5E4sJqjP3YKCqF4wD0NkmXX8Yq1Hiy69/\nq6YGirKjX80RiTgdf+uooHvHFwKBgQD7UsCyoh35NYh5NaaAU0kxlQqFl2B04Hpj\nhvx+/HPVEYfIuD873ubZQLp/seAa+GsgEMctAvS7XWntBVr4gsUDrnRFxNtlylnR\nnHi+E6kBZuUyrZ4R6ye8PbjBA8KnbmZpksnyKW28vNC9nOkmc/2jYAL4HMG7KZMN\n2r0hsHrASQKBgD7QeCTbuUITFcbLpDXXpPIXAt3PEXOOlx4AzH8OBj6pnE/2zRah\nxtYBZmygzFl/W924htyXhwWoSGtvBgdtf0mj/Od8LJKJy4XYAVI8ZQdggsnnzk21\n10Mtb/+zl/bqJrUD/A8WB29/kLaB2DYl1PenGb6RHIeQyco6b7fTNy09AoGBAJYn\nG8/eAdBphm78eczDdcB0zkOAbHWHxDeAZ4yq4b2T6q8mPUlU5FE6VfKC4GTctIwE\n2irvUC49IlMk1vQQlQqdCQTCF16aZc1REeZmMpwO0LLVfdIwz52stpxC1eJYmEFN\nHPBchh60JHaUr8t0kz4v17ZK4AglT6GAZW0iVkRZAoGBAIv98PVIV9hQZHd5LbWA\ns8WQXf8GLxYi6TdA6cw0irGhrsENAnEV+eWvsGFAsWKcc67lbrsJMd8gr2kMsH0F\ngh+NEBrCJJryCEQF/ozNgHO7+vzpyJ6K6dzJPuRZuQ/wQX7BWTIKLslkB+PSk7+n\nwa9c24BC0Gjv/+hZhkiSLt0h\n-----END PRIVATE KEY-----\n",
+        "client_email": "mental-health-hackathon@awesome-gate-418214.iam.gserviceaccount.com",
+        "client_id": "113132754625576896537",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mental-health-hackathon%40awesome-gate-418214.iam.gserviceaccount.com",
+        "universe_domain": "googleapis.com" 
+    }
+
     const storage = new Storage({
-      keyFilename: path.join(process.cwd(), "app/api/upload/awesome-gate-418214-84632efc0f93.json"),
-      projectId: 'awesome-gate-418214'
+      projectId: 'awesome-gate-418214',
+      credentials: {
+        client_email: serviceAccount.client_email,
+        private_key: serviceAccount.private_key.split(String.raw`\n`).join("\n"),
+      },
     });
 
     const mental_bucket = storage.bucket("mental_health_hackathon");
