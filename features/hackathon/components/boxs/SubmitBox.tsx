@@ -5,6 +5,7 @@ import logo from "@/public/assets/hackathon/logo.png";
 import check_icon from "@/public/assets/hackathon/check_ring.svg";
 import OuterBox from "../OuterBox";
 import InnerBox from "../InnerBox";
+import GButton from "../GButton";
 
 const SubmitBox: React.FC = () => {
   return (
@@ -37,7 +38,7 @@ const SubmitBox: React.FC = () => {
             <p>เราได้รับคำตอบของคุณแล้ว ติดตามข่าวสารของเราได้ที่</p>
             <p>
               <span className="font-bold">Website:</span>{" "}
-              www.hackmindgallery.com
+              www.hackmindgallery-kmutt.com
             </p>
             <p>
               <span className="font-bold">Instagram</span>:
@@ -46,6 +47,9 @@ const SubmitBox: React.FC = () => {
           </div>
         </div>
       </InnerBox>
+      <div className='flex justify-center items-center'>
+        <GButton title="ย้อนกลับไปหน้าหลัก" command="/" />
+      </div>
     </OuterBox>
   );
 };

@@ -186,10 +186,6 @@ const ExplainBox = ({ textStyle: { header, subHeader, paragraph } }: Props) => {
                       รางวัลชนะเลิศอันดับที่ 1
                     </span>
                     <ul className="list-disc list-inside">
-                      <li className="ml-4">
-                        Google credit จาก Google คนละ 6,000 credit มูลค่ารวม
-                        120,000 บาท
-                      </li>
                       <li className="ml-4">เงินรางวัล 10,000 บาท</li>
                       <li className="ml-4">โล่รางวัลพร้อมเกียรติบัตร</li>
                     </ul>
@@ -207,10 +203,6 @@ const ExplainBox = ({ textStyle: { header, subHeader, paragraph } }: Props) => {
                       รางวัลชนะเลิศอันดับที่ 2
                     </span>
                     <ul className="list-disc list-inside">
-                      <li className="ml-4">
-                        Google credit จาก Google คนละ 6,000 credit มูลค่ารวม
-                        120,000 บาท
-                      </li>
                       <li className="ml-4">เงินรางวัล 8,000 บาท</li>
                       <li className="ml-4">โล่รางวัลพร้อมเกียรติบัตร</li>
                     </ul>
@@ -228,10 +220,6 @@ const ExplainBox = ({ textStyle: { header, subHeader, paragraph } }: Props) => {
                       รางวัลชนะเลิศอันดับที่ 3
                     </span>
                     <ul className="list-disc list-inside">
-                      <li className="ml-4">
-                        Google credit จาก Google คนละ 6,000 credit มูลค่ารวม
-                        120,000 บาท
-                      </li>
                       <li className="ml-4">เงินรางวัล 4,000 บาท</li>
                       <li className="ml-4">โล่รางวัลพร้อมเกียรติบัตร</li>
                     </ul>
@@ -255,7 +243,7 @@ const ExplainBox = ({ textStyle: { header, subHeader, paragraph } }: Props) => {
                     Website:
                   </span>
                   <a href="#" target="_blank" className="hover:text-blue-600">
-                    modmood.kmutt.ac.th
+                  www.hackmindgallery-kmutt.com
                   </a>
                 </li>
                 <li className="flex gap-1 items-center flex-wrap">

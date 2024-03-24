@@ -1,3 +1,5 @@
+import { Storage } from "@google-cloud/storage";
+
 import path from "path";
 import { writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
@@ -23,12 +25,22 @@ export const POST = async (req: Request, _res: Response) => {
   const buffer = Buffer.from(await file.arrayBuffer());
   try {
     var uuid = v4();
-    await writeFile(
-      path.join(process.cwd(), "public/uploads/hackathon_pdf/" + uuid + ".pdf"),
-      buffer
-    );
+    // await writeFile(
+    //   path.join(process.cwd(), "public/uploads/hackathon_pdf/" + uuid + ".pdf"),
+    //   buffer
+    // );
 
-    const pdfLink = "/hackathon_pdf/" + uuid + ".pdf";
+    //Upload File
+    const storage = new Storage({
+      keyFilename: path.join(process.cwd(), "awesome-gate-418214-84632efc0f93.json"),
+      projectId: 'awesome-gate-418214'
+    });
+
+    const mental_bucket = storage.bucket("mental_health_hackathon");
+
+    const pdfLink = teamName + "_" + ideaName + "_" + uuid + ".pdf";
+
+    await mental_bucket.file(pdfLink).save(buffer);
 
     var prefilledLink = "";
 

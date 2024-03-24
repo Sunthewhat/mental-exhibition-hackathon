@@ -89,14 +89,14 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
       !fullname ||
       !nickname ||
       !university ||
-      !studentcode ||
+      ( !studentcode && parseInt(num) < 4 ) ||
       !tel ||
       !email
     ) {
       setError(true);
       return false;
     }
-    if (!tel.match("[0-9]{10}") || !/^\d+$/.test(studentcode)) {
+    if (!tel.match("[0-9]{10}")) {
       setError(true);
       return false;
     }
@@ -104,7 +104,7 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
       setError(true);
       return false;
     }
-    if (!/^\d+$/.test(studentcode)) {
+    if (!/^\d+$/.test(studentcode) && parseInt(num) < 4) {
       setError(true);
       return false;
     }

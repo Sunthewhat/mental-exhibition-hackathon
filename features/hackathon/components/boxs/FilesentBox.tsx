@@ -168,7 +168,6 @@ const FileSent: React.FC = () => {
               <ul className="list-style-none mb-5">
                 <li>- ส่งเป็นไฟล์ Presentation (PDF) </li>
                 <li>- จำนวนไม่เกิน 10 หน้า </li>
-                <li>- ขนาดไม่เกิน 10 MB</li>
               </ul>
             </div>
             <div className="text-[#34312F] text-[10px] md:text-[13px] font-medium">
