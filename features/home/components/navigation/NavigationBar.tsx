@@ -19,7 +19,7 @@ export default function NavigationBar({ children }: Props) {
   return (
     <>
       <div className="px-[10px] md:px-[60px] flex justify-between">
-        <div className="flex justify-between gap-2">
+        <div className="flex items-center justify-between gap-2">
           <Menu
             color="#fff"
             className="lg:hidden"

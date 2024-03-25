@@ -8,7 +8,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mental Exhibition",
-  description: "for your soul",
   icons: [{ rel: "icon", url: "/assets/favicon.ico" }],
 };
 
