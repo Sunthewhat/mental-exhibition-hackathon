@@ -247,9 +247,10 @@ const FileSent: React.FC = () => {
         </InnerBox>
         <div className="flex flex-row justify-between items-end">
           <button
-            className={`px-[40px] md:px-[60px] py-[15px] rounded-[16px] border-[#B9A5D6] border-[2px] z-20`}
+            className={`px-[40px] md:px-[60px] py-[15px] rounded-[16px] border-[#B9A5D6] border-[2px] z-20 flex flex-row items-center justify-center gap-3`}
             onClick={backClickHandle}
           >
+            <Image alt="back" src="/assets/hackathon/back.svg" width={10} height={10} />
             <p className="text-[#B9A5D6] text-[16px] font-bold z-20">
               ย้อนกลับ
             </p>

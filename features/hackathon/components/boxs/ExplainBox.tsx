@@ -270,8 +270,9 @@ const ExplainBox = ({ textStyle: { header, subHeader, paragraph } }: Props) => {
           title="ย้อนกลับ"
           command="/hackathon/pdpa"
           type="TYPE1"
+          symbol={true}
         />
-        <GButton title="ถัดไป" command="/hackathon/gradesel" />
+        <GButton title="ถัดไป" command="/hackathon/gradesel" symbol={true}/>
       </div>
     </OuterBox>
   );
