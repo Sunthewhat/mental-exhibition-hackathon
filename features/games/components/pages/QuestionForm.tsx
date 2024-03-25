@@ -172,7 +172,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
               value={((currentStepIndex + 1) / steps) * 100}
               className="h-2 border border-rose-300"
             />
-            <p className="self-start text-xs mt-2">
+            <p className="self-start text-xs mt-2 text-[#5A81BC] ">
               {currentStepIndex + 1}/{steps}
             </p>
           </div>
@@ -183,7 +183,9 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
   border-t-[25px] border-t-transparent
   border-r-[30px] border-r-rose-300
   border-b-[25px] border-b-transparent text-transparent"
-              >T</div>
+              >
+                T
+              </div>
             </button>
             <button type="button" onClick={() => handleClick(false)}>
               <div
@@ -191,7 +193,9 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
   border-t-[25px] border-t-transparent
   border-l-[30px] border-l-rose-300
   border-b-[25px] border-b-transparent text-transparent"
-              >T</div>
+              >
+                T
+              </div>
             </button>
           </div>
         </div>
