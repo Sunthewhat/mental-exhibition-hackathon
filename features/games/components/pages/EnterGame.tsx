@@ -15,11 +15,14 @@ const EnterGame = () => {
 
   const { subHeader } = useFonts();
 
-  const enterBorderStyle = 'text-white bg-gradient-to-r from-[#ddcdfa] via-[#f1d2ee] to-[#ddcdfa]';
-  const backBorderStyle = 'text-[#B9A5D6] border-2 border-[#DDCDFA]'
+  const enterBorderStyle =
+    "text-white bg-gradient-to-r from-[#ddcdfa] via-[#f1d2ee] to-[#ddcdfa]";
+  const backBorderStyle = "text-[#B9A5D6] border-2 border-[#DDCDFA]";
   const res_buttonStyle = (back: boolean) => {
     return {
-      base: `relative flex items-center justify-center ${subHeader.className} rounded-[20px] ${back ? backBorderStyle : enterBorderStyle}`,
+      base: `relative flex items-center justify-center ${
+        subHeader.className
+      } rounded-[20px] ${back ? backBorderStyle : enterBorderStyle}`,
       mobile: `text-base w-[130px] h-[44px]`,
       tablet: `text-[32px] w-[230px] h-[75px]`,
     };
@@ -29,10 +32,9 @@ const EnterGame = () => {
     ? `${res_buttonStyle(false).mobile} ${res_buttonStyle(false).base}`
     : `${res_buttonStyle(false).tablet} ${res_buttonStyle(false).base}`;
 
-    const backStyle = isMobile
+  const backStyle = isMobile
     ? `${res_buttonStyle(true).mobile} ${res_buttonStyle(true).base}`
     : `${res_buttonStyle(true).tablet} ${res_buttonStyle(true).base}`;
-
 
   const prop = isMobile
     ? {
@@ -50,7 +52,7 @@ const EnterGame = () => {
       };
 
   return (
-    <div className="relative flex flex-col w-full items-center justify-center ">
+    <div className="relative overflow-x-hidden h-screen flex flex-col w-full items-center justify-center ">
       <motion.div
         initial={{ y: 20 }}
         animate={{ y: 0 }}
@@ -82,7 +84,7 @@ const EnterGame = () => {
               Play Game
             </Link>
           </div>
-          
+
           <div className="btn-hover relative">
             <div className="absolute w-[120%] h-[120%] bg-white blur-xl">I</div>
             <Link href="/" className={backStyle}>

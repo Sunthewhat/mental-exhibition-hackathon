@@ -6,6 +6,7 @@ import check_icon from "@/public/assets/hackathon/check_ring.svg";
 import OuterBox from "../OuterBox";
 import InnerBox from "../InnerBox";
 import GButton from "../GButton";
+import Link from "next/link";
 
 const SubmitBox: React.FC = () => {
   return (
@@ -38,11 +39,17 @@ const SubmitBox: React.FC = () => {
             <p>เราได้รับคำตอบของคุณแล้ว ติดตามข่าวสารของเราได้ที่</p>
             <p>
               <span className="font-bold">Website:</span>{" "}
-              www.hackmindgallery-kmutt.com
+              <Link
+                href='/'
+                className="hover:text-[#5A81BC]"
+              >www.hackmindgallery-kmutt.com</Link>
             </p>
             <p>
               <span className="font-bold">Instagram</span>:
-              hackmindgallery.kmutt
+              <Link
+                href='https://www.instagram.com/hackmindgallery.kmutt/'
+                className="hover:text-[#5A81BC]"
+              >hackmindgallery.kmutt</Link>
             </p>
           </div>
         </div>
