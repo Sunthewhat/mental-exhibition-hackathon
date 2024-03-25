@@ -6,6 +6,7 @@ import GButton from "../GButton";
 import InnerBox from "../InnerBox";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
 const HighTeam: React.FC = () => {
   const [teamName, setTeamName] = useState("");
@@ -155,12 +156,14 @@ const HighTeam: React.FC = () => {
             title="ย้อนกลับ"
             command="/hackathon/gradesel"
             type="TYPE1"
+            symbol={true}
           />
           <button
-            className={`${styles.btn_gradient} px-[50px] md:px-[60px] py-[15px] rounded-[8px] z-20`}
+            className={`${styles.btn_gradient} px-[60px] py-[15px] rounded-[8px] z-20 flex flex-row items-center justify-center gap-3`}
             onClick={clickHandle}
           >
             <p className="text-white text-[16px] font-bold z-20">ถัดไป</p>
+            <Image alt="next" src="/assets/hackathon/next.svg" width={10} height={10} />
           </button>
         </div>
       </OuterBox>

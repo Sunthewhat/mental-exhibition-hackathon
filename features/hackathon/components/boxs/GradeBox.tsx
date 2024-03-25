@@ -90,12 +90,13 @@ const GradeBox: React.FC = () => {
         </div>
       </InnerBox>
       <div className="flex flex-row justify-between items-end">
-        <GButton title="ย้อนกลับ" command="/hackathon/explain" type="TYPE1" />
+        <GButton title="ย้อนกลับ" command="/hackathon/explain" type="TYPE1" symbol={true}/>
         <button
-          className={`${styles.btn_gradient} px-[60px] py-[15px] rounded-[8px] z-20`}
+          className={`${styles.btn_gradient} px-[60px] py-[15px] rounded-[8px] z-20 flex flex-row items-center justify-center gap-3`}
           onClick={clickHandle}
         >
           <p className="text-white text-[16px] font-bold z-20">ถัดไป</p>
+          <Image alt="next" src="/assets/hackathon/next.svg" width={10} height={10} />
         </button>
       </div>
     </OuterBox>
