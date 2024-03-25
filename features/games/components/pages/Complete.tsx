@@ -18,14 +18,18 @@ const Complete = () => {
   const { headerFont, paragraphFont } = useFonts();
   const { name, description, imgUrl, downloadUrl } = useSeason(score);
 
-  const handleDownloadImage = () => {
+  const handleDownloadImage = async () => {
+    const response = await fetch(downloadUrl);
+    const buffer = await response.arrayBuffer();
+    const imageBlob = new Blob([buffer], { type: "image/png" });
+    // const imageFile = new File([imageBlob], colorcode + '.png');
     const link = document.createElement("a");
-    link.href = downloadUrl;
+    link.href = URL.createObjectURL(imageBlob);
     link.download = userName ?? name;
     document.body.appendChild(link);
     link.click();
-    // Cleanup
     document.body.removeChild(link);
+
   };
 
   useEffect(() => {
