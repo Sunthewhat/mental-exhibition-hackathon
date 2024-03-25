@@ -38,6 +38,13 @@ const Choice: React.FC<ChoiceProp> = ({
     window.localStorage.setItem("answers", JSON.stringify(changedAnswers));
   };
 
+  const style = {
+    hover:
+      "duration-500 hover:scale-90 transition hover:bg-[#B9A5D6] hover:text-white",
+    selected: "border-[#B9A5D6]  bg-purple-100",
+    notSelected: "border-[#B9A5D6] ",
+  };
+
   return (
     <div
       className={`
@@ -45,14 +52,18 @@ const Choice: React.FC<ChoiceProp> = ({
       items-center 
       justify-center 
       text-center 
-      cursor-pointerpy-5 
+      cursor-pointer
+      py-5 
       border-2 
       rounded-2xl 
       choice-hover 
-      w-100 
+      w-full 
       h-[70px] 
       p-2 
-      ${ checked ? "border-amber-300" : "border-[#B9A5D6]"} 
+      text-[#5A81BC] 
+      
+      ${style.hover}
+      ${checked ? style.selected : style.notSelected} 
       `}
       onClick={() => {
         onClick(Number(value));
@@ -71,7 +82,7 @@ const Choice: React.FC<ChoiceProp> = ({
       <label
         htmlFor={id}
         key={value}
-        className={`cursor-pointer text-[#5A81BC] ${paragraphFont.className} `}
+        className={`cursor-pointer ${paragraphFont.className} `}
       >
         {choice.label}
       </label>

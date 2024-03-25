@@ -3,7 +3,10 @@ import Image from "next/image";
 const Smoke = () => {
   return (
     <>
-      <div className="fixed block xs:hidden top-[5rem] right-0 h-1/5 w-3/4">
+      <div
+        className="fixed block xs:hidden top-[5rem] right-0 h-1/5 w-3/4
+      "
+      >
         <Image
           src="/assets/game/backgrounds/ellipse_sm.png "
           alt="ellipse_md"
