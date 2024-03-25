@@ -242,7 +242,7 @@ const ExplainBox = ({ textStyle: { header, subHeader, paragraph } }: Props) => {
                   <span className="text-[#8E7AAB] text-[10px] font-semibold">
                     Website:
                   </span>
-                  <a href="#" target="_blank" className="hover:text-blue-600">
+                  <a href="/" target="_blank" className="hover:text-blue-600">
                   www.hackmindgallery-kmutt.com
                   </a>
                 </li>
@@ -256,7 +256,7 @@ const ExplainBox = ({ textStyle: { header, subHeader, paragraph } }: Props) => {
                   <span className="text-[#8E7AAB] text-[10px] font-semibold">
                     Instagram:
                   </span>
-                  <a href="#" target="_blank" className="hover:text-blue-600">
+                  <a href="https://www.instagram.com/hackmindgallery.kmutt/" target="_blank" className="hover:text-blue-600">
                     hackmindgallery.kmutt
                   </a>
                 </li>

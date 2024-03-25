@@ -3,7 +3,7 @@ import StaticBubbleBackground from "./StaticBubbleBackground";
 export default function Information() {
   return (
     <div className="px-[30px]">
-      <div className="relative pt-6 pb-3 px-4 lg:px-36 shadow-md bg-white rounded-3xl">
+      <div className="relative max-w-[1060px] pt-6 pb-3 px-4 lg:px-36 shadow-md bg-white rounded-3xl">
         <StaticBubbleBackground />
 
         <div className="NotoSansThai text-sm  font-bold text-center text-[#5A81BC]">

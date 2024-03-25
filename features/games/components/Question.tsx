@@ -38,7 +38,7 @@ const Question: React.FC<QuestionProp> = ({
     <div className="px-8 pt-32 flex w-full flex-col items-center justify-center gap-10">
       <p className={paragraphFont.className}>{label}</p>
 
-      <div className="flex flex-col gap-3 items-center">
+      <div className="flex flex-col gap-3 w-full">
         {choices.map((choice, choiceIdx) => {
           return (
             <motion.div
