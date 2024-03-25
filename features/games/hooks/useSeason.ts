@@ -8,7 +8,13 @@ export const useSeason = (score: number) => {
   );
 
   if (!season)
-    return { id: -1, name: "Unknown", description: "Unknown", img: "" };
+    return {
+      id: -1,
+      name: "Unknown",
+      description: "Unknown",
+      imgUrl: "",
+      downloadUrl: "",
+    };
 
   return season;
 };
