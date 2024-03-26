@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 
 const FileSent: React.FC = () => {
   const router = useRouter();
@@ -16,6 +17,8 @@ const FileSent: React.FC = () => {
   const [slideLink, setSlideLink] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedName, setSelectedName] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [dataMissing, setDataMissing] = useState(false);
 
   useEffect(() => {
     const storedFullName = localStorage.getItem("ideaName");
@@ -102,11 +105,19 @@ const FileSent: React.FC = () => {
   };
 
   const handleUpload = async () => {
+    if (uploading) return;
     if (!validateForm()) return;
     try {
       if (!selectedFile) return;
       const formData = handleReadyInformation();
+      //Check in case that user don't have information
+      if (formData.get("teamName") === "" || formData.get("teamMembers") === "") {
+        setDataMissing(true);
+        return;
+      }
+
       formData.append("pdf", selectedFile);
+      setUploading(true);
       var res = await axios.post("/api/upload", formData);
       if (res.status === 200) {
         localStorage.removeItem("educationLevel");
@@ -242,6 +253,10 @@ const FileSent: React.FC = () => {
                   value={slideLink}
                 />
               </div>
+              {dataMissing && <div>
+                <p className="my-4 text-red-500 font-bold">ขออภัย เกิดปัญหาเกี่ยวกับข้อมูล กรุณาย้อนกลับไปหน้าหลักและลองใหม่ <Link href={"/"}><span className=" text-[#B9A5D6] underline font-bold">คลิ๊ก</span></Link></p>
+                  
+                </div>}
             </div>
           </div>
         </InnerBox>
