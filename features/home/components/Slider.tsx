@@ -11,17 +11,17 @@ import { useEffect, useState } from "react";
 interface Props {
   imgWidth: number;
   imgHeight: number;
+  padding: number;
 }
 
 export default function Slider() {
 
-  const padding = 20;
-
   const isMobile = useMediaQuery({ maxWidth: 430 });
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
+  const isTablet = useMediaQuery({ minWidth: 431, maxWidth: 1024 });
   const [prop, setProp] = useState<Props>({
     imgWidth: 402,
     imgHeight: 134,
+    padding: 20,
   });
 
   useEffect(() => {
@@ -30,20 +30,22 @@ export default function Slider() {
         ? {
             imgWidth: window.innerWidth,
             imgHeight: 180,
+            padding: 20
           }
         : isTablet
         ? {
             imgWidth: window.innerWidth,
-            imgHeight: 360,
+            imgHeight: 300,
+            padding: 30
           }
         : {
-            imgWidth: 1080,
+            imgWidth: window.innerWidth,
             imgHeight: 360,
+            padding: 60
           }
     );
-
   }, [isMobile, isTablet, setProp]);
-  
+
   return (
     <>
       <Swiper
@@ -53,7 +55,8 @@ export default function Slider() {
         loop={true}
         className="rounded-3xl"
         style={{
-          width: prop.imgWidth - padding
+          width: prop.imgWidth - prop.padding,
+          maxWidth: 1060,
         }}
         modules={[Autoplay]}
       >
@@ -64,7 +67,8 @@ export default function Slider() {
             alt="banner1"
             style={{
               width: prop.imgWidth,
-              height: prop.imgHeight
+              height: prop.imgHeight,
+              maxWidth: 1060,
             }}
           />
         </SwiperSlide>
@@ -75,7 +79,8 @@ export default function Slider() {
             alt="banner1"
             style={{
               width: prop.imgWidth,
-              height: prop.imgHeight
+              height: prop.imgHeight,
+              maxWidth: 1060,
             }}
           />
         </SwiperSlide>
