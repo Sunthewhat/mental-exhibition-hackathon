@@ -18,7 +18,7 @@
       </Link>
       <Link
         target="_blank"
-        href="https://drive.google.com/file/d/1wZF60345p7VkJTyY2YcYvkrkoHWCvEhR/view"
+        href="https://drive.google.com/file/d/15OacsQSHFI0I02TH00qartyXCBdZuI3y/view?usp=sharing"
         className={`${buttonStyle.base} ${buttonStyle.clickForInfo}`}
       >
         รายละเอียดการแข่งขัน
