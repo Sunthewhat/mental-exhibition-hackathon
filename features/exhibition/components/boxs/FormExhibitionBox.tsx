@@ -33,6 +33,8 @@ const FormExhibitionBox = ({
   const [branch, setBranch] = useState<string>(""); // สาขา
   const [tel, setTel] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [explain, setExplain] = useState<string>("");
+  const [technical, setTechnical] = useState<string>("");
   const [exhibitLink, setExhibitLink] = useState<string>(""); // ส่งผลงาน
   const [error, setError] = useState<boolean>(false);
   const [formData, setFormData] = useState(new FormData());
@@ -65,6 +67,12 @@ const FormExhibitionBox = ({
     if (event.target.id === "exhibit_link") {
       setExhibitLink(event.target.value);
     }
+    if (event.target.id === "explain") {
+      setExplain(event.target.value);
+    }
+    if (event.target.id === "technical") {
+      setTechnical(event.target.value);
+    }
   };
 
   const validateForm = () => {
@@ -78,6 +86,8 @@ const FormExhibitionBox = ({
       !tel ||
       !email ||
       !exhibitLink
+      || !explain
+      || !technical
     ) {
       setError(true);
       return false;
@@ -110,6 +120,8 @@ const FormExhibitionBox = ({
     formData.set("tel", tel);
     formData.set("email", email);
     formData.set("exhibitLink", exhibitLink);
+    formData.set("explain", explain);
+    formData.set("technical", technical);
     
     try {
       const response = await fetch('/api/exhibition', {
@@ -297,6 +309,34 @@ const FormExhibitionBox = ({
               </InViewAnimation>
             </div>
             <InViewAnimation>
+            <div className="mt-3 lg:mt-6">
+              <h2 className=" font-medium text-[14px]">คำอธิบายของผลงาน</h2>
+              <input
+                value={explain}
+                id="explain"
+                type="text"
+                className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`}
+                placeholder="คำอธิบายของผลงาน"
+                onChange={handleChange}
+              />
+              {error && !explain && (
+                <p className="my-4 text-red-500 font-bold">กรุณากรอกคำอธิบายของผลงาน</p>
+              )}
+            </div>
+            <div className="mt-3 lg:mt-6">
+              <h2 className=" font-medium text-[14px]">เทคนิคที่ใช้</h2>
+              <input
+                value={technical}
+                id="technical"
+                type="text"
+                className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`}
+                placeholder="เทคนิคที่ใช้"
+                onChange={handleChange}
+              />
+              {error && !technical && (
+                <p className="my-4 text-red-500 font-bold">กรุณาเทคนิคที่ใช้</p>
+              )}
+            </div>
               <div className="mt-3 lg:mt-6">
                 <input
                   value={exhibitLink}
@@ -311,12 +351,6 @@ const FormExhibitionBox = ({
                     กรุณาใส่ลิงค์ส่งผลงาน
                   </p>
                 )}
-                <pre>{JSON.stringify(Object.fromEntries(formData.entries()), null, 2)}</pre>
-                {/* {error && (!exhibitLink || !exhibitLink.startsWith('https://drive.google.com/')) && (
-                  <p className="my-4 text-red-500 font-bold">
-                    กรุณาใส่ลิงค์ส่งผลงาน
-                  </p>
-                )} */}
               </div>
             </InViewAnimation>
           </div>
@@ -332,6 +366,7 @@ const FormExhibitionBox = ({
           <button
             className={`${styles.btn_gradient} px-[50px] md:px-[60px] py-[15px] rounded-[8px] z-20`}
             onClick={onSubmit}
+            // disabled
           >
             <p className="text-white text-[16px] font-bold z-20">ส่งคำตอบ</p>
           </button>
