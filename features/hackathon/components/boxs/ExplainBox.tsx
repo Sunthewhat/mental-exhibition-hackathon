@@ -65,7 +65,7 @@ const ExplainBox = ({ textStyle: { header, subHeader, paragraph } }: Props) => {
           <InViewAnimation>
             <h2>
               <a
-                href="https://drive.google.com/file/d/1wZF60345p7VkJTyY2YcYvkrkoHWCvEhR/view"
+                href="https://drive.google.com/file/d/15OacsQSHFI0I02TH00qartyXCBdZuI3y/view?usp=sharing"
                 target="blank"
                 className="flex flex-row items-center gap-2"
               >
