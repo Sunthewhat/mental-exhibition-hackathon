@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import logo from "@/public/assets/hackathon/logo.png";
 import OuterBox from "../OuterBox";
 
 import InnerBox from "../InnerBox";

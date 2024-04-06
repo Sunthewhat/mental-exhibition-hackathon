@@ -1,7 +1,5 @@
 import { Storage } from "@google-cloud/storage";
 
-import path from "path";
-import { writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 import { v4 } from "uuid";
 
@@ -76,3 +74,4 @@ export const POST = async (req: Request, _res: Response) => {
     return NextResponse.json({ Message: "Failed", status: 500 });
   }
 };
+
