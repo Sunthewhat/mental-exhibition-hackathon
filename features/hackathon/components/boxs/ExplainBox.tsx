@@ -6,6 +6,7 @@ import OuterBox from "../OuterBox";
 import InnerBox from "../InnerBox";
 import GButton from "../GButton";
 import InViewAnimation from "../../../shared/Animation/InViewAnimation";
+
 interface Props {
   textStyle: {
     header: string;

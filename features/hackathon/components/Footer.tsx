@@ -3,7 +3,7 @@ import bubble_end from "@/public/assets/hackathon/bubble_end.svg";
 
 const Footer: React.FC = () => {
   return (
-      <div className="w-full z-0 mt-[-20%]">
+      <div className="w-full -z-10 mt-[-20%]">
         <Image
           priority
           src={bubble_end}

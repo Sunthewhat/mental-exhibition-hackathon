@@ -6,6 +6,8 @@ import OuterBox from "@/features/hackathon/components/OuterBox";
 import InnerBox from "@/features/hackathon/components/InnerBox";
 import GButton from "@/features/hackathon/components/GButton";
 import InViewAnimation from "../../../shared/Animation/InViewAnimation";
+import ExhiButton from "../../ExhiButton";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 interface Props {
   textStyle: {
     header: string;
@@ -44,13 +46,18 @@ const ExplainBox = ({ textStyle: { header } }: Props) => {
         </InViewAnimation>
       </InnerBox>
       <div className="flex flex-row justify-between items-end">
-        <GButton
-          title="ย้อนกลับ"
-          command="/exhibition/explain"
-          type="TYPE1"
-          symbol={true}
-        />
-        <GButton title="ถัดไป" command="/exhibition/form" symbol={true} />
+        <ExhiButton href="/exhibition/explain" type="SECONDARY">
+          <div className="flex justify-center items-center">
+            <ChevronLeft />
+            ย้อนกลับ
+          </div>
+        </ExhiButton>
+        <ExhiButton href="/exhibition/form" type="PRIMARY">
+          <div className="flex justify-center items-center">
+            <span>ถัดไป</span>
+            <ChevronRight />
+          </div>
+        </ExhiButton>
       </div>
     </OuterBox>
   );
