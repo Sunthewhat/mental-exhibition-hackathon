@@ -14,7 +14,7 @@ interface HackathonLayoutProps {
 const HackathonLayout = ({ children }: HackathonLayoutProps) => {
   return (
     <Suspense>
-      <div className={`${noto_sans.className} ${styles.bg_gradient}`}>
+      <div className={`${noto_sans.className} ${styles.bg_gradient_exhibition}`}>
         <Header />
             {children}
         <Footer />

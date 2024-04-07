@@ -6,8 +6,10 @@ import styles from "@/app/hackathon/page.module.css";
 import InnerBox from "@/features/hackathon/components/InnerBox";
 import GButton from "@/features/hackathon/components/GButton";
 import InViewAnimation from "../../../shared/Animation/InViewAnimation";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import ExhiButton from "../../ExhiButton";
+import { ChevronLeft } from "lucide-react";
 interface Props {
   textStyle: {
     header: string;
@@ -85,9 +87,9 @@ const FormExhibitionBox = ({
       !branch ||
       !tel ||
       !email ||
-      !exhibitLink
-      || !explain
-      || !technical
+      !exhibitLink ||
+      !explain ||
+      !technical
     ) {
       setError(true);
       return false;
@@ -122,19 +124,19 @@ const FormExhibitionBox = ({
     formData.set("exhibitLink", exhibitLink);
     formData.set("explain", explain);
     formData.set("technical", technical);
-    
+
     try {
-      const response = await fetch('/api/exhibition', {
-        method: 'POST',
+      const response = await fetch("/api/exhibition", {
+        method: "POST",
         body: formData,
       });
-  
+
       if (!response.ok) {
-        throw new Error('Something went wrong during submission!');
+        throw new Error("Something went wrong during submission!");
       }
-  
+
       const data = await response.json();
-  
+
       if (data.Message === "Complete") {
         router.push("/exhibition/submit");
       } else {
@@ -144,7 +146,6 @@ const FormExhibitionBox = ({
       console.error("Error submitting form:", error);
     }
   };
-
 
   return (
     <OuterBox>
@@ -207,7 +208,9 @@ const FormExhibitionBox = ({
                 onChange={handleChange}
               />
               {error && (!studentId || studentId.length !== 11) && (
-                <p className="my-4 text-red-500 font-bold">กรุณากรอกรหัสนักศึกษา (11 หลัก)</p>
+                <p className="my-4 text-red-500 font-bold">
+                  กรุณากรอกรหัสนักศึกษา (11 หลัก)
+                </p>
               )}
             </div>
             <div>
@@ -264,9 +267,12 @@ const FormExhibitionBox = ({
                 placeholder="เบอร์โทรศัพท์ที่สามารถติดต่อได้"
                 onChange={handleChange}
               />
-              {error && (!tel || !tel.match("[0-9]{10}") || !/^\d+$/.test(tel)) && (
-                <p className="my-4 text-red-500 font-bold">กรุณากรอกเบอร์โทรศัพท์ที่สามารถติดต่อได้</p>
-              )}
+              {error &&
+                (!tel || !tel.match("[0-9]{10}") || !/^\d+$/.test(tel)) && (
+                  <p className="my-4 text-red-500 font-bold">
+                    กรุณากรอกเบอร์โทรศัพท์ที่สามารถติดต่อได้
+                  </p>
+                )}
             </div>
             <div>
               <h2 className=" font-medium text-[14px]">Email</h2>
@@ -309,34 +315,38 @@ const FormExhibitionBox = ({
               </InViewAnimation>
             </div>
             <InViewAnimation>
-            <div className="mt-3 lg:mt-6">
-              <h2 className=" font-medium text-[14px]">คำอธิบายของผลงาน</h2>
-              <input
-                value={explain}
-                id="explain"
-                type="text"
-                className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`}
-                placeholder="คำอธิบายของผลงาน"
-                onChange={handleChange}
-              />
-              {error && !explain && (
-                <p className="my-4 text-red-500 font-bold">กรุณากรอกคำอธิบายของผลงาน</p>
-              )}
-            </div>
-            <div className="mt-3 lg:mt-6">
-              <h2 className=" font-medium text-[14px]">เทคนิคที่ใช้</h2>
-              <input
-                value={technical}
-                id="technical"
-                type="text"
-                className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`}
-                placeholder="เทคนิคที่ใช้"
-                onChange={handleChange}
-              />
-              {error && !technical && (
-                <p className="my-4 text-red-500 font-bold">กรุณาเทคนิคที่ใช้</p>
-              )}
-            </div>
+              <div className="mt-3 lg:mt-6">
+                <h2 className=" font-medium text-[14px]">คำอธิบายของผลงาน</h2>
+                <input
+                  value={explain}
+                  id="explain"
+                  type="text"
+                  className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`}
+                  placeholder="คำอธิบายของผลงาน"
+                  onChange={handleChange}
+                />
+                {error && !explain && (
+                  <p className="my-4 text-red-500 font-bold">
+                    กรุณากรอกคำอธิบายของผลงาน
+                  </p>
+                )}
+              </div>
+              <div className="mt-3 lg:mt-6">
+                <h2 className=" font-medium text-[14px]">เทคนิคที่ใช้</h2>
+                <input
+                  value={technical}
+                  id="technical"
+                  type="text"
+                  className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`}
+                  placeholder="เทคนิคที่ใช้"
+                  onChange={handleChange}
+                />
+                {error && !technical && (
+                  <p className="my-4 text-red-500 font-bold">
+                    กรุณาเทคนิคที่ใช้
+                  </p>
+                )}
+              </div>
               <div className="mt-3 lg:mt-6">
                 <input
                   value={exhibitLink}
@@ -346,7 +356,7 @@ const FormExhibitionBox = ({
                   placeholder="ส่งผลงาน"
                   onChange={handleChange}
                 />
-                {error && (!exhibitLink) && (
+                {error && !exhibitLink && (
                   <p className="my-4 text-red-500 font-bold">
                     กรุณาใส่ลิงค์ส่งผลงาน
                   </p>
@@ -356,21 +366,21 @@ const FormExhibitionBox = ({
           </div>
         </InViewAnimation>
       </InnerBox>
-        <div className="flex flex-row justify-between items-center">
-          <GButton
-            title="ย้อนกลับ"
-            command="/exhibition/example"
-            type="TYPE1"
-            symbol={true}
-          />
-          <button
-            className={`${styles.btn_gradient} px-[50px] md:px-[60px] py-[15px] rounded-[8px] z-20`}
-            onClick={onSubmit}
-            // disabled
-          >
-            <p className="text-white text-[16px] font-bold z-20">ส่งคำตอบ</p>
-          </button>
-        </div>
+      <div className="flex flex-row justify-between items-center">
+        <ExhiButton href="/exhibition/example" type="SECONDARY">
+          <div className="flex justify-center items-center">
+            <ChevronLeft />
+            ย้อนกลับ
+          </div>
+        </ExhiButton>
+        <button
+          className={`z-20 bg-gradient-to-r from-[#a9dbd0] to-[#89b6fb] px-[50px] md:px-[60px] py-[15px] rounded-[8px] z-20`}
+          onClick={onSubmit}
+          // disabled
+        >
+          <p className="text-white text-[16px] font-bold">ส่งคำตอบ</p>
+        </button>
+      </div>
     </OuterBox>
   );
 };
