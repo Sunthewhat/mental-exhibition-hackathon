@@ -4,7 +4,6 @@ import Image from "next/image";
 import OuterBox from "@/features/hackathon/components/OuterBox";
 
 import InnerBox from "@/features/hackathon/components/InnerBox";
-import GButton from "@/features/hackathon/components/GButton";
 import InViewAnimation from "../../../shared/Animation/InViewAnimation";
 import ExhiButton from "../../ExhiButton";
 import { ChevronRight } from "lucide-react";

@@ -370,15 +370,15 @@ const FormExhibitionBox = ({
         <ExhiButton href="/exhibition/example" type="SECONDARY">
           <div className="flex justify-center items-center">
             <ChevronLeft />
-            ย้อนกลับ
+            <div>ย้อนกลับ</div>
           </div>
         </ExhiButton>
         <button
-          className={`z-20 bg-gradient-to-r from-[#a9dbd0] to-[#89b6fb] px-[50px] md:px-[60px] py-[15px] rounded-[8px] z-20`}
+          className={`h-[50px] w-[140px] md:h-[60px] md:w-[160px] font-bold z-10 rounded-2xl flex justify-center items-center bg-gradient-to-r from-[#a9dbd0] to-[#89b6fb]`}
           onClick={onSubmit}
           // disabled
         >
-          <p className="text-white text-[16px] font-bold">ส่งคำตอบ</p>
+          <p className="text-white text-[14px] md:text-[16px] font-bold">ส่งคำตอบ</p>
         </button>
       </div>
     </OuterBox>
