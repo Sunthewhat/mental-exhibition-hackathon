@@ -12,7 +12,7 @@ interface Props {
 export default function ExhiButton({ type, href, children }: Props) {
 
   const buttonStyle = {
-    base: 'z-2 font-bold text-[16px] z-10 rounded-2xl flex justify-center items-center min-w-fit md:px-[60px] py-[15px]',
+    base: 'h-[50px] w-[140px] text-[14px] md:h-[60px] md:w-[160px] md:text-[16px] font-bold z-10 rounded-2xl flex justify-center items-center ',
     primary: 'text-[#fff] bg-gradient-to-r from-[#a9dbd0] to-[#89b6fb]',
     secondary: 'border-[3px] border-[#79CCEC] text-[#79CCEC]'
   }
@@ -22,7 +22,7 @@ export default function ExhiButton({ type, href, children }: Props) {
       href={href}
       className={
         `${buttonStyle.base} 
-        ${type == 'PRIMARY' ? buttonStyle.primary : buttonStyle.secondary}
+        ${type == 'PRIMARY' ? buttonStyle.primary : buttonStyle.secondary} 
         ${roboto.style}
       `}
     >
