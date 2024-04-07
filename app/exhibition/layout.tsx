@@ -1,5 +1,5 @@
 import { Noto_Sans_Thai } from "next/font/google";
-import styles from "./page.module.css";
+import styles from "../hackathon/page.module.css";
 import React, { Suspense } from "react";
 import Header from "@/features/hackathon/components/Header";
 import Footer from "@/features/hackathon/components/Footer";

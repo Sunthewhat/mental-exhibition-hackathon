@@ -42,6 +42,7 @@ export default function NavigationBar({ children }: Props) {
         >
           <Link href="/">Home</Link>
           <Link href="/hackathon/pdpa">Hackathon</Link>
+          <Link href="/exhibition/explain">Exhibition</Link>
           <Link href="/game">Game</Link>
         </div>
       </div>
