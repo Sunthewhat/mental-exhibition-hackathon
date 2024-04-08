@@ -36,18 +36,27 @@ export default function Sidebar({ state, setState }: Props) {
                 onClick={(e) => onClickHandler(e)}
               />
               <ul className="mt-10 text-[#5A81BC] font-black text-xl">
+                
                 <li>
                   <Link href="/">Home</Link>
                 </li>
                 <hr className="bg-white h-[3px] mt-1 mb-8" />
+
                 <li>
                   <Link href="/hackathon/pdpa">Hackathon</Link>
                 </li>
                 <hr className="bg-white h-[3px] mt-1 mb-8" />
+                
+                <li>
+                  <Link href="/exhibition/explain">Exhibition</Link>
+                </li>
+                <hr className="bg-white h-[3px] mt-1 mb-8" />
+                
                 <li>
                   <Link href="/game">Game</Link>
                 </li>
                 <hr className="bg-white h-[3px] mt-1 mb-8" />
+
               </ul>
             </div>
           </motion.div>
