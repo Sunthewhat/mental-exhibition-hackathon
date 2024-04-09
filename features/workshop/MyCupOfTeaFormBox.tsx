@@ -264,8 +264,8 @@ const MyCupOfTeaFormBox = ({
                 <option value="" className="">
                   เลือกวันและเวลาที่ต้องการเข้าร่วม
                 </option>
-                <option value="15/4/2024">15/4/2024</option>
-                <option value="16/4/2024">16/4/2024</option>
+                <option value="22/4/2024">22/4/2024, 13.00-16.00</option>
+                <option value="23/4/2024">23/4/2024, 12.30-15.30</option>
               </select>
               {error && !date && (
                 <p className="my-4 text-red-500 font-bold">

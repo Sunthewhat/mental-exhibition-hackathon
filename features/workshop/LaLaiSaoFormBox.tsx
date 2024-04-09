@@ -265,8 +265,8 @@ const LaLaiSaoBox = ({
                 <option value="" className="">
                   เลือกวันและเวลาที่ต้องการเข้าร่วม
                 </option>
-                <option value="15/4/2024">15/4/2024</option>
-                <option value="16/4/2024">16/4/2024</option>
+                <option value="22/4/2024">22/4/2024, 14.30-16.00</option>
+                <option value="23/4/2024">23/4/2024, 12.30-14.00</option>
               </select>
               {error && !date && (
                 <p className="my-4 text-red-500 font-bold">
