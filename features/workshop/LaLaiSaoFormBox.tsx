@@ -110,24 +110,34 @@ const LaLaiSaoBox = ({
     }
     setIsSubmitting(true);
     try {
-        const response = await fetch(`/api/workshop/${link}`, {
-          method: "POST",
-          body: formData,
-        });
-  
-        if (!response.ok) {
-          throw new Error("Something went wrong during submission!");
-        }
-  
-        const data = await response.json();
-  
-        if (data.Message === "Complete") {
-          router.push(`/workshop/${link}/submit`);
-        } else {
-          console.error("Submission failed:", data.error);
-        }
-        setIsSubmitting(false);
-      } catch (error) {
+      const response_google_form = await fetch(`/api/workshop/${link}`, {
+        method: "POST",
+        body: formData,
+      });
+      const response_prisma = await fetch(`/api/workshop/data`, {
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title: "LaLaiSao" })
+      });
+
+      if (!response_google_form.ok) {
+        throw new Error("Something went wrong (Google form)");
+      }
+      if (!response_prisma.ok) {
+        throw new Error("Something went wrong (Prisma)");
+      }
+
+      const data_google_form = await response_google_form.json();
+
+      if (data_google_form.Message === "Complete") {
+        router.push(`/workshop/${link}/submit`);
+      } else {
+        console.error("Submission failed:", data_google_form.error);
+      }
+      setIsSubmitting(false);
+    } catch (error) {
         console.error("Error submitting form:", error);
       }
   };

@@ -15,7 +15,6 @@ export const POST = async (req: Request, res: Response) => {
     const date = formData.get("date");
     const honorificPrefix = formData.get("honorific-prefix");
     console.log(fullname, nickname, tel, email, date, honorificPrefix)
-    console.log("My cup")
     
 
     try {
