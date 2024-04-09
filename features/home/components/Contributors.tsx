@@ -1,5 +1,4 @@
 import { Noto_Sans } from "next/font/google"
-import ShineBox from "./ShineBox";
 
 const font = Noto_Sans({weight:["600"], subsets: ["latin"]});
 
