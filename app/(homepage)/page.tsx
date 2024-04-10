@@ -3,6 +3,7 @@ import Contributors from "@/features/home/components/Contributors";
 import Hero from "@/features/home/components/Hero";
 import Information from "@/features/home/components/Infomation";
 import Slider from "@/features/home/components/Slider";
+import Workshops from "@/features/home/components/Workshops";
 import React from "react";
 
 const HomePage = () => {
@@ -14,6 +15,7 @@ const HomePage = () => {
       <Information />
       <CallToActions />
       <Contributors />
+      <Workshops />
     </div>
   );
 };
