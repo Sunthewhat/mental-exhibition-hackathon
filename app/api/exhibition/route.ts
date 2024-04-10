@@ -19,12 +19,13 @@ export const POST = async (req: Request, res: Response) => {
     const exhibitLink = formData.get("exhibitLink");
     const explain = formData.get("explain");
     const technical = formData.get("technical");
+    const art_name = formData.get("art_name");
     console.log(firstName, lastName, email, studentId, phone, faculty, department, branch, exhibitLink, explain, technical)
     
 
   try {
-    const formExhibitionPrefilledLink = `
-    https://docs.google.com/forms/d/e/1FAIpQLSe6mqLIBv4MIIqGvX0j0amwTxG4h_hg1aLLjBXlmS9LNPgG0w/formResponse?entry.1771345572=${firstName}&entry.35827299=${lastName}&entry.803557986=${studentId}&entry.1578367867=${faculty}&entry.419704599=${department}&entry.2096572232=${branch}&entry.350807439=${phone}&entry.1836947651=${email}&entry.1465306126=${explain}&entry.1961102311=${technical}&entry.833656862=${exhibitLink}&submit=Submit"`;
+    const formExhibitionPrefilledLink = 
+    `https://docs.google.com/forms/d/e/1FAIpQLSe6mqLIBv4MIIqGvX0j0amwTxG4h_hg1aLLjBXlmS9LNPgG0w/formResponse?usp=pp_url&entry.1771345572=${firstName}&entry.35827299=${lastName}&entry.803557986=${studentId}&entry.1578367867=${faculty}&entry.419704599=${department}&entry.2096572232=${branch}&entry.350807439=${phone}&entry.1836947651=${email}&entry.515840015=${art_name}&entry.1465306126=${explain}&entry.1961102311=${technical}&entry.833656862=${exhibitLink}&submit=Submit`;
     try {
         await fetch(formExhibitionPrefilledLink);
         console.log("Form submitted to Google")

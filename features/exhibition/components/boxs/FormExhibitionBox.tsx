@@ -36,11 +36,12 @@ const FormExhibitionBox = ({
   const [tel, setTel] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [explain, setExplain] = useState<string>("");
+  const [art_name, setArtName] = useState<string>("");
   const [technical, setTechnical] = useState<string>("");
   const [exhibitLink, setExhibitLink] = useState<string>(""); // ส่งผลงาน
   const [error, setError] = useState<boolean>(false);
   const [formData, setFormData] = useState(new FormData());
-
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const handleChange = (event: { target: { id: string; value: string } }) => {
     if (event.target.id === "firstname") {
       setFirstName(event.target.value);
@@ -75,6 +76,9 @@ const FormExhibitionBox = ({
     if (event.target.id === "technical") {
       setTechnical(event.target.value);
     }
+    if (event.target.id === "art_name") {
+      setArtName(event.target.value);
+    }
   };
 
   const validateForm = () => {
@@ -89,7 +93,8 @@ const FormExhibitionBox = ({
       !email ||
       !exhibitLink ||
       !explain ||
-      !technical
+      !technical ||
+      !art_name
     ) {
       setError(true);
       return false;
@@ -113,6 +118,8 @@ const FormExhibitionBox = ({
 
   const onSubmit = async () => {
     if (validateForm() === false) return;
+    if (isSubmit == true) return;
+    setIsSubmit(true);
     formData.set("firstName", firstName);
     formData.set("lastName", lastName);
     formData.set("studentId", studentId);
@@ -122,6 +129,7 @@ const FormExhibitionBox = ({
     formData.set("tel", tel);
     formData.set("email", email);
     formData.set("exhibitLink", exhibitLink);
+    formData.set("art_name", art_name);
     formData.set("explain", explain);
     formData.set("technical", technical);
 
@@ -315,19 +323,52 @@ const FormExhibitionBox = ({
               </InViewAnimation>
             </div>
             <InViewAnimation>
+            <div className="mt-3">
+                <input
+                  value={exhibitLink}
+                  id="exhibit_link"
+                  type="text"
+                  className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`}
+                  placeholder="ส่งผลงาน"
+                  onChange={handleChange}
+                />
+                {error && !exhibitLink && (
+                  <p className="my-4 text-red-500 font-bold">
+                    กรุณาใส่ลิงค์ส่งผลงาน
+                  </p>
+                )}
+              </div>
+            </InViewAnimation>
+            <InViewAnimation>
+            <div className="mt-3 lg:mt-6">
+                <h2 className=" font-medium text-[14px]">ชื่อผลงาน</h2>
+                <input
+                  value={art_name}
+                  id="art_name"
+                  type="text"
+                  className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`}
+                  placeholder="ชื่อผลงาน"
+                  onChange={handleChange}
+                />
+                {error && !art_name && (
+                  <p className="my-4 text-red-500 font-bold">
+                    กรุณากรอกชื่อผลงาน
+                  </p>
+                )}
+              </div>
               <div className="mt-3 lg:mt-6">
-                <h2 className=" font-medium text-[14px]">คำอธิบายของผลงาน</h2>
+                <h2 className=" font-medium text-[14px]">แรงบันดาลใจ/Concept</h2>
                 <input
                   value={explain}
                   id="explain"
                   type="text"
                   className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`}
-                  placeholder="คำอธิบายของผลงาน"
+                  placeholder="แรงบันดาลใจ/Concept"
                   onChange={handleChange}
                 />
                 {error && !explain && (
                   <p className="my-4 text-red-500 font-bold">
-                    กรุณากรอกคำอธิบายของผลงาน
+                    กรุณากรอก แรงบันดาลใจ/Concept ของผลงาน
                   </p>
                 )}
               </div>
@@ -344,21 +385,6 @@ const FormExhibitionBox = ({
                 {error && !technical && (
                   <p className="my-4 text-red-500 font-bold">
                     กรุณาเทคนิคที่ใช้
-                  </p>
-                )}
-              </div>
-              <div className="mt-3 lg:mt-6">
-                <input
-                  value={exhibitLink}
-                  id="exhibit_link"
-                  type="text"
-                  className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4`}
-                  placeholder="ส่งผลงาน"
-                  onChange={handleChange}
-                />
-                {error && !exhibitLink && (
-                  <p className="my-4 text-red-500 font-bold">
-                    กรุณาใส่ลิงค์ส่งผลงาน
                   </p>
                 )}
               </div>
