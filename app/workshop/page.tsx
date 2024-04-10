@@ -9,10 +9,10 @@ const page = () => {
       <Button
         onClick={() => {
           sendEmail({
+            email: "ninemaster12gt@gmail.com",
             userName: "Teprawin",
-            workShop: "workshop-01",
-            date: "26/4/2023-10:00",
-            location: "LX12",
+            workShop: "JudJaiSaiJaeGun",
+            date: "26/4/2023, 10.00-13.00",
           });
         }}
       >

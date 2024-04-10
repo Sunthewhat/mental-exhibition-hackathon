@@ -18,7 +18,10 @@ export interface ReserveConfirmationProps {
   userName: string;
   workShop: string;
   date: string;
-  location: string;
+  location?: {
+    thaiLoc: string;
+    engLoc: string;
+  };
 }
 
 export const ReserveConfirmation = ({
@@ -27,12 +30,16 @@ export const ReserveConfirmation = ({
   date,
   location,
 }: ReserveConfirmationProps) => {
-  const { day, hour, minute } = parseDate(date);
+  const { day, startHour, startMinute, endHour, endMinute } = parseDate(date);
 
   const dateThai = dateToString(day, true);
   const dateEng = dateToString(day, false);
-  const periodThai = periodToString(hour, minute, true);
-  const periodEng = periodToString(hour, minute, false);
+  const startPeriodThai = periodToString(startHour, startMinute, true);
+  const endPeriodThai = periodToString(endHour, endMinute, true);
+
+  const startPeriodEng = periodToString(startHour, startMinute, false);
+
+  const { thaiLoc, engLoc } = location!;
 
   return (
     <Html>
@@ -40,7 +47,8 @@ export const ReserveConfirmation = ({
       <Preview>
         เรียน ผู้สมัคร. ทีมงาน Mental Health Exhibition & Hackathon
         ขอยืนยันการจองเวิร์คช็อปของคุณ &quot;{workShop}&quot; ในวันที่{" "}
-        {dateThai} ตั้งแต่เวลา {periodThai} ที่ {location}
+        {dateThai} ตั้งแต่เวลา {startPeriodThai} ถึง {endPeriodThai} ที่{" "}
+        {thaiLoc}
       </Preview>
       <Body style={main}>
         <Container style={container}>
@@ -64,7 +72,7 @@ export const ReserveConfirmation = ({
             ขอยืนยันการจองเวิร์คช็อปของคุณ &quot;{workShop}&quot; ในวันที่{" "}
             {dateThai} ตั้งแต่เวลา
             <br />
-            {periodThai} ที่ {location}`
+            {startPeriodThai} ถึง {endPeriodThai} ที่ {thaiLoc}`
           </Text>
 
           <Text style={paragraph}>
@@ -105,7 +113,7 @@ export const ReserveConfirmation = ({
           <Text style={paragraph}>
             We would like to send you a confirmation of Workshop &quot;
             {workShop}
-            &quot; {dateEng} from {periodEng} at {location}. Please come and
+            &quot; {dateEng} from {startPeriodEng} at {engLoc}. Please come and
             show up yourself 5-10 minutes before the period to claim your
             activity hours and preparation.
           </Text>
@@ -150,7 +158,6 @@ const container = {
   margin: "0 auto",
   padding: "20px 0 32px",
 };
-
 
 const logo = {
   margin: "10px auto",
