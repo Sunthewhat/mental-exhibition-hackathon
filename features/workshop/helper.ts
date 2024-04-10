@@ -1,3 +1,42 @@
+const locations = {
+  JudJaiSaiJaeGun: [
+    "Design Station Room (ห้องใหญ่สุด)",
+    "Design Station Room (Biggest Room)",
+  ],
+  LaLaiSao: [
+    "รอบ ๆ บริเวณ Publish Space 1-2 (ห้องเล็กตรงกลางและริมสุด)",
+    "Around the Publish Space 1-2 (small rooms in the middle and at the end)",
+  ],
+  MyCupOfTea: [
+    "Design Showcase (ห้องเล็กใกล้ประตูเลื่อน)",
+    "Design Showcase (small room near the sliding door)",
+  ],
+} as Record<string, string[]>;
+
+const workShops = {
+  JudJaiSaiJaeGun: "จัดใจใส่แจกัน",
+  LaLaiSao: "ละลายเศร้า",
+  MyCupOfTea: "My cup of tea",
+} as Record<string, string>;
+
+export const getLocByWorkshop = (workShop: string) => {
+  const location = locations[workShop];
+  if (!location)
+    return {
+      thaiLoc: "LX ชั้น 4",
+      engLoc: "LX floor 4",
+    };
+
+  return {
+    thaiLoc: "LX ชั้น 4 " + location[0],
+    engLoc: "LX floor 4 " + location[1],
+  };
+};
+
+export const getWorkshopName = (workShop: string) => {
+  return workShops[workShop];
+};
+
 export const parseDate = (date: string) => {
   const [datePart, timePart] = date.split(", ");
   const [day, month, year] = datePart
@@ -37,33 +76,4 @@ export const periodToString = (
 ) => {
   const period = isThai ? " น." : " AM";
   return `${hour}:${minute}${period}`;
-};
-
-const locations = {
-  JudJaiSaiJaeGun: [
-    "Design Station Room (ห้องใหญ่สุด)",
-    "Design Station Room (Biggest Room)",
-  ],
-  LaLaiSao: [
-    "รอบ ๆ บริเวณ Publish Space 1-2 (ห้องเล็กตรงกลางและริมสุด)",
-    "Around the Publish Space 1-2 (small rooms in the middle and at the end)",
-  ],
-  MyCupOfTea: [
-    "Design Showcase (ห้องเล็กใกล้ประตูเลื่อน)",
-    "Design Showcase (small room near the sliding door)",
-  ],
-} as Record<string, string[]>;
-
-export const getLocByWorkshop = (workShop: string) => {
-  const location = locations[workShop];
-  if (!location)
-    return {
-      thaiLoc: "LX ชั้น 4",
-      engLoc: "LX floor 4",
-    };
-
-  return {
-    thaiLoc: "LX ชั้น 4 " + location[0],
-    engLoc: "LX floor 4 " + location[1],
-  };
 };

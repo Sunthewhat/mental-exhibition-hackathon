@@ -9,7 +9,12 @@ import {
   Text,
 } from "@react-email/components";
 import * as React from "react";
-import { dateToString, parseDate, periodToString } from "../helper";
+import {
+  dateToString,
+  getWorkshopName,
+  parseDate,
+  periodToString,
+} from "../helper";
 
 const iconUrl = "https://hackmindgallery-kmutt.com/assets/hackathon/logo.png";
 
@@ -34,10 +39,12 @@ export const ReserveConfirmation = ({
 
   const dateThai = dateToString(day, true);
   const dateEng = dateToString(day, false);
+
   const startPeriodThai = periodToString(startHour, startMinute, true);
   const endPeriodThai = periodToString(endHour, endMinute, true);
-
   const startPeriodEng = periodToString(startHour, startMinute, false);
+
+  const workShopName = getWorkshopName(workShop);
 
   const { thaiLoc, engLoc } = location!;
 
@@ -46,7 +53,7 @@ export const ReserveConfirmation = ({
       <Head />
       <Preview>
         เรียน ผู้สมัคร. ทีมงาน Mental Health Exhibition & Hackathon
-        ขอยืนยันการจองเวิร์คช็อปของคุณ &quot;{workShop}&quot; ในวันที่{" "}
+        ขอยืนยันการจองเวิร์คช็อปของคุณ &quot;{workShopName}&quot; ในวันที่{" "}
         {dateThai} ตั้งแต่เวลา {startPeriodThai} ถึง {endPeriodThai} ที่{" "}
         {thaiLoc}
       </Preview>
@@ -69,7 +76,7 @@ export const ReserveConfirmation = ({
 
           <Text style={paragraph}>
             ทีมงาน Mental Health Exhibition & Hackathon
-            ขอยืนยันการจองเวิร์คช็อปของคุณ &quot;{workShop}&quot; ในวันที่{" "}
+            ขอยืนยันการจองเวิร์คช็อปของคุณ &quot;{workShopName}&quot; ในวันที่{" "}
             {dateThai} ตั้งแต่เวลา
             <br />
             {startPeriodThai} ถึง {endPeriodThai} ที่ {thaiLoc}`
@@ -112,7 +119,7 @@ export const ReserveConfirmation = ({
 
           <Text style={paragraph}>
             We would like to send you a confirmation of Workshop &quot;
-            {workShop}
+            {workShopName}
             &quot; {dateEng} from {startPeriodEng} at {engLoc}. Please come and
             show up yourself 5-10 minutes before the period to claim your
             activity hours and preparation.
