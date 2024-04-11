@@ -1,0 +1,40 @@
+"use server";
+
+import { Resend } from "resend";
+import {
+  ReserveConfirmation,
+  ReserveConfirmationProps,
+} from "./components/ReserveConfirmation";
+import React from "react";
+import { getLocByWorkshop } from "./helper";
+
+const resend = new Resend("re_FK3YiE8d_GocpWBxZspWgqxGFhxqs3kU7");
+
+export const sendEmail = async ({
+  userName,
+  workShop,
+  date,
+  email,
+}: ReserveConfirmationProps) => {
+  if (!email) {
+    throw Error("A target email is required.");
+  }
+
+  const location = getLocByWorkshop(workShop);
+  try {
+    await resend.emails.send({
+      // from: "Mental Exhibition <mentalexhibition@hackmindgallery-kmutt.com>",
+      from: "[Mental Health Exhibition & Hackathon] <onboarding@resend.dev>",
+      to: email,
+      subject: "[reservation confirmed] ยืนยันการจองเวิร์คช็อป",
+      react: React.createElement(ReserveConfirmation, {
+        userName,
+        workShop,
+        date,
+        location,
+      }),
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
