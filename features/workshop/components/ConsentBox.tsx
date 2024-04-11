@@ -3,8 +3,8 @@
 import Image from "next/image";
 import OuterBox from "@/features/hackathon/components/OuterBox";
 import InnerBox from "@/features/hackathon/components/InnerBox";
-import InViewAnimation from "../shared/Animation/InViewAnimation";
-import GButton from "../hackathon/components/GButton";
+import InViewAnimation from "../../shared/Animation/InViewAnimation";
+import GButton from "../../hackathon/components/GButton";
 
 interface Props {
   textStyle: {

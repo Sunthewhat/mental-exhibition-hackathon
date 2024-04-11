@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-
 // getUserCount
 export async function GET(){
     try {

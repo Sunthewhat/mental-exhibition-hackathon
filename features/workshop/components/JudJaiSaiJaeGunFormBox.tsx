@@ -5,10 +5,12 @@ import OuterBox from "@/features/hackathon/components/OuterBox";
 import styles from "@/app/hackathon/page.module.css";
 import InnerBox from "@/features/hackathon/components/InnerBox";
 import GButton from "@/features/hackathon/components/GButton";
-import InViewAnimation from "../shared/Animation/InViewAnimation";
+import InViewAnimation from "../../shared/Animation/InViewAnimation";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { set } from "lodash";
+import { sendEmail } from "../api";
+import { assertSendEmail } from "../helper";
 
 interface Props {
   textStyle: {
@@ -39,13 +41,13 @@ const JudJaiSaiJaeGunBox = ({
   const [date, setDate] = useState<string>();
   const [error, setError] = useState<boolean>(false);
   const formData = new FormData();
-  const [isSubmitting,setIsSubmitting] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [getCountInDB, setGetCountInDB] = useState<number>(0);
 
   const getCount = async () => {
     try {
-      const response = await fetch(`link_for_getting_count_in_postgresQL`,{
-        method: "GET"
+      const response = await fetch(`link_for_getting_count_in_postgresQL`, {
+        method: "GET",
       });
       if (!response.ok) {
         return;
@@ -55,8 +57,7 @@ const JudJaiSaiJaeGunBox = ({
     } catch (error) {
       console.error("Error getting count:", error);
     }
-  }
-
+  };
 
   const handleChange = (event: { target: { id: string; value: string } }) => {
     if (event.target.id === "honorific-prefix") {
@@ -118,9 +119,9 @@ const JudJaiSaiJaeGunBox = ({
       const response_prisma = await fetch(`/api/workshop/data`, {
         method: "PUT",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title: "JudJaiSaiJaeGun" })
+        body: JSON.stringify({ title: "JudJaiSaiJaeGun" }),
       });
 
       if (!response_google_form.ok) {
@@ -133,6 +134,13 @@ const JudJaiSaiJaeGunBox = ({
       const data_google_form = await response_google_form.json();
 
       if (data_google_form.Message === "Complete") {
+        await assertSendEmail({
+          userName: fullname as string,
+          workShop: "JudJaiSaiJaeGun",
+          date: date as string,
+          email,
+        });
+
         router.push(`/workshop/${link}/submit`);
       } else {
         console.error("Submission failed:", data_google_form.error);
@@ -260,14 +268,17 @@ const JudJaiSaiJaeGunBox = ({
                 id="date"
                 value={date}
                 className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4 `}
-                
                 onChange={handleChange}
               >
                 <option value="" className="">
                   เลือกวันและเวลาที่ต้องการเข้าร่วม
                 </option>
-                <option value="22/4/2024">22/4/2024, 12.30-14.00</option>
-                <option value="23/4/2024">23/4/2024, 14.30-16.00</option>
+                <option value="22/4/2024, 12.30-14.00">
+                  22/4/2024, 12.30-14.00
+                </option>
+                <option value="23/4/2024, 14.30-16.00">
+                  23/4/2024, 14.30-16.00
+                </option>
               </select>
               {error && !date && (
                 <p className="my-4 text-red-500 font-bold">
@@ -288,7 +299,7 @@ const JudJaiSaiJaeGunBox = ({
         <button
           className={`${styles.btn_gradient} px-[50px] md:px-[60px] py-[15px] rounded-[8px] z-20`}
           onClick={onSubmit}
-          disabled= {isSubmitting}
+          disabled={isSubmitting}
         >
           <p className="text-white text-[14px] md:text-[16px] font-bold">
             ส่งคำตอบ

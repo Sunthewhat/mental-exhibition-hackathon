@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import MyCupOfTeaFormBox from "@/features/workshop/MyCupOfTeaFormBox";
+import MyCupOfTeaFormBox from "@/features/workshop/components/MyCupOfTeaFormBox";
 import { motion } from "framer-motion";
 
 export default function MyCupOfTeaForm() {
@@ -10,7 +10,6 @@ export default function MyCupOfTeaForm() {
     paragraph: "text-[10px] md:text-sm lg:text-base",
   };
 
-
   return (
     <>
       <motion.div
@@ -19,10 +18,14 @@ export default function MyCupOfTeaForm() {
         transition={{
           duration: 0.3,
           delay: 0.1,
-          ease: [0, 0.71, 0.2, 1.01]
+          ease: [0, 0.71, 0.2, 1.01],
         }}
       >
-        <MyCupOfTeaFormBox textStyle={textStyle} title="My cup of tea" link="my-cup-of-tea" />
+        <MyCupOfTeaFormBox
+          textStyle={textStyle}
+          title="My cup of tea"
+          link="my-cup-of-tea"
+        />
       </motion.div>
     </>
   );

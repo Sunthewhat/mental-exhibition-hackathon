@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import ConsentBox from "@/features/workshop/ConsentBox";
+import ConsentBox from "@/features/workshop/components/ConsentBox";
 import { motion } from "framer-motion";
 
 export default function ExplainPage() {
@@ -18,10 +18,14 @@ export default function ExplainPage() {
         transition={{
           duration: 0.3,
           delay: 0.1,
-          ease: [0, 0.71, 0.2, 1.01]
+          ease: [0, 0.71, 0.2, 1.01],
         }}
       >
-        <ConsentBox textStyle={textStyle} title="My cup of tea" link="my-cup-of-tea" />
+        <ConsentBox
+          textStyle={textStyle}
+          title="My cup of tea"
+          link="my-cup-of-tea"
+        />
       </motion.div>
     </>
   );

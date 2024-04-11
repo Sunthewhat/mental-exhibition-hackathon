@@ -1,4 +1,11 @@
+import { sendEmail } from "./api";
+import { ReserveConfirmationProps } from "./components/ReserveConfirmation";
+
 const locations = {
+  MatchaMoments: [
+    "Design Showcase (ห้องเล็กใกล้ประตูเลื่อน)",
+    "Design Showcase (small room near the sliding door)",
+  ],
   JudJaiSaiJaeGun: [
     "Design Station Room (ห้องใหญ่สุด)",
     "Design Station Room (Biggest Room)",
@@ -7,7 +14,7 @@ const locations = {
     "รอบ ๆ บริเวณ Publish Space 1-2 (ห้องเล็กตรงกลางและริมสุด)",
     "Around the Publish Space 1-2 (small rooms in the middle and at the end)",
   ],
-  MyCupOfTea: [
+  MyCupOfCoffee: [
     "Design Showcase (ห้องเล็กใกล้ประตูเลื่อน)",
     "Design Showcase (small room near the sliding door)",
   ],
@@ -17,6 +24,7 @@ const workShops = {
   JudJaiSaiJaeGun: "จัดใจใส่แจกัน",
   LaLaiSao: "ละลายเศร้า",
   MyCupOfTea: "My cup of tea",
+  MatchaMoments: "Matcha Moments",
 } as Record<string, string>;
 
 export const getLocByWorkshop = (workShop: string) => {
@@ -76,4 +84,23 @@ export const periodToString = (
 ) => {
   const period = isThai ? " น." : " AM";
   return `${hour}:${minute}${period}`;
+};
+
+export const assertSendEmail = async ({
+  userName,
+  workShop,
+  date,
+  email,
+}: ReserveConfirmationProps) => {
+  try {
+    await sendEmail({
+      userName,
+      workShop,
+      date,
+      email,
+    });
+    console.log(`Email (${workShop}) has been sent to user.`);
+  } catch (error) {
+    console.log(`Error sending email (${workShop}) `);
+  }
 };

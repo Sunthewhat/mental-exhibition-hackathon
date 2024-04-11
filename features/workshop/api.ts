@@ -24,7 +24,7 @@ export const sendEmail = async ({
   try {
     await resend.emails.send({
       // from: "Mental Exhibition <mentalexhibition@hackmindgallery-kmutt.com>",
-      from: "[Mental Health Exhibition & Hackathon] <onboarding@resend.dev>",
+      from: "[Mental Health Exhibition & Hackathon] <mentalexhibition@mail.kmutt.ac.th>",
       to: email,
       subject: "[reservation confirmed] ยืนยันการจองเวิร์คช็อป",
       react: React.createElement(ReserveConfirmation, {

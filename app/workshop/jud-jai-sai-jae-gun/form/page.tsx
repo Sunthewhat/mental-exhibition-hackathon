@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import JudJaiSaiJaeGunFormBox from "@/features/workshop/JudJaiSaiJaeGunFormBox";
+import JudJaiSaiJaeGunFormBox from "@/features/workshop/components/JudJaiSaiJaeGunFormBox";
 import { motion } from "framer-motion";
 
 export default function JudJaiSaiJaeGunForm() {
@@ -10,7 +10,6 @@ export default function JudJaiSaiJaeGunForm() {
     paragraph: "text-[10px] md:text-sm lg:text-base",
   };
 
-
   return (
     <>
       <motion.div
@@ -19,10 +18,14 @@ export default function JudJaiSaiJaeGunForm() {
         transition={{
           duration: 0.3,
           delay: 0.1,
-          ease: [0, 0.71, 0.2, 1.01]
+          ease: [0, 0.71, 0.2, 1.01],
         }}
       >
-        <JudJaiSaiJaeGunFormBox textStyle={textStyle} title="จัดใจใส่แจกัน" link="jud-jai-sai-jae-gun" />
+        <JudJaiSaiJaeGunFormBox
+          textStyle={textStyle}
+          title="จัดใจใส่แจกัน"
+          link="jud-jai-sai-jae-gun"
+        />
       </motion.div>
     </>
   );

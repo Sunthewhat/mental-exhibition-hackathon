@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import LaLaiSaoFormBox from "@/features/workshop/LaLaiSaoFormBox";
+import LaLaiSaoFormBox from "@/features/workshop/components/LaLaiSaoFormBox";
 import { motion } from "framer-motion";
 
 export default function LaLaiSaoForm() {
@@ -10,7 +10,6 @@ export default function LaLaiSaoForm() {
     paragraph: "text-[10px] md:text-sm lg:text-base",
   };
 
-
   return (
     <>
       <motion.div
@@ -19,10 +18,14 @@ export default function LaLaiSaoForm() {
         transition={{
           duration: 0.3,
           delay: 0.1,
-          ease: [0, 0.71, 0.2, 1.01]
+          ease: [0, 0.71, 0.2, 1.01],
         }}
       >
-        <LaLaiSaoFormBox textStyle={textStyle} title="ละลายเศร้า" link="la-lai-sao" />
+        <LaLaiSaoFormBox
+          textStyle={textStyle}
+          title="ละลายเศร้า"
+          link="la-lai-sao"
+        />
       </motion.div>
     </>
   );
