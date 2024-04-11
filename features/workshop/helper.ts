@@ -1,6 +1,3 @@
-import { sendEmail } from "./api";
-import { ReserveConfirmationProps } from "./components/ReserveConfirmation";
-
 const locations = {
   MatchaMoments: [
     "Design Showcase (ห้องเล็กใกล้ประตูเลื่อน)",
@@ -84,23 +81,4 @@ export const periodToString = (
 ) => {
   const period = isThai ? " น." : " AM";
   return `${hour}:${minute}${period}`;
-};
-
-export const assertSendEmail = async ({
-  userName,
-  workShop,
-  date,
-  email,
-}: ReserveConfirmationProps) => {
-  try {
-    await sendEmail({
-      userName,
-      workShop,
-      date,
-      email,
-    });
-    console.log(`Email (${workShop}) has been sent to user.`);
-  } catch (error) {
-    console.log(`Error sending email (${workShop}) `);
-  }
 };

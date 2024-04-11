@@ -1,6 +1,8 @@
 "use server";
 
-import { Resend } from "resend";
+import { render } from "@react-email/render";
+import nodemailer from "nodemailer";
+
 import {
   ReserveConfirmation,
   ReserveConfirmationProps,
@@ -8,9 +10,15 @@ import {
 import React from "react";
 import { getLocByWorkshop } from "./helper";
 
-const resend = new Resend("re_FK3YiE8d_GocpWBxZspWgqxGFhxqs3kU7");
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "charana.sukr@mail.kmutt.ac.th",
+    pass: "wsak vsfc pyyg atol",
+  },
+});
 
-export const sendEmail = async ({
+export const assertSendEmail = async ({
   userName,
   workShop,
   date,
@@ -22,19 +30,24 @@ export const sendEmail = async ({
 
   const location = getLocByWorkshop(workShop);
   try {
-    await resend.emails.send({
+    const options = {
       // from: "Mental Exhibition <mentalexhibition@hackmindgallery-kmutt.com>",
       from: "[Mental Health Exhibition & Hackathon] <mentalexhibition@mail.kmutt.ac.th>",
       to: email,
       subject: "[reservation confirmed] ยืนยันการจองเวิร์คช็อป",
-      react: React.createElement(ReserveConfirmation, {
-        userName,
-        workShop,
-        date,
-        location,
-      }),
-    });
+      html: render(
+        React.createElement(ReserveConfirmation, {
+          userName,
+          workShop,
+          date,
+          location,
+        })
+      ),
+    };
+
+    await transporter.sendMail(options);
+    console.log(`Email (${workShop}) has been sent to user.`);
   } catch (err) {
-    console.log(err);
+    console.log(`Error sending email (${workShop}) `);
   }
 };

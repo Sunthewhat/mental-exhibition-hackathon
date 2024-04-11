@@ -8,9 +8,8 @@ import GButton from "@/features/hackathon/components/GButton";
 import InViewAnimation from "../../shared/Animation/InViewAnimation";
 import { use, useState } from "react";
 import { useRouter } from "next/navigation";
-import { set } from "lodash";
-import { sendEmail } from "../api";
-import { assertSendEmail } from "../helper";
+import { assertSendEmail } from "../api";
+import { Loader2Icon } from "lucide-react";
 
 interface Props {
   textStyle: {
@@ -301,9 +300,10 @@ const MyCupOfTeaFormBox = ({
           onClick={onSubmit}
           disabled={isSubmitting}
         >
-          <p className="text-white text-[14px] md:text-[16px] font-bold">
-            ส่งคำตอบ
-          </p>
+          <div className="text-white text-[14px] md:text-[16px] font-bold flex gap-2 items-center">
+            {isSubmitting && <Loader2Icon className="w-5 h-5 animate-spin" />}
+            <p>ส่งคำตอบ</p>
+          </div>
         </button>
       </div>
     </OuterBox>
