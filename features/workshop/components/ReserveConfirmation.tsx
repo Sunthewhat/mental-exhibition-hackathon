@@ -99,11 +99,11 @@ export const ReserveConfirmation = ({
           <Text style={paragraph}>
             สามารถติดตามรายละเอียดกิจกรรมได้ทาง
             <br />
-            https://hackmindgallery-kmutt.com
+            Website: https://hackmindgallery-kmutt.com
             <br />
-            IG : Hackmindgallery.kmutt
+            IG: Hackmindgallery.kmutt
             <br />
-            Facebook : How to train in Bangmod
+            Facebook: How to train in Bangmod
           </Text>
 
           <br />
