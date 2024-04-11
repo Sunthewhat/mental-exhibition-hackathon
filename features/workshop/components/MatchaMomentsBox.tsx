@@ -5,13 +5,12 @@ import OuterBox from "@/features/hackathon/components/OuterBox";
 import styles from "@/app/hackathon/page.module.css";
 import InnerBox from "@/features/hackathon/components/InnerBox";
 import GButton from "@/features/hackathon/components/GButton";
-import InViewAnimation from "../../shared/Animation/InViewAnimation";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
-import { Loader2Icon } from "lucide-react";
+import InViewAnimation from "@/features/shared/Animation/InViewAnimation";
 import { insertToGoogleForm, updateRegisterCount } from "../api";
 import { assertSendEmail } from "../mail";
+import { Loader2Icon } from "lucide-react";
 
 interface Props {
   textStyle: {
@@ -23,7 +22,7 @@ interface Props {
   link: string;
 }
 
-const LaLaiSaoBox = ({
+const MatchaMomentsBox = ({
   textStyle: { header, subHeader, paragraph },
   title,
   link,
@@ -41,9 +40,10 @@ const LaLaiSaoBox = ({
   const [email, setEmail] = useState<string>("");
   const [date, setDate] = useState<string>();
   const [error, setError] = useState<boolean>(false);
-  const formData = new FormData();
-  const [userCount, setUserCount] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [userCount, setUserCount] = useState<number>(0);
+
+  const formData = new FormData();
 
   const handleChange = (event: { target: { id: string; value: string } }) => {
     if (event.target.id === "honorific-prefix") {
@@ -100,7 +100,7 @@ const LaLaiSaoBox = ({
       const dataGoogleForm = await insertToGoogleForm(link, formData);
 
       if (dataGoogleForm.Message === "Complete") {
-        await updateRegisterCount("LaLaiSao", date as string)
+        await updateRegisterCount("MatchaMoments", date as string)
           .then((count) => {
             setUserCount(count);
           })
@@ -108,7 +108,7 @@ const LaLaiSaoBox = ({
 
         await assertSendEmail({
           userName: fullname as string,
-          workShop: "LaLaiSao",
+          workShop: "MatchaMoments",
           date: date as string,
           email,
         });
@@ -245,11 +245,11 @@ const LaLaiSaoBox = ({
                 <option value="" className="">
                   เลือกวันและเวลาที่ต้องการเข้าร่วม
                 </option>
-                <option value="22/4/2024, 14.30-16.00">
-                  22/4/2024, 14.30-16.00
+                <option value="22/4/2024, 10.00-12.00">
+                  22/4/2024, 10.00-12.00
                 </option>
-                <option value="23/4/2024, 12.30-14.00">
-                  23/4/2024, 12.30-14.00
+                <option value="23/4/2024, 10.00-12.00">
+                  23/4/2024, 10.00-12.00
                 </option>
               </select>
               {error && !date && (
@@ -283,4 +283,4 @@ const LaLaiSaoBox = ({
   );
 };
 
-export default LaLaiSaoBox;
+export default MatchaMomentsBox;

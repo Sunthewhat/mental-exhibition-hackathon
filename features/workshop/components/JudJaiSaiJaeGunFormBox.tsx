@@ -8,8 +8,9 @@ import GButton from "@/features/hackathon/components/GButton";
 import InViewAnimation from "../../shared/Animation/InViewAnimation";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { assertSendEmail } from "../api";
+import { insertToGoogleForm, updateRegisterCount } from "../api";
 import { Loader2Icon } from "lucide-react";
+import { assertSendEmail } from "../mail";
 
 interface Props {
   textStyle: {
@@ -41,22 +42,7 @@ const JudJaiSaiJaeGunBox = ({
   const [error, setError] = useState<boolean>(false);
   const formData = new FormData();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [getCountInDB, setGetCountInDB] = useState<number>(0);
-
-  const getCount = async () => {
-    try {
-      const response = await fetch(`link_for_getting_count_in_postgresQL`, {
-        method: "GET",
-      });
-      if (!response.ok) {
-        return;
-      }
-      const data = await response.json();
-      setGetCountInDB(data);
-    } catch (error) {
-      console.error("Error getting count:", error);
-    }
-  };
+  const [userCount, setUserCount] = useState<number>(0);
 
   const handleChange = (event: { target: { id: string; value: string } }) => {
     if (event.target.id === "honorific-prefix") {
@@ -100,39 +86,25 @@ const JudJaiSaiJaeGunBox = ({
 
   const onSubmit = async () => {
     if (validateForm() === false) return;
+
     formData.set("honorific-prefix", honorificPrefix);
     formData.set("fullname", fullname);
     formData.set("nickname", nickname);
     formData.set("tel", tel);
     formData.set("email", email);
-    if (date) {
-      formData.set("date", date);
-    }
+    formData.set("date", date as string);
+
     setIsSubmitting(true);
 
     try {
-      const response_google_form = await fetch(`/api/workshop/${link}`, {
-        method: "POST",
-        body: formData,
-      });
-      const response_prisma = await fetch(`/api/workshop/data`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title: "JudJaiSaiJaeGun" }),
-      });
+      const dataGoogleForm = await insertToGoogleForm(link, formData);
 
-      if (!response_google_form.ok) {
-        throw new Error("Something went wrong (Google form)");
-      }
-      if (!response_prisma.ok) {
-        throw new Error("Something went wrong (Prisma)");
-      }
-
-      const data_google_form = await response_google_form.json();
-
-      if (data_google_form.Message === "Complete") {
+      if (dataGoogleForm.Message === "Complete") {
+        await updateRegisterCount("JudJaiSaiJaeGun", date as string)
+          .then((count) => {
+            setUserCount(count);
+          })
+          .catch((error) => console.error("Error updating user count:", error));
         await assertSendEmail({
           userName: fullname as string,
           workShop: "JudJaiSaiJaeGun",
@@ -142,7 +114,7 @@ const JudJaiSaiJaeGunBox = ({
 
         router.push(`/workshop/${link}/submit`);
       } else {
-        console.error("Submission failed:", data_google_form.error);
+        console.error("Submission failed:", dataGoogleForm.error);
       }
       setIsSubmitting(false);
     } catch (error) {

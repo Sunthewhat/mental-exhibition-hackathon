@@ -10,6 +10,7 @@ export async function GET() {
     return NextResponse.json(result);
   } catch (error) {
     console.log("Error :", error);
+    return NextResponse.json({ error });
   }
 }
 
@@ -21,6 +22,7 @@ export async function POST() {
         { title: "MyCupOfTea", userCount: 0 },
         { title: "LaLaiSao", userCount: 0 },
         { title: "JudJaiSaiJaeGun", userCount: 0 },
+        { title: "MatchaMoments", userCount: 0 },
       ],
     });
     return NextResponse.json({ message: "Success" });
@@ -42,8 +44,9 @@ export async function DELETE() {
 
 export async function PUT(req: Request) {
   try {
-    const { title } = await req.json();
+    const { title, date } = await req.json();
     console.log("Received title:", title);
+    console.log("Received date:", date);
 
     // Fetch the existing workshop booking
     const existingBooking = await prisma.workshopBooking.findUnique({
@@ -51,7 +54,7 @@ export async function PUT(req: Request) {
     });
 
     // Increment the userCount by 1
-    const updatedBooking = await prisma.workshopBooking.update({
+    const updatedUserCount = await prisma.workshopBooking.update({
       where: { title },
       data: {
         userCount: existingBooking?.userCount
@@ -59,10 +62,13 @@ export async function PUT(req: Request) {
           : 1,
       },
     });
+
+    console.log(`userCount of (${title}) :`, updatedUserCount.userCount);
     console.log("Update userCount success");
+
     return NextResponse.json({
-      message: "Workshop booking updated",
-      updatedBooking,
+      message: `Workshop booking ${title} updated`,
+      updatedUserCount,
     });
   } catch (error) {
     console.error("Error handling PUT request:", error);

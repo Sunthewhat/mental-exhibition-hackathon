@@ -1,53 +1,58 @@
-"use server";
+"use client";
 
-import { render } from "@react-email/render";
-import nodemailer from "nodemailer";
+import { workshopBooking } from "@prisma/client";
 
-import {
-  ReserveConfirmation,
-  ReserveConfirmationProps,
-} from "./components/ReserveConfirmation";
-import React from "react";
-import { getLocByWorkshop } from "./helper";
+export const getRegisterCountByName = async (name: string) => {
+  const datas: workshopBooking[] = await fetch("/api/workshop/data", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "charana.sukr@mail.kmutt.ac.th",
-    pass: "wsak vsfc pyyg atol",
-  },
-});
-
-export const assertSendEmail = async ({
-  userName,
-  workShop,
-  date,
-  email,
-}: ReserveConfirmationProps) => {
-  if (!email) {
-    throw Error("A target email is required.");
+  const workShop = datas.find((data) => data.title === name);
+  if (!workShop) {
+    throw new Error("Workshop not found by given name (" + name + " )");
   }
 
-  const location = getLocByWorkshop(workShop);
-  try {
-    const options = {
-      // from: "Mental Exhibition <mentalexhibition@hackmindgallery-kmutt.com>",
-      from: "[Mental Health Exhibition & Hackathon] <mentalexhibition@mail.kmutt.ac.th>",
-      to: email,
-      subject: "[reservation confirmed] ยืนยันการจองเวิร์คช็อป",
-      html: render(
-        React.createElement(ReserveConfirmation, {
-          userName,
-          workShop,
-          date,
-          location,
-        })
-      ),
-    };
+  return workShop.userCount;
+};
+export const updateRegisterCount = async (
+  workShop: string,
+  date: string
+): Promise<number> => {
+  return fetch(`/api/workshop/data`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title: workShop, date }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        console.log("Workshop booking updated:", data.updatedBooking);
+        console.log("Updated user count:", data.updatedBooking.userCount);
+        return Promise.resolve(data.updatedBooking.userCount);
+      } else {
+        throw new Error(data.error);
+      }
+    });
+};
 
-    await transporter.sendMail(options);
-    console.log(`Email (${workShop}) has been sent to user.`);
+export const insertToGoogleForm = async (link: string, formData: FormData) => {
+  try {
+    const response_google_form = await fetch(`/api/workshop/${link}`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response_google_form.ok) {
+      throw new Error("Something went wrong (Google form)");
+    }
+
+    return await response_google_form.json();
   } catch (err) {
-    console.log(`Error sending email (${workShop}) `);
+    console.error("Error while insertToGoogleForm ", err);
   }
 };

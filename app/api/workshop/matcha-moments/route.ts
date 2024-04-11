@@ -16,14 +16,13 @@ export const POST = async (req: Request, res: Response) => {
   const honorificPrefix = formData.get("honorific-prefix");
 
   try {
-    const formPrefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSeOKr-R_iFup1i1MaiaFst627hvuo2p-MrClpM4QAHMvzxqcw/formResponse?entry.557529203=${honorificPrefix}&entry.903081128=${fullname}&entry.951481137=${nickname}&entry.1974091713=${tel}&entry.1249898435=${email}&entry.369189809=${date}&submit=Submit"`;
+    const formPrefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLScGF2yi0Q9sTRsrM3LedSYcGg4bbf-RaY584VSChH79hCFIVw/formResponse?usp=pp_url&entry.1024483988=${honorificPrefix}&entry.2039753881=${fullname}&entry.467966751=${nickname}&entry.1549112855=${tel}&entry.2037164155=${email}&entry.395983718=${date}&submit=Submit"`;
     try {
       await fetch(formPrefilledLink);
-      console.log("Form (Jud Jai) submitted to Google");
+      console.log("Form (Matcha Moments) submitted to Google");
     } catch (error) {
       console.log("Error submitting form");
     }
-
     return NextResponse.json({ Message: "Complete", status: 201 });
   } catch (error) {
     return NextResponse.json({ Message: "Error", status: 404 });
