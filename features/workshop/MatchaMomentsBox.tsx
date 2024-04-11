@@ -6,9 +6,8 @@ import styles from "@/app/hackathon/page.module.css";
 import InnerBox from "@/features/hackathon/components/InnerBox";
 import GButton from "@/features/hackathon/components/GButton";
 import InViewAnimation from "../shared/Animation/InViewAnimation";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { set } from "lodash";
 
 interface Props {
   textStyle: {
@@ -20,7 +19,7 @@ interface Props {
   link: string;
 }
 
-const MyCupOfTeaFormBox = ({
+const MatchaMomentsBox = ({
   textStyle: { header, subHeader, paragraph },
   title,
   link,
@@ -44,8 +43,8 @@ const MyCupOfTeaFormBox = ({
 
   const getCount = async () => {
     try {
-      const response = await fetch(`link_for_getting_count_in_postgresQL`, {
-        method: "GET",
+      const response = await fetch(`link_for_getting_count_in_postgresQL`,{
+        method: "GET"
       });
       if (!response.ok) {
         return;
@@ -55,7 +54,8 @@ const MyCupOfTeaFormBox = ({
     } catch (error) {
       console.error("Error getting count:", error);
     }
-  };
+  }
+
 
   const handleChange = (event: { target: { id: string; value: string } }) => {
     if (event.target.id === "honorific-prefix") {
@@ -119,7 +119,7 @@ const MyCupOfTeaFormBox = ({
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title: "MyCupOfTea" })
+        body: JSON.stringify({ title: "MatchaMoments" })
       });
 
       if (!response_google_form.ok) {
@@ -259,13 +259,14 @@ const MyCupOfTeaFormBox = ({
                 id="date"
                 value={date}
                 className={`${styles.textBox} border-[#000] border-opacity-20 border bg-transparent bg-opacity-0 rounded-[4px] w-full p-4 `}
+                
                 onChange={handleChange}
               >
                 <option value="" className="">
                   เลือกวันและเวลาที่ต้องการเข้าร่วม
                 </option>
-                <option value="22/4/2024">22/4/2024, 14.00-16.00</option>
-                <option value="23/4/2024">23/4/2024, 14.00-16.00</option>
+                <option value="22/4/2024">22/4/2024, 10.00-12.00</option>
+                <option value="23/4/2024">23/4/2024, 10.00-12.00</option>
               </select>
               {error && !date && (
                 <p className="my-4 text-red-500 font-bold">
@@ -297,4 +298,5 @@ const MyCupOfTeaFormBox = ({
   );
 };
 
-export default MyCupOfTeaFormBox;
+export default MatchaMomentsBox;
+

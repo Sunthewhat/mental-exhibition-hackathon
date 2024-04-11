@@ -23,6 +23,7 @@ export async function POST(){
         { title: 'MyCupOfTea', userCount: 0 },
         { title: 'LaLaiSao', userCount: 0 },
         { title: 'JudJaiSaiJaeGun', userCount: 0 },
+        { title: 'MatchaMoments', userCount: 0 },
       ],
     });
     return NextResponse.json({message: "Success"});
