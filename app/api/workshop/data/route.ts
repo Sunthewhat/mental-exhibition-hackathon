@@ -45,8 +45,9 @@ export async function DELETE(){
 
 export async function PUT(req: Request) {
     try {
-      const { title } = await req.json();
+      const { title,date } = await req.json();
       console.log('Received title:', title);
+      console.log('Received date:', date)
   
       // Fetch the existing workshop booking
       const existingBooking = await prisma.workshopBooking.findUnique({
@@ -54,12 +55,17 @@ export async function PUT(req: Request) {
       });
   
       // Increment the userCount by 1
-      const updatedBooking = await prisma.workshopBooking.update({
+      
+      const updatedUserCount = await prisma.workshopBooking.update({
         where: { title },
         data: { userCount: existingBooking?.userCount ? existingBooking.userCount + 1 : 1 },
       });
+      const updatedBooking = await prisma.workshopBooking.findUnique({
+        where: { title },
+      });
+      console.log(`userCount of (${title}) :`, updatedBooking?.userCount)
       console.log("Update userCount success")
-      return NextResponse.json({ message: 'Workshop booking updated', updatedBooking });
+      return NextResponse.json({ message: `Workshop booking ${title} updated`, updatedBooking });
     } catch (error) {
       console.error('Error handling PUT request:', error);
       return NextResponse.json({ error: 'An error occurred' }, { status: 500 });

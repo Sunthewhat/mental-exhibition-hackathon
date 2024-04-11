@@ -40,22 +40,9 @@ const MyCupOfTeaFormBox = ({
   const [error, setError] = useState<boolean>(false);
   const formData = new FormData();
   const [isSubmitting,setIsSubmitting] = useState<boolean>(false);
-  const [getCountInDB, setGetCountInDB] = useState<number>(0);
+  const [getUserCount, setGetUserCount] = useState<number>(0);
 
-  const getCount = async () => {
-    try {
-      const response = await fetch(`link_for_getting_count_in_postgresQL`, {
-        method: "GET",
-      });
-      if (!response.ok) {
-        return;
-      }
-      const data = await response.json();
-      setGetCountInDB(data);
-    } catch (error) {
-      console.error("Error getting count:", error);
-    }
-  };
+
 
   const handleChange = (event: { target: { id: string; value: string } }) => {
     if (event.target.id === "honorific-prefix") {
@@ -114,21 +101,25 @@ const MyCupOfTeaFormBox = ({
         method: "POST",
         body: formData,
       });
-      const response_prisma = await fetch(`/api/workshop/data`, {
+      await fetch(`/api/workshop/data`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title: "MyCupOfTea" })
-      });
+        body: JSON.stringify({ title: "MyCupOfTea", date:date  })        
+      }).then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          console.log('Workshop booking updated:', data.updatedBooking);
+          console.log('Updated user count:', data.updatedBooking.userCount);
+          setGetUserCount(data.updatedBooking.userCount);
+        } else {
+          console.error('Error:', data.error);
+        }})
 
       if (!response_google_form.ok) {
         throw new Error("Something went wrong (Google form)");
       }
-      if (!response_prisma.ok) {
-        throw new Error("Something went wrong (Prisma)");
-      }
-
       const data_google_form = await response_google_form.json();
 
       if (data_google_form.Message === "Complete") {

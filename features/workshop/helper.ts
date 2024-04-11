@@ -11,12 +11,17 @@ const locations = {
     "Design Showcase (ห้องเล็กใกล้ประตูเลื่อน)",
     "Design Showcase (small room near the sliding door)",
   ],
+  MatchaMoments : [
+    "Design Showcase (ห้องเล็กใกล้ประตูเลื่อน)",
+    "Design Showcase (small room near the sliding door)",
+  ],
 } as Record<string, string[]>;
 
 const workShops = {
   JudJaiSaiJaeGun: "จัดใจใส่แจกัน",
   LaLaiSao: "ละลายเศร้า",
   MyCupOfTea: "My cup of tea",
+  MatchaMoments: "Matcha Moments",
 } as Record<string, string>;
 
 export const getLocByWorkshop = (workShop: string) => {
