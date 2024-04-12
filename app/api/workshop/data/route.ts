@@ -19,10 +19,14 @@ export async function POST() {
   try {
     await prisma.workshopBooking.createMany({
       data: [
-        { title: "MyCupOfTea", userCount: 0 },
-        { title: "LaLaiSao", userCount: 0 },
-        { title: "JudJaiSaiJaeGun", userCount: 0 },
-        { title: "MatchaMoments", userCount: 0 },
+        { title: "MyCupOfTea_22", userCount: 0 },
+        { title: "MyCupOfTea_23", userCount: 0 },
+        { title: "LaLaiSao_22", userCount: 0 },
+        { title: "LaLaiSao_23", userCount: 0 },
+        { title: "JudJaiSaiJaeGun_22", userCount: 0 },
+        { title: "JudJaiSaiJaeGun_23", userCount: 0 },
+        { title: "MatchaMoments_22", userCount: 0 },
+        { title: "MatchaMoments_23", userCount: 0 },
       ],
     });
     return NextResponse.json({ message: "Success" });

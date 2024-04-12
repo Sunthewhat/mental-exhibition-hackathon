@@ -8,7 +8,7 @@ import GButton from "@/features/hackathon/components/GButton";
 import InViewAnimation from "../../shared/Animation/InViewAnimation";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { insertToGoogleForm, updateRegisterCount } from "../api";
+import { insertToGoogleForm, updateRegisterCount, getRegisterCountByName } from "../api";
 import { Loader2Icon } from "lucide-react";
 import { assertSendEmail } from "../mail";
 
@@ -85,6 +85,7 @@ const JudJaiSaiJaeGunBox = ({
   const router = useRouter();
 
   const onSubmit = async () => {
+    console.log(await getRegisterCountByName("JudJaiSaiJaeGun"));
     if (validateForm() === false) return;
 
     formData.set("honorific-prefix", honorificPrefix);
