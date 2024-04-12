@@ -1,22 +1,43 @@
 "use client";
 
+import { useMediaQuery } from "react-responsive";
 import StaticBubbleBackground from "./StaticBubbleBackground";
+import { useEffect, useState } from "react";
+
+interface TextSize {
+  header: Number;
+  para: Number;
+}
+
 
 export default function Information() {
+
+  const isMobile = useMediaQuery({minWidth: 320, maxWidth: 680});
+  const isTablet = useMediaQuery({minWidth: 680, maxWidth: 768});
+  const [textSize, setTextSize] = useState<TextSize>({header: 14, para: 12});
+  
+  useEffect(() => {
+    setTextSize(
+      isMobile ? { header: 14, para: 12 }
+        : isTablet ? { header: 20, para: 14 }
+          : { header: 24, para: 16 }
+    )
+  }, [isMobile, isTablet]);
+  
   return (
     <div className="px-[30px]">
       <div className="relative max-w-[1060px] pt-6 pb-3 px-4 lg:px-36 shadow-md bg-white rounded-3xl">
         <StaticBubbleBackground />
 
-        <div className="NotoSansThai text-sm  font-bold text-center text-[#5A81BC]">
-          <span>Innovation Hackathon Challenge</span>
+        <div className="NotoSansThai font-bold text-center text-[#5A81BC]">
+          <span style={{fontSize: `${textSize.header}px`}}>Innovation Hackathon Challenge</span>
           <br />
-          <span className="text-xs sm:text-sm">
+          <span style={{fontSize: `${textSize.header}px`}}>
             &quot;นวัตกรรมเพื่อความตระหนักรู้ด้านสุขภาพจิตในสังคม&quot;
           </span>
         </div>
 
-        <div className="NotoSansThai text-xs text-center text-[#5A81BC] py-4">
+        <div className="NotoSansThai text-center text-[#5A81BC] py-4" style={{fontSize: `${textSize.para}px`}}>
           เสนอไอเดียหรือนวัตกรรมที่มีการนำเทคโนโลยีมาช่วยแก้ปัญหาด้านสุขภาพจิต
           ให้คนในสังคมหรือนวัตกรรมเพื่อลดความเสี่ยงการเกิดปัญหาด้านสุขภาพจิตหรือนวัตกรรม
           เพื่อเพิ่มความตระหนักรู้ถึงปัญหาสุขภาพจิตในสังคมและสนับสนุนให้ผู้คน
@@ -24,11 +45,11 @@ export default function Information() {
           จะต้องมีการนำข้อมูลทั้งด้านเทคโนโลยีและด้านสุขภาพจิตมารองรับ
           เพื่อยืนยันความเป็นไปได้ในการต่อยอดนวัตกรรมในอนาคต
         </div>
-        <div className="NotoSansThai text-sm font-bold text-center text-[#5A81BC]">
+        <div className="NotoSansThai font-bold text-center text-[#5A81BC]" style={{fontSize: `${textSize.header}px`}}>
           เงื่อนไขและคุณสมบัติของผู้ร่วมกิจกรรม
         </div>
 
-        <div className="NotoSansThai text-xs text-left text-[#5A81BC] py-4 leading-6">
+        <div className="NotoSansThai text-left text-[#5A81BC] py-4 leading-6" style={{fontSize: `${textSize.para}px`}}>
           <ol>
             <li>
               <p>

@@ -1,8 +1,10 @@
+import Exhibition from "@/features/home/components/Exhibition";
 import CallToActions from "@/features/home/components/CallToActions";
 import Contributors from "@/features/home/components/Contributors";
 import Hero from "@/features/home/components/Hero";
 import Information from "@/features/home/components/Infomation";
 import Slider from "@/features/home/components/Slider";
+import Workshops from "@/features/home/components/Workshops";
 import React from "react";
 
 const HomePage = () => {
@@ -13,6 +15,8 @@ const HomePage = () => {
       <Hero />
       <Information />
       <CallToActions />
+      <Exhibition />
+      <Workshops />
       <Contributors />
     </div>
   );
