@@ -74,7 +74,7 @@ export default function WorkshopItem({title, desc, imgUrl, haveButton}: Props) {
           }}
         />
       </div>
-      <div className="px-4 flex flex-col items-center">
+      <div className="px-4 pb-2 flex flex-col items-center">
         <div className="text-[#5A81BC] font-bold" style={{fontSize: `${textSize.header}px`}}>{title}</div>
         <div className="text-[#5A81BC] text-center" style={{fontSize: `${textSize.para}px`}}>{desc}</div>
       </div>

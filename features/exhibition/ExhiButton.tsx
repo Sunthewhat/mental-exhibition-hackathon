@@ -7,9 +7,10 @@ interface Props {
   type: 'PRIMARY' | 'SECONDARY';
   href: string;
   children: React.ReactNode;
+  borderRadius?: Number;
 }
 
-export default function ExhiButton({ type, href, children }: Props) {
+export default function ExhiButton({ type, href, children, borderRadius }: Props) {
 
   const buttonStyle = {
     base: 'h-[50px] w-[140px] text-[14px] md:h-[60px] md:w-[160px] md:text-[16px] font-bold z-10 rounded-2xl flex justify-center items-center ',
@@ -25,6 +26,7 @@ export default function ExhiButton({ type, href, children }: Props) {
         ${type == 'PRIMARY' ? buttonStyle.primary : buttonStyle.secondary} 
         ${roboto.style}
       `}
+      style={{borderRadius: `${borderRadius}px`}}
     >
       {children}
     </Link>

@@ -1,3 +1,4 @@
+import Exhibition from "@/features/home/Exhibition";
 import CallToActions from "@/features/home/components/CallToActions";
 import Contributors from "@/features/home/components/Contributors";
 import Hero from "@/features/home/components/Hero";
@@ -14,8 +15,9 @@ const HomePage = () => {
       <Hero />
       <Information />
       <CallToActions />
-      <Contributors />
+      <Exhibition />
       <Workshops />
+      <Contributors />
     </div>
   );
 };

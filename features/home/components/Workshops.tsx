@@ -32,15 +32,18 @@ export default function Workshops() {
   return (
     <div className="w-full flex flex-col items-center gap-10 px-[30px]">
       
-      <div className={`relative flex items-center justify-center`}>
+      <div className={`relative`}>
         <div
-          className="absolute rounded-full bg-white w-full blur-md"
+          className="absolute rounded-full bg-white blur-xl w-full left-1/2 -translate-x-1/2 translate-y-1/2"
           style={{height: `${textSize.header}px`}}
         ></div>
         <div 
-          className={`relative ${slack_side.className} text-[#5A81BC] underline underline-offset-4`} 
+          className={`relative ${slack_side.className} text-[#5A81BC]`} 
           style={{fontSize: `${textSize.header}px`}}
-        >workshop</div>
+        >
+          <span>workshop</span>
+          <hr className="h-[3px] md:h-[4px] w-full bg-[#5A81BC] absolute bottom-2"/>
+        </div>
       </div>
 
       <div 
