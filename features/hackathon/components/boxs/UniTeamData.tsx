@@ -56,7 +56,8 @@ const UniTeamData: React.FC<{ num: string }> = ({ num }) => {
 
   const clickHandle = () => {
     if (validateForm() === false) return;
-    if (parseInt(localStorage.getItem("teamMembers") || "0") == 0) {
+    if (parseInt(localStorage.getItem("teamMembers") || "0") == 0 || parseInt(localStorage.getItem("teamMembers") || "0") > 5) {
+      localStorage.removeItem("teamMembers")
       router.push("/");
       alert("มีบางอย่างผิดพลาด กรุณากรอกข้อมูลใหม่อีกครั้ง\nขออภัยในความไม่สะดวก 🙇‍♂️✨")
       return;
