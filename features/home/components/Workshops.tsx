@@ -55,11 +55,13 @@ export default function Workshops() {
 
       <WorkshopsContainer>
         <WorkshopItem
+          linkTo="#"
           title="จดหมายถึงฉัน"
           desc="เขียนจดหมายถึงตัวเองอีก 1 ปีให้หลัง"
           imgUrl="/assets/home/email.png"
         ></WorkshopItem>
         <WorkshopItem
+          linkTo="#"
           title="ระบายใจ"
           desc="วาดและระบายสีไปพร้อมกับตัวเองและเพื่อนๆ"
           imgUrl="/assets/home/color-palette.png"
@@ -75,6 +77,7 @@ export default function Workshops() {
 
       <WorkshopsContainer>
         <WorkshopItem
+          linkTo="#"
           title="ละลายเศร้า"
           desc="ให้ความเศร้าละลายไปกับการทำ
           เทียนหอม"
@@ -82,6 +85,7 @@ export default function Workshops() {
           haveButton={true}
         ></WorkshopItem>
         <WorkshopItem
+          linkTo="#"
           title="จัดใจใส่แจกัน"
           desc="จัดดอกไม้แสนสวยเป็นของขวัญให้ตัวคุณ"
           imgUrl="/assets/home/roses.png"
@@ -92,6 +96,7 @@ export default function Workshops() {
       <div className="mt-4">
         <WorkshopsContainer>
           <WorkshopItem
+            linkTo="#"
             title="My cup of tea"
             desc="ปล่อยใจไปกับการชงชา
             แสนอร่อย"

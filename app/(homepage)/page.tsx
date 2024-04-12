@@ -1,4 +1,4 @@
-import Exhibition from "@/features/home/Exhibition";
+import Exhibition from "@/features/home/components/Exhibition";
 import CallToActions from "@/features/home/components/CallToActions";
 import Contributors from "@/features/home/components/Contributors";
 import Hero from "@/features/home/components/Hero";

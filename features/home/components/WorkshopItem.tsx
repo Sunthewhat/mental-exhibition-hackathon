@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 /* eslint-disable @next/next/no-img-element */
 interface Props {
@@ -9,25 +11,27 @@ interface Props {
   desc: string;
   imgUrl: string;
   haveButton?: boolean;
+  linkTo: string;
+
 }
 
 interface ContainerSize {
-  width: Number;
-  height: Number;
-  borderRadius: Number;
+  width: number;
+  height: number;
+  borderRadius: number;
 }
 
 interface ImageSize {
-  width: Number;
-  height: Number;
+  width: number;
+  height: number;
 }
 
 interface TextSize {
-  header: Number;
-  para: Number;
+  header: number;
+  para: number;
 }
 
-export default function WorkshopItem({title, desc, imgUrl, haveButton}: Props) {
+export default function WorkshopItem({title, desc, imgUrl, haveButton, linkTo}: Props) {
 
   const isMobile = useMediaQuery({minWidth: 320, maxWidth: 680});
   const isTablet = useMediaQuery({minWidth: 680, maxWidth: 768});
@@ -54,23 +58,27 @@ export default function WorkshopItem({title, desc, imgUrl, haveButton}: Props) {
   }, [isMobile, isTablet]);
   
   return (
-    <div
+    <motion.a
+      href={linkTo}
       className="relative flex flex-col justify-center items-center bg-white shadow-lg"
       style={{
         width:        `${containerSize.width}px`,
         height:       `${containerSize.height}px`,
         borderRadius: `${containerSize.borderRadius}px`
       }}
+      whileHover={{
+        scale: 1.1
+      }}
     >
       <div className="relative" style={{width: `${imageSize.width}px`, height: `${imageSize.height}px`}}>
-        <img 
+        <Image 
           src={imgUrl} 
           alt="" 
           className="absolute"
+          width=  { imageSize.width }
+          height= { imageSize.height }
           style={{
             top: haveButton ? -50 : -30,
-            width:  `${imageSize.width}px`,
-            height: `${imageSize.height}px`
           }}
         />
       </div>
@@ -90,6 +98,6 @@ export default function WorkshopItem({title, desc, imgUrl, haveButton}: Props) {
           >จองเลย</div>
 
       }
-    </div>
+    </motion.a>
   )
 }

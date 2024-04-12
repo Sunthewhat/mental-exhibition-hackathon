@@ -2,9 +2,10 @@
 'use client'
 
 import { Mansalva, Slackside_One } from "next/font/google"
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface TextSize {
   header: number;
@@ -13,7 +14,7 @@ interface TextSize {
 
 interface RingSize {
   width: number;
-  height: number;
+  height : number;
 }
 
 const slack_side = Slackside_One({subsets: ["latin"], weight: ["400"]});
@@ -66,42 +67,41 @@ export default function Exhibition() {
             style={{fontSize: `${textSize.header}px`}}
           >COLOR OF FEELINGS</div>
         </div>
-        <Link href='#' className="flex items-center px-4 rounded-full z-20 w-fit h-[40px] font-bold text-[#fff] text-base md:text-[18px]  bg-gradient-to-r from-[#a9dbd0] to-[#89b6fb]">ส่งผลงาน</Link>
+        <motion.a whileHover={{scale: 1.1}} href='#' className="flex items-center px-4 rounded-full z-20 w-fit h-[40px] font-semibold text-[#fff] text-base md:text-[18px]  bg-gradient-to-r from-[#a9dbd0] to-[#89b6fb]">ส่งผลงาน</motion.a>
+        <Image src='/assets/shiny-effect.svg' alt="" width={60} height={60} className="absolute left-2 -top-12"/>
+        <Image src='/assets/shiny-effect.svg' alt="" width={60} height={60} className="absolute right-2 -bottom-12"/>
       </div>
-      <img 
+      <Image 
         src="/assets/home/paint_brush.png" alt=""
         className="absolute right-0 -top-10 rotate-45"
-        style={{
-          width: `${235*imageSizeMultiplier}px`,
-          height: `${373*imageSizeMultiplier}px`
-        }}
+        width=  { 250 * imageSizeMultiplier}
+        height= { 396 * imageSizeMultiplier}
       />
-      <img 
+      <Image 
         src="/assets/home/paint.png" alt=""
         className="absolute left-0 -bottom-16"
+        width=  { 286 * imageSizeMultiplier }
+        height= { 388 * imageSizeMultiplier }
         style={{
-          width: `${286*imageSizeMultiplier}px`,
-          height: `${388*imageSizeMultiplier}px`,
           bottom: isMobile ? -40 : -96
         }}
       />
-      <img
+      <Image
         src="/assets/home/pink-splash.png" alt=""
         className="absolute left-0 -top-10 -rotate-[28deg]"
-        style={{
-          width: `${377*imageSizeMultiplier}px`,
-          height: `${375*imageSizeMultiplier}px`
-        }}
+        width=  { 377 * imageSizeMultiplier }
+        height= { 375 * imageSizeMultiplier }
       />
-      <img
+      <Image
         src="/assets/home/blue-splash.png" alt=""
         className="absolute right-0 -rotate-[6deg]"
+        width=  { 395 * imageSizeMultiplier }
+        height= { 408 * imageSizeMultiplier }
         style={{
-          width: `${395*imageSizeMultiplier}px`,
-          height: `${408*imageSizeMultiplier}px`,
           bottom: isMobile ? -48 : -96
         }}
       />
+
     </div>
   )
 }
