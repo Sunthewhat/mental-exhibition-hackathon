@@ -10,7 +10,7 @@ export const POST = async (req: Request, res: Response) => {
   }
     const firstName = formData.get("firstName");
     const lastName = formData.get("lastName");
-    const email = formData.get("email");
+    const email = (formData.get("email") as string).toLowerCase();
     const studentId = formData.get("studentId");
     const phone = formData.get("tel");
     const faculty = formData.get("faculty");
@@ -38,5 +38,3 @@ export const POST = async (req: Request, res: Response) => {
   }
 
 };
-
-// https://docs.google.com/forms/d/e/1FAIpQLSe6mqLIBv4MIIqGvX0j0amwTxG4h_hg1aLLjBXlmS9LNPgG0w/viewform?entry.1771345572=%7Bname%7D&entry.35827299=%7Blastname%7D&entry.803557986=%7Bstudent_number%7D&entry.1578367867=%7Bmajor%7D&entry.419704599=%7Bdepartment%7D&entry.2096572232=%7Bbranch%7D&entry.350807439=%7Bphone%7D&entry.1836947651=%7Bmail%7D&entry.1465306126=%7Bexplain%7D&entry.1961102311=%7Btech%7D&entry.833656862=%7Bart_link%7D
