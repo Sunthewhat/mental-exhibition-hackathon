@@ -13,6 +13,14 @@ export default function Sidebar({ state, setState }: Props) {
     setState(() => false);
   }
 
+  const workshopClick = () => {
+    const workshopSection = document.getElementById("workshop");
+    if (workshopSection) {
+      workshopSection.scrollIntoView({ behavior: "smooth" });
+      setState(() => false);
+    }
+  };
+
   return (
     <AnimatePresence>
       {state && (
@@ -57,6 +65,12 @@ export default function Sidebar({ state, setState }: Props) {
                 </li>
                 <hr className="bg-white h-[3px] mt-1 mb-8" />
 
+                <li>
+                  <button onClick={workshopClick} >
+                    Workshop
+                  </button>
+                </li>
+                <hr className="bg-white h-[3px] mt-1 mb-8" />
               </ul>
             </div>
           </motion.div>

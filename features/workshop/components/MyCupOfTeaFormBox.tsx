@@ -132,7 +132,7 @@ const MyCupOfTeaFormBox = ({
     setPopUpShow(true);
 
     try {
-      const dataGoogleForm = await insertToGoogleForm(link, formData);
+      const dataGoogleForm = await insertToGoogleForm("my-cup-of-tea", formData);
 
       if (dataGoogleForm.Message === "Complete") {
         await updateRegisterCount("MyCupOfTea", date as string)

@@ -30,7 +30,7 @@ export default function Workshops() {
   }, [isMobile, isTablet]);
 
   return (
-    <div className="w-full flex flex-col items-center gap-10 px-[30px]">
+    <div id="workshop" className="w-full flex flex-col items-center gap-10 px-[30px]">
       
       <div className={`relative`}>
         <div
@@ -77,7 +77,7 @@ export default function Workshops() {
 
       <WorkshopsContainer>
         <WorkshopItem
-          linkTo="#"
+          linkTo="/workshop/la-lai-sao/consent"
           title="ละลายเศร้า"
           desc="ให้ความเศร้าละลายไปกับการทำ
           เทียนหอม"
@@ -85,7 +85,7 @@ export default function Workshops() {
           haveButton={true}
         ></WorkshopItem>
         <WorkshopItem
-          linkTo="#"
+          linkTo="/workshop/jud-jai-sai-jae-gun/consent"
           title="จัดใจใส่แจกัน"
           desc="จัดดอกไม้แสนสวยเป็นของขวัญให้ตัวคุณ"
           imgUrl="/assets/home/roses.png"
@@ -96,7 +96,7 @@ export default function Workshops() {
       <div className="mt-4">
         <WorkshopsContainer>
           <WorkshopItem
-            linkTo="#"
+            linkTo="/workshop/my-cup-of-tea/consent"
             title="My cup of tea"
             desc="ปล่อยใจไปกับการชงชา
             แสนอร่อย"

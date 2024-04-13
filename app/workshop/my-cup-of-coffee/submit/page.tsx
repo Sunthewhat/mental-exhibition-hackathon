@@ -15,7 +15,7 @@ export default function SubmitPage() {
           ease: [0, 0.71, 0.2, 1.01],
         }}
       >
-        <SubmitBox title="My cup of tea" />
+        <SubmitBox title="My cup of coffee" />
       </motion.div>
     </>
   );

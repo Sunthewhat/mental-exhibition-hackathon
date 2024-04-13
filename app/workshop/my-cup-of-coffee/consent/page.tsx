@@ -23,8 +23,8 @@ export default function ExplainPage() {
       >
         <ConsentBox
           textStyle={textStyle}
-          title="My cup of tea"
-          link="my-cup-of-tea"
+          title="My cup of coffee"
+          link="my-cup-of-coffee"
         />
       </motion.div>
     </>
