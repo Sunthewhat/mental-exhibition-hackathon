@@ -1,5 +1,15 @@
 "use client";
 
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+
 import Image from "next/image";
 import OuterBox from "@/features/hackathon/components/OuterBox";
 import styles from "@/app/hackathon/page.module.css";
@@ -42,6 +52,9 @@ const FormExhibitionBox = ({
   const [error, setError] = useState<boolean>(false);
   const [formData, setFormData] = useState(new FormData());
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
+  const [popUpshow, setPopUpShow] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  
   const handleChange = (event: { target: { id: string; value: string } }) => {
     if (event.target.id === "firstname") {
       setFirstName(event.target.value);
@@ -119,7 +132,11 @@ const FormExhibitionBox = ({
   const onSubmit = async () => {
     if (validateForm() === false) return;
     if (isSubmit == true) return;
+
     setIsSubmit(true);
+    setIsLoading(true);
+    setPopUpShow(true);
+
     formData.set("firstName", firstName);
     formData.set("lastName", lastName);
     formData.set("studentId", studentId);
@@ -148,9 +165,11 @@ const FormExhibitionBox = ({
       if (data.Message === "Complete") {
         router.push("/exhibition/submit");
       } else {
+        setIsLoading(false);
         console.error("Submission failed:", data.error);
       }
     } catch (error) {
+      setIsLoading(false);
       console.error("Error submitting form:", error);
     }
   };
@@ -158,6 +177,46 @@ const FormExhibitionBox = ({
   return (
     <OuterBox>
       <InnerBox>
+      <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
+          <AlertDialogContent className="flex flex-col items-center justify-center">
+            { !isLoading && (
+              <div className="flex flex-col items-center justify-center gap-5">
+                <AlertDialogHeader className="flex flex-col items-center justify-center">
+                  <Image
+                    src="/assets/workshop/cross-circle.svg"
+                    width={128}
+                    height={128}
+                    className=" opacity-65"
+                    alt="cross"
+                  />
+                  <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">ดำเนินการไม่สำเร็จ</AlertDialogTitle>
+                  <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                  พบข้อผิดพลาดในการสมัคร <br className="block md:hidden" />(เกิดปัญหากับข้อมูลหรือเซิฟเวอร์มีปัญหา)<br />กรุณาลองใหม่อีกครั้ง
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter className="flex flex-col items-center justify-center">
+                  <AlertDialogCancel className="bg-[#BC5A5A] text-[14px]">ลองใหม่</AlertDialogCancel>
+                </AlertDialogFooter>
+              </div>
+            )}
+            { isLoading && (
+              <div className="flex flex-col items-center justify-center gap-5 m-5">
+                <AlertDialogHeader className="flex flex-col items-center justify-center">
+                  <Image
+                    src="/assets/workshop/loading.svg"
+                    width={128}
+                    height={128}
+                    alt="loading"
+                  />
+                  <AlertDialogTitle className="text-[#5A81BC] text-[20px] font-semibold">กำลังดำเนินการ</AlertDialogTitle>
+                  <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                  ระบบกำลังดำเนินการ กรุณารอสักครู่
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+              </div>
+            )}
+          </AlertDialogContent>
+        </AlertDialog>
         <div className="flex flex-col justify-center items-center gap-3 border-b border-[#B9A5D6] pb-6">
           <div className="">
             <Image
