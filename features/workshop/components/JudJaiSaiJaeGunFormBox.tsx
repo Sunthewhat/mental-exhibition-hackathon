@@ -136,6 +136,13 @@ const JudJaiSaiJaeGunBox = ({
     setIsLoading(true);
     setPopUpShow(true);
 
+    const count = await getRegisterCountByName(`JudJaiSaiJaeGun_${date?.toString().substring(0,2)}`);
+    if (count >= maxParticipant) {
+      setIsSubmitting(false);
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const dataGoogleForm = await insertToGoogleForm(link, formData);
 
@@ -183,7 +190,7 @@ const JudJaiSaiJaeGunBox = ({
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter className="flex flex-col items-center justify-center">
-                  <AlertDialogCancel className="bg-[#BC5A5A] text-[14px]">ลองใหม่</AlertDialogCancel>
+                  <AlertDialogCancel onClick={() => window.location.reload()} className="bg-[#BC5A5A] text-[14px]">ลองใหม่</AlertDialogCancel>
                 </AlertDialogFooter>
               </div>
             )}
