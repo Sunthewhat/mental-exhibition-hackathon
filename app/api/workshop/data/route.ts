@@ -50,16 +50,16 @@ export async function PUT(req: Request) {
   try {
     const { title, date } = await req.json();
     console.log("Received title:", title);
-    console.log("Received date:", date);
+    const realTitle = title +"_"+ date.toString().substring(0, 2);
 
     // Fetch the existing workshop booking
     const existingBooking = await prisma.workshopBooking.findUnique({
-      where: { title },
+      where: { title: realTitle },
     });
 
     // Increment the userCount by 1
     const updatedUserCount = await prisma.workshopBooking.update({
-      where: { title },
+      where: { title: realTitle },
       data: {
         userCount: existingBooking?.userCount
           ? existingBooking.userCount + 1

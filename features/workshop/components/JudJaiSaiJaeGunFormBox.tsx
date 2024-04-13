@@ -1,16 +1,31 @@
 "use client";
 
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+
 import Image from "next/image";
 import OuterBox from "@/features/hackathon/components/OuterBox";
 import styles from "@/app/hackathon/page.module.css";
 import InnerBox from "@/features/hackathon/components/InnerBox";
 import GButton from "@/features/hackathon/components/GButton";
 import InViewAnimation from "../../shared/Animation/InViewAnimation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { insertToGoogleForm, updateRegisterCount, getRegisterCountByName } from "../api";
+import {
+  insertToGoogleForm,
+  updateRegisterCount,
+  getRegisterCountByName,
+} from "../api";
 import { Loader2Icon } from "lucide-react";
 import { assertSendEmail } from "../mail";
+import { set } from "lodash";
 
 interface Props {
   textStyle: {
@@ -33,6 +48,8 @@ const JudJaiSaiJaeGunBox = ({
     black: "text-[#34312F]",
   };
 
+  const maxParticipant = 60;
+
   const [honorificPrefix, setHonorifixPrefix] = useState("");
   const [fullname, setFullname] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
@@ -42,7 +59,28 @@ const JudJaiSaiJaeGunBox = ({
   const [error, setError] = useState<boolean>(false);
   const formData = new FormData();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [userCount, setUserCount] = useState<number>(0);
+  const [userCount1, setUserCount1] = useState<number>(0);
+  const [userCount2, setUserCount2] = useState<number>(0);
+  const [date1_avaliable, setDate1_avaliable] = useState<boolean>(true);
+  const [date2_avaliable, setDate2_avaliable] = useState<boolean>(true);
+  const [popUpshow, setPopUpShow] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    getRegisterCountByName("JudJaiSaiJaeGun_22").then((count) => {
+      setUserCount1(count);
+      if (count >= maxParticipant) {
+        setDate1_avaliable(false);
+      }
+    });
+
+    getRegisterCountByName("JudJaiSaiJaeGun_23").then((count) => {
+      setUserCount2(count);
+      if (count >= maxParticipant) {
+        setDate2_avaliable(false);
+      }
+    });
+  }, []);
 
   const handleChange = (event: { target: { id: string; value: string } }) => {
     if (event.target.id === "honorific-prefix") {
@@ -85,7 +123,6 @@ const JudJaiSaiJaeGunBox = ({
   const router = useRouter();
 
   const onSubmit = async () => {
-    console.log(await getRegisterCountByName("JudJaiSaiJaeGun"));
     if (validateForm() === false) return;
 
     formData.set("honorific-prefix", honorificPrefix);
@@ -96,16 +133,16 @@ const JudJaiSaiJaeGunBox = ({
     formData.set("date", date as string);
 
     setIsSubmitting(true);
+    setIsLoading(true);
+    setPopUpShow(true);
 
     try {
       const dataGoogleForm = await insertToGoogleForm(link, formData);
 
       if (dataGoogleForm.Message === "Complete") {
-        await updateRegisterCount("JudJaiSaiJaeGun", date as string)
-          .then((count) => {
-            setUserCount(count);
-          })
-          .catch((error) => console.error("Error updating user count:", error));
+        await updateRegisterCount("JudJaiSaiJaeGun", date as string).catch(
+          (error) => console.error("Error updating user count:", error)
+        );
         await assertSendEmail({
           userName: fullname as string,
           workShop: "JudJaiSaiJaeGun",
@@ -115,10 +152,12 @@ const JudJaiSaiJaeGunBox = ({
 
         router.push(`/workshop/${link}/submit`);
       } else {
+        setIsLoading(false);
         console.error("Submission failed:", dataGoogleForm.error);
       }
       setIsSubmitting(false);
     } catch (error) {
+      setIsLoading(false);
       console.error("Error submitting form:", error);
     }
   };
@@ -126,6 +165,46 @@ const JudJaiSaiJaeGunBox = ({
   return (
     <OuterBox>
       <InnerBox>
+        <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
+          <AlertDialogContent className="flex flex-col items-center justify-center">
+            { !isLoading && (
+              <div className="flex flex-col items-center justify-center gap-5">
+                <AlertDialogHeader className="flex flex-col items-center justify-center">
+                  <Image
+                    src="/assets/workshop/cross-circle.svg"
+                    width={128}
+                    height={128}
+                    className=" opacity-65"
+                    alt="cross"
+                  />
+                  <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">ดำเนินการไม่สำเร็จ</AlertDialogTitle>
+                  <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                  พบข้อผิดพลาดในการลงทะเบียน <br className="block md:hidden" />(ที่นั่งเต็มหรือเซิฟเวอร์มีปัญหา)<br />กรุณาลองใหม่อีกครั้ง
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter className="flex flex-col items-center justify-center">
+                  <AlertDialogCancel className="bg-[#BC5A5A] text-[14px]">ลองใหม่</AlertDialogCancel>
+                </AlertDialogFooter>
+              </div>
+            )}
+            { isLoading && (
+              <div className="flex flex-col items-center justify-center gap-5 m-5">
+                <AlertDialogHeader className="flex flex-col items-center justify-center">
+                  <Image
+                    src="/assets/workshop/loading.svg"
+                    width={128}
+                    height={128}
+                    alt="loading"
+                  />
+                  <AlertDialogTitle className="text-[#5A81BC] text-[20px] font-semibold">กำลังดำเนินการ</AlertDialogTitle>
+                  <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                  ระบบกำลังดำเนินการจอง กรุณารอสักครู่
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+              </div>
+            )}
+          </AlertDialogContent>
+        </AlertDialog>
         <div className="flex flex-col justify-center items-center gap-3 border-b border-[#B9A5D6] pb-6">
           <div className="">
             <Image
@@ -245,11 +324,17 @@ const JudJaiSaiJaeGunBox = ({
                 <option value="" className="">
                   เลือกวันและเวลาที่ต้องการเข้าร่วม
                 </option>
-                <option value="22/4/2024, 12.30-14.00">
-                  22/4/2024, 12.30-14.00
+                <option
+                  value="22/4/2024, 12.30-14.00"
+                  disabled={!date1_avaliable}
+                >
+                  22/4/2024, 12.30-14.00 {userCount1}/{maxParticipant} (คน)
                 </option>
-                <option value="23/4/2024, 14.30-16.00">
-                  23/4/2024, 14.30-16.00
+                <option
+                  value="23/4/2024, 14.30-16.00"
+                  disabled={!date2_avaliable}
+                >
+                  23/4/2024, 14.30-16.00 {userCount2}/{maxParticipant} (คน)
                 </option>
               </select>
               {error && !date && (
