@@ -93,15 +93,24 @@ export default function Workshops() {
         ></WorkshopItem>
       </WorkshopsContainer>
 
-      <div className="mt-4">
+      <div className="mt-14">
         <WorkshopsContainer>
           <WorkshopItem
             linkTo="/workshop/my-cup-of-tea/consent"
-            title="My cup of tea"
+            title="Matcha moments"
             desc="ปล่อยใจไปกับการชงชา
             แสนอร่อย"
             imgUrl="/assets/home/teapot.png"
             haveButton={true}
+            extraLabel={true}
+          ></WorkshopItem>
+          <WorkshopItem
+            linkTo="/workshop/matcha-moments/consent"
+            title="My cup of coffee"
+            desc="เชื่อมโยงกายและใจด้วยการดริปกาแฟ"
+            imgUrl="/assets/home/coffee.png"
+            haveButton={true}
+            extraLabel={true}
           ></WorkshopItem>
         </WorkshopsContainer>
       </div>
