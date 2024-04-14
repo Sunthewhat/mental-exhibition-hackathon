@@ -50,6 +50,7 @@ export async function PUT(req: Request) {
   try {
     const { title, date } = await req.json();
     console.log("Received title:", title);
+    
     const realTitle = title +"_"+ date.toString().substring(0, 2);
 
     // Fetch the existing workshop booking

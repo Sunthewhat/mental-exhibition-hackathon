@@ -20,7 +20,7 @@ const locations = {
 const workShops = {
   JudJaiSaiJaeGun: "จัดใจใส่แจกัน",
   LaLaiSao: "ละลายเศร้า",
-  MyCupOfTea: "My cup of tea",
+  MyCupOfCoffee: "My cup of coffee",
   MatchaMoments: "Matcha Moments",
 } as Record<string, string>;
 

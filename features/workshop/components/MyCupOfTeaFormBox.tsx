@@ -147,7 +147,7 @@ const MyCupOfTeaFormBox = ({
 
         await assertSendEmail({
           userName: fullname as string,
-          workShop: "MyCupOfTea",
+          workShop: "MyCupOfCoffee",
           date: date as string,
           email,
         });

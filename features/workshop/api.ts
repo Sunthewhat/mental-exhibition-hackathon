@@ -17,6 +17,7 @@ export const getRegisterCountByName = async (name: string) => {
 
   return workShop.userCount;
 };
+
 export const updateRegisterCount = async (
   workShop: string,
   date: string
