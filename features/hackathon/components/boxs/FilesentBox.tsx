@@ -1,5 +1,15 @@
 "use client";
 
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+
 import styles from "@/app/hackathon/page.module.css";
 import OuterBox from "../OuterBox";
 import InnerBox from "../InnerBox";
@@ -19,6 +29,8 @@ const FileSent: React.FC = () => {
   const [selectedName, setSelectedName] = useState("");
   const [uploading, setUploading] = useState(false);
   const [dataMissing, setDataMissing] = useState(false);
+  const [popUpshow, setPopUpShow] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const storedFullName = localStorage.getItem("ideaName");
@@ -107,6 +119,11 @@ const FileSent: React.FC = () => {
   const handleUpload = async () => {
     if (uploading) return;
     if (!validateForm()) return;
+
+    setUploading(true);
+    setIsLoading(true);
+    setPopUpShow(true);
+
     try {
       if (!selectedFile) return;
       const formData = handleReadyInformation();
@@ -117,7 +134,6 @@ const FileSent: React.FC = () => {
       }
 
       formData.append("pdf", selectedFile);
-      setUploading(true);
       var res = await axios.post("/api/upload", formData);
       if (res.status === 200) {
         localStorage.removeItem("educationLevel");
@@ -141,6 +157,8 @@ const FileSent: React.FC = () => {
       }
       router.push(`/hackathon/submit`);
     } catch (error: any) {
+      setIsLoading(false);
+      setUploading(false);
       console.log(error.response?.data);
     }
   };
@@ -168,6 +186,46 @@ const FileSent: React.FC = () => {
     <section className="lg:mx-[10%]">
       <OuterBox>
         <InnerBox>
+        <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
+          <AlertDialogContent className="flex flex-col items-center justify-center">
+            { !isLoading && (
+              <div className="flex flex-col items-center justify-center gap-5">
+                <AlertDialogHeader className="flex flex-col items-center justify-center">
+                  <Image
+                    src="/assets/workshop/cross-circle.svg"
+                    width={128}
+                    height={128}
+                    className=" opacity-65"
+                    alt="cross"
+                  />
+                  <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">ดำเนินการไม่สำเร็จ</AlertDialogTitle>
+                  <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                  พบข้อผิดพลาดในการสมัคร <br className="block md:hidden" />(เกิดปัญหากับข้อมูลหรือเซิฟเวอร์มีปัญหา)<br />กรุณาลองใหม่อีกครั้ง
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter className="flex flex-col items-center justify-center">
+                  <AlertDialogCancel className="bg-[#BC5A5A] text-[14px]">ลองใหม่</AlertDialogCancel>
+                </AlertDialogFooter>
+              </div>
+            )}
+            { isLoading && (
+              <div className="flex flex-col items-center justify-center gap-5 m-5">
+                <AlertDialogHeader className="flex flex-col items-center justify-center">
+                  <Image
+                    src="/assets/workshop/loading.svg"
+                    width={128}
+                    height={128}
+                    alt="loading"
+                  />
+                  <AlertDialogTitle className="text-[#5A81BC] text-[20px] font-semibold">กำลังดำเนินการ</AlertDialogTitle>
+                  <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                  ระบบกำลังดำเนินการ กรุณารอสักครู่
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+              </div>
+            )}
+          </AlertDialogContent>
+        </AlertDialog>
           <div className="flex flex-col items-center">
             <h1 className="text-[#5A81BC] text-[18px] md:text-[24px] font-bold">
               Proposal File

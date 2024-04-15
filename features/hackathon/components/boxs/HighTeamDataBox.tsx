@@ -43,6 +43,12 @@ const HighTeamData: React.FC<Props> = ({ num }) => {
 
   const clickHandle = () => {
     if (validateForm() === false) return;
+    if (parseInt(localStorage.getItem("teamMembers") || "0") == 0 || parseInt(localStorage.getItem("teamMembers") || "0") > 5) {
+      localStorage.removeItem("teamMembers")
+      router.push("/");
+      alert("มีบางอย่างผิดพลาด กรุณากรอกข้อมูลใหม่อีกครั้ง\nขออภัยในความไม่สะดวก 🙇‍♂️✨")
+      return;
+    }
 
     localStorage.setItem("high_fullname_" + num, fullname);
     localStorage.setItem("high_nickname_" + num, nickname);
@@ -50,7 +56,7 @@ const HighTeamData: React.FC<Props> = ({ num }) => {
     localStorage.setItem("high_tel_" + num, tel);
     localStorage.setItem("high_email_" + num, email);
 
-    if (parseInt(num) == parseInt(localStorage.getItem("teamMembers") || "0")) {
+    if (parseInt(num) >= parseInt(localStorage.getItem("teamMembers") || "0")) {
       router.push("/hackathon/filesent");
     } else {
       let inputs = document.getElementsByTagName("input");
