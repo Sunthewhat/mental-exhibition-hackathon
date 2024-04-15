@@ -140,6 +140,8 @@ const FileSent: React.FC = () => {
       //Check in case that user don't have information
       if (formData.get("teamName") === "" || formData.get("teamMembers") === "") {
         setDataMissing(true);
+        setUploading(false);
+        setIsLoading(false);
         return;
       }
 
