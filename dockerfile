@@ -5,14 +5,9 @@ FROM base AS deps
 WORKDIR /app
 
 COPY package.json ./
+COPY prisma ./prisma/
 RUN npm i
 RUN npm i sharp
-
-FROM deps as installer
-
-COPY prisma ./
-
-RUN npx prisma generate
 
 FROM base AS builder
 
