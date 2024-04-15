@@ -20,6 +20,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ExhiButton from "../../ExhiButton";
 import { ChevronLeft } from "lucide-react";
+import { getRegisterCountByName } from "../../../workshop/api";
+
 interface Props {
   textStyle: {
     header: string;
@@ -54,6 +56,7 @@ const FormExhibitionBox = ({
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const [popUpshow, setPopUpShow] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
   
   const handleChange = (event: { target: { id: string; value: string } }) => {
     if (event.target.id === "firstname") {
@@ -137,6 +140,14 @@ const FormExhibitionBox = ({
     setIsLoading(true);
     setPopUpShow(true);
 
+    const exhibition_disable = await getRegisterCountByName(`exhibition_disable`);
+    if (exhibition_disable != 0) {
+      setIsDisabled(true);
+      setIsLoading(false);
+      setIsSubmit(false);
+      return;
+    }
+
     formData.set("firstName", firstName);
     formData.set("lastName", lastName);
     formData.set("studentId", studentId);
@@ -190,9 +201,12 @@ const FormExhibitionBox = ({
                     alt="cross"
                   />
                   <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">ดำเนินการไม่สำเร็จ</AlertDialogTitle>
-                  <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                  { !isDisabled && <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
                   พบข้อผิดพลาดในการสมัคร <br className="block md:hidden" />(เกิดปัญหากับข้อมูลหรือเซิฟเวอร์มีปัญหา)<br />กรุณาลองใหม่อีกครั้ง
-                  </AlertDialogDescription>
+                  </AlertDialogDescription>}
+                  { isDisabled && <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                  ขออภัย ฟอร์มดังกล่าวปิดรับสมัครแล้ว
+                  </AlertDialogDescription>}
                 </AlertDialogHeader>
                 <AlertDialogFooter className="flex flex-col items-center justify-center">
                   <AlertDialogCancel className="bg-[#BC5A5A] text-[14px]">ลองใหม่</AlertDialogCancel>

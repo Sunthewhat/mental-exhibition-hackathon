@@ -18,6 +18,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { getRegisterCountByName } from "../../../workshop/api";
 
 const FileSent: React.FC = () => {
   const router = useRouter();
@@ -31,6 +32,7 @@ const FileSent: React.FC = () => {
   const [dataMissing, setDataMissing] = useState(false);
   const [popUpshow, setPopUpShow] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
   useEffect(() => {
     const storedFullName = localStorage.getItem("ideaName");
@@ -124,6 +126,14 @@ const FileSent: React.FC = () => {
     setIsLoading(true);
     setPopUpShow(true);
 
+    const hackathon_disable = await getRegisterCountByName(`hackathon_disable`);
+    if (hackathon_disable != 0) {
+      setIsDisabled(true);
+      setUploading(false);
+      setIsLoading(false);
+      return;
+    }
+
     try {
       if (!selectedFile) return;
       const formData = handleReadyInformation();
@@ -199,9 +209,12 @@ const FileSent: React.FC = () => {
                     alt="cross"
                   />
                   <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">ดำเนินการไม่สำเร็จ</AlertDialogTitle>
-                  <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                  { !isDisabled && <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
                   พบข้อผิดพลาดในการสมัคร <br className="block md:hidden" />(เกิดปัญหากับข้อมูลหรือเซิฟเวอร์มีปัญหา)<br />กรุณาลองใหม่อีกครั้ง
-                  </AlertDialogDescription>
+                  </AlertDialogDescription>}
+                  { isDisabled && <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                  ขออภัย ฟอร์มดังกล่าวปิดรับสมัครแล้ว
+                  </AlertDialogDescription>}
                 </AlertDialogHeader>
                 <AlertDialogFooter className="flex flex-col items-center justify-center">
                   <AlertDialogCancel className="bg-[#BC5A5A] text-[14px]">ลองใหม่</AlertDialogCancel>

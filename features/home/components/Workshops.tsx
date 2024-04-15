@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import WorkshopItem from "./WorkshopItem";
 import WorkshopsContainer from "./WorkshopsContainer";
 import { Noto_Sans_Thai, Slackside_One } from "next/font/google";
+import { getRegisterCountByName } from "../../workshop/api";
 
 interface TextSize {
   header: Number;
@@ -18,6 +19,7 @@ export default function Workshops() {
   const isMobile = useMediaQuery({ minWidth: 320, maxWidth: 680 });
   const isTablet = useMediaQuery({ minWidth: 680, maxWidth: 768 });
   const [textSize, setTextSize] = useState<TextSize>({ header: 14, para: 12 });
+  const [workshop_disable, setWorkshop_disable] = useState(false);
 
   useEffect(() => {
     setTextSize(
@@ -27,7 +29,16 @@ export default function Workshops() {
         ? { header: 40, para: 14 }
         : { header: 56, para: 16 }
     );
+    
+    workshopCheck();
   }, [isMobile, isTablet]);
+  
+  const workshopCheck = async () => {
+    const ws_dis = await getRegisterCountByName(`workshop_disable`);
+    if (ws_dis != 0) {
+      setWorkshop_disable(true);
+    } 
+  }
 
   return (
     <div id="workshop" className="w-full flex flex-col items-center gap-10 px-[30px]">
@@ -83,7 +94,7 @@ export default function Workshops() {
           เทียนหอม"
           imgUrl="/assets/home/vase.png"
           haveButton={true}
-          isDisabled={true}
+          isDisabled={workshop_disable}
         ></WorkshopItem>
         <WorkshopItem
           linkTo="/workshop/jud-jai-sai-jae-gun/consent"
@@ -91,7 +102,7 @@ export default function Workshops() {
           desc="จัดดอกไม้แสนสวยเป็นของขวัญให้ตัวคุณ"
           imgUrl="/assets/home/roses.png"
           haveButton={true}
-          isDisabled={true}
+          isDisabled={workshop_disable}
         ></WorkshopItem>
       </WorkshopsContainer>
 
@@ -105,7 +116,7 @@ export default function Workshops() {
             imgUrl="/assets/home/teapot.png"
             haveButton={true}
             extraLabel={true}
-            isDisabled={true}
+            isDisabled={workshop_disable}
           ></WorkshopItem>
           <WorkshopItem
             linkTo="/workshop/matcha-moments/consent"
@@ -114,7 +125,7 @@ export default function Workshops() {
             imgUrl="/assets/home/coffee.png"
             haveButton={true}
             extraLabel={true}
-            isDisabled={true}
+            isDisabled={workshop_disable}
           ></WorkshopItem>
         </WorkshopsContainer>
       </div>
