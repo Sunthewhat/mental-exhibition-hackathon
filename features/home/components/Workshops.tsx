@@ -83,6 +83,7 @@ export default function Workshops() {
           เทียนหอม"
           imgUrl="/assets/home/vase.png"
           haveButton={true}
+          isDisabled={true}
         ></WorkshopItem>
         <WorkshopItem
           linkTo="/workshop/jud-jai-sai-jae-gun/consent"
@@ -90,6 +91,7 @@ export default function Workshops() {
           desc="จัดดอกไม้แสนสวยเป็นของขวัญให้ตัวคุณ"
           imgUrl="/assets/home/roses.png"
           haveButton={true}
+          isDisabled={true}
         ></WorkshopItem>
       </WorkshopsContainer>
 
@@ -103,6 +105,7 @@ export default function Workshops() {
             imgUrl="/assets/home/teapot.png"
             haveButton={true}
             extraLabel={true}
+            isDisabled={true}
           ></WorkshopItem>
           <WorkshopItem
             linkTo="/workshop/matcha-moments/consent"
@@ -111,6 +114,7 @@ export default function Workshops() {
             imgUrl="/assets/home/coffee.png"
             haveButton={true}
             extraLabel={true}
+            isDisabled={true}
           ></WorkshopItem>
         </WorkshopsContainer>
       </div>

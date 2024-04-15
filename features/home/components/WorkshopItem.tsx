@@ -13,6 +13,7 @@ interface Props {
   haveButton?: boolean;
   linkTo: string;
   extraLabel?: boolean;
+  isDisabled?: boolean;
 }
 
 interface ContainerSize {
@@ -31,7 +32,7 @@ interface TextSize {
   para: number;
 }
 
-export default function WorkshopItem({title, desc, imgUrl, haveButton, linkTo, extraLabel}: Props) {
+export default function WorkshopItem({title, desc, imgUrl, haveButton, linkTo, extraLabel, isDisabled}: Props) {
 
   const isMobile = useMediaQuery({minWidth: 320, maxWidth: 680});
   const isTablet = useMediaQuery({minWidth: 680, maxWidth: 768});
@@ -68,7 +69,8 @@ export default function WorkshopItem({title, desc, imgUrl, haveButton, linkTo, e
         borderBottomRightRadius: haveButton ? 0 : `${containerSize.borderRadius}px`,
         borderTopLeftRadius: `${containerSize.borderRadius}px`,
         borderTopRightRadius: `${containerSize.borderRadius}px`,
-
+        opacity: isDisabled ? "50%" : "100%",
+        pointerEvents: isDisabled ? "none" : "auto"
       }}
       whileHover={{
         scale: 1.1
