@@ -1,6 +1,10 @@
 "use client";
 
-import type { workshopBooking } from "@prisma/client";
+interface workshopBooking {
+  id: number;
+  title: string;
+  userCount: number;
+}
 
 export const getRegisterCountByName = async (name: string) => {
   const datas: workshopBooking[] = await fetch("/api/workshop/data", {
