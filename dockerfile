@@ -1,11 +1,5 @@
 FROM node:latest as base
 
-FROM node as installer
-
-WORKDIR /app
-
-COPY prisma ./
-
 FROM base AS deps
 
 WORKDIR /app
@@ -13,6 +7,14 @@ WORKDIR /app
 COPY package.json ./
 RUN npm i
 RUN npm i sharp
+
+FROM node as installer
+
+WORKDIR /app
+
+COPY prisma ./
+
+RUN npx prisma generate
 
 FROM base AS builder
 
