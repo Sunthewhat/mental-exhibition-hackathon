@@ -8,9 +8,7 @@ COPY package.json ./
 RUN npm i
 RUN npm i sharp
 
-FROM node as installer
-
-WORKDIR /app
+FROM deps as installer
 
 COPY prisma ./
 
