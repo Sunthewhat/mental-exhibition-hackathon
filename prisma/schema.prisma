@@ -10,5 +10,13 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://mexhi:qQ&hh1_M@db.sunthewhat.com:15432/mentalexhi"
+}
+// env("DATABASE_URL")
+// DATABASE_URL="postgresql://mexhi:qQ&hh1_M@db.sunthewhat.com:15432/mentalexhi"
+
+model workshopBooking {
+  id Int @id @default(autoincrement())
+  title String @unique
+  userCount Int
 }

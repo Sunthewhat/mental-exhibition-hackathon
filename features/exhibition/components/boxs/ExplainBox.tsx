@@ -74,7 +74,7 @@ const ExplainBox = ({ textStyle: { header, subHeader, paragraph } }: Props) => {
               </InViewAnimation>
               <ol className={`${paragraph} space-y-2`}>
                 <InViewAnimation>
-                  <li className={`leading-5`}>
+                  <li>
                     1. ผู้เข้าร่วมต้องเป็นนักศึกษาที่กำลังศึกษาอยู่ที่
                     มจธ. โดยสามารถส่งผลงานได้คนละ 1 ผลงาน
                   </li>

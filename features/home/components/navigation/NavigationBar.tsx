@@ -16,6 +16,13 @@ const noto = Noto_Sans({ subsets: ["latin"] });
 export default function NavigationBar({ children }: Props) {
   const [showSidebar, setShowSidebar] = useState<boolean>();
 
+  const workshopClick = () => {
+    const workshopSection = document.getElementById("workshop");
+    if (workshopSection) {
+      workshopSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <div className="px-[10px] md:px-[60px] flex justify-between">
@@ -44,6 +51,9 @@ export default function NavigationBar({ children }: Props) {
           <Link href="/hackathon/pdpa">Hackathon</Link>
           <Link href="/exhibition/explain">Exhibition</Link>
           <Link href="/game">Game</Link>
+          <button onClick={workshopClick} >
+            Workshop
+          </button>
         </div>
       </div>
 
