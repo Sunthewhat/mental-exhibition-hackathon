@@ -1,5 +1,11 @@
 FROM node:latest as base
 
+FROM node as installer
+
+WORKDIR /app
+
+COPY prisma ./
+
 FROM base AS deps
 
 WORKDIR /app
