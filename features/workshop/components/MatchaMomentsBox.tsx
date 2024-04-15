@@ -121,6 +121,25 @@ const MatchaMomentsBox = ({
 
   const onSubmit = async () => {
     if (validateForm() === false) return;
+
+    setIsSubmitting(true);
+    setIsLoading(true);
+    setPopUpShow(true);
+
+    const workshop_disable = await getRegisterCountByName(`workshop_disable`);
+    if (workshop_disable != 0) {
+      setIsSubmitting(false);
+      setIsLoading(false);
+      return;
+    }
+
+    const count = await getRegisterCountByName(`MatchaMoments_${date?.toString().substring(0,2)}`);
+    if (count >= maxParticipant) {
+      setIsSubmitting(false);
+      setIsLoading(false);
+      return;
+    }
+
     formData.set("honorific-prefix", honorificPrefix);
     formData.set("fullname", fullname);
     formData.set("nickname", nickname);
@@ -131,13 +150,6 @@ const MatchaMomentsBox = ({
     setIsSubmitting(true);
     setIsLoading(true);
     setPopUpShow(true);
-
-    const count = await getRegisterCountByName(`MatchaMoments_${date?.toString().substring(0,2)}`);
-    if (count >= maxParticipant) {
-      setIsSubmitting(false);
-      setIsLoading(false);
-      return;
-    }
 
     try {
       const dataGoogleForm = await insertToGoogleForm(link, formData);

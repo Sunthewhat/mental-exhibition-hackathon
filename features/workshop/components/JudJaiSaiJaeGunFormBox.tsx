@@ -125,16 +125,16 @@ const JudJaiSaiJaeGunBox = ({
   const onSubmit = async () => {
     if (validateForm() === false) return;
 
-    formData.set("honorific-prefix", honorificPrefix);
-    formData.set("fullname", fullname);
-    formData.set("nickname", nickname);
-    formData.set("tel", tel);
-    formData.set("email", email);
-    formData.set("date", date as string);
-
     setIsSubmitting(true);
     setIsLoading(true);
     setPopUpShow(true);
+
+    const workshop_disable = await getRegisterCountByName(`workshop_disable`);
+    if (workshop_disable != 0) {
+      setIsSubmitting(false);
+      setIsLoading(false);
+      return;
+    }
 
     const count = await getRegisterCountByName(`JudJaiSaiJaeGun_${date?.toString().substring(0,2)}`);
     if (count >= maxParticipant) {
@@ -143,10 +143,18 @@ const JudJaiSaiJaeGunBox = ({
       return;
     }
 
+    formData.set("honorific-prefix", honorificPrefix);
+    formData.set("fullname", fullname);
+    formData.set("nickname", nickname);
+    formData.set("tel", tel);
+    formData.set("email", email);
+    formData.set("date", date as string);
+
     try {
       const dataGoogleForm = await insertToGoogleForm(link, formData);
 
       if (dataGoogleForm.Message === "Complete") {
+        console.log(dataGoogleForm.Message)
         await updateRegisterCount("JudJaiSaiJaeGun", date as string).catch(
           (error) => console.error("Error updating user count:", error)
         );
