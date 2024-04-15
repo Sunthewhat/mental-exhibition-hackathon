@@ -1,23 +1,15 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output = "../../node_modules/.prisma/client"
+  // output   = "../../node_modules/.prisma/client"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://mexhi:qQ&hh1_M@db.sunthewhat.com:15432/mentalexhi"
+  url      = env("DATABASE_URL")
 }
-// env("DATABASE_URL")
-// DATABASE_URL="postgresql://mexhi:qQ&hh1_M@db.sunthewhat.com:15432/mentalexhi"
 
 model workshopBooking {
-  id Int @id @default(autoincrement())
-  title String @unique
+  id        Int    @id @default(autoincrement())
+  title     String @unique
   userCount Int
 }
