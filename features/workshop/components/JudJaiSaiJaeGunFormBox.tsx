@@ -156,8 +156,10 @@ const JudJaiSaiJaeGunBox = ({
       const dataGoogleForm = await insertToGoogleForm(link, formData);
 
       if (dataGoogleForm.Message === "Complete") {
-        // console.log(dataGoogleForm.Message)
-        await updateRegisterCount("JudJaiSaiJaeGun", date as string)
+        console.log(dataGoogleForm.Message)
+        await updateRegisterCount("JudJaiSaiJaeGun", date as string).catch(
+          (error) => console.error("Error updating user count:", error)
+        );
         await assertSendEmail({
           userName: fullname as string,
           workShop: "JudJaiSaiJaeGun",
@@ -172,6 +174,7 @@ const JudJaiSaiJaeGunBox = ({
       }
       setIsSubmitting(false);
     } catch (error) {
+      setIsLoading(false);
       console.error("Error submitting form:", error);
     }
   };
