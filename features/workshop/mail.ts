@@ -19,7 +19,7 @@ export const assertSendEmail = async ({
   if (!email) {
     throw Error("A target email is required.");
   }
-
+  
   const user = process.env.NODEMAILER_EMAIL;
   const pass = process.env.NODEMAILER_PASS;
 

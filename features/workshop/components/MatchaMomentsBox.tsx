@@ -161,19 +161,20 @@ const MatchaMomentsBox = ({
 
     try {
       const dataGoogleForm = await insertToGoogleForm(link, formData);
-
+      console.log("A")
       if (dataGoogleForm.Message === "Complete") {
+        console.log("B")
         await updateRegisterCount("MatchaMoments", date as string).catch(
           (error) => console.error("Error updating user count:", error)
         );
-
+        console.log("C")
         await assertSendEmail({
           userName: fullname as string,
           workShop: "MatchaMoments",
           date: date as string,
           email,
         });
-
+        console.log("D")
         router.push(`/workshop/${link}/submit`);
       } else {
         setIsLoading(false);
