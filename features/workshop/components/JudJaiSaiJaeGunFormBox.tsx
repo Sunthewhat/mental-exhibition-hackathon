@@ -157,15 +157,13 @@ const JudJaiSaiJaeGunBox = ({
 
       if (dataGoogleForm.Message === "Complete") {
         // console.log(dataGoogleForm.Message)
-        await updateRegisterCount("JudJaiSaiJaeGun", date as string).catch(
-          (error) => console.error("Error updating user count:", error)
-        );
-        // await assertSendEmail({
-        //   userName: fullname as string,
-        //   workShop: "JudJaiSaiJaeGun",
-        //   date: date as string,
-        //   email,
-        // });
+        await updateRegisterCount("JudJaiSaiJaeGun", date as string)
+        await assertSendEmail({
+          userName: fullname as string,
+          workShop: "JudJaiSaiJaeGun",
+          date: date as string,
+          email,
+        });
 
         router.push(`/workshop/${link}/submit`);
       } else {
@@ -174,7 +172,6 @@ const JudJaiSaiJaeGunBox = ({
       }
       setIsSubmitting(false);
     } catch (error) {
-      setIsLoading(false);
       console.error("Error submitting form:", error);
     }
   };
