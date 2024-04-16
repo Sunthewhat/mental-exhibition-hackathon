@@ -162,12 +162,12 @@ const JudJaiSaiJaeGunBox = ({
           (error) => console.error("Error updating user count:", error)
         );
         console.log("B")
-        await assertSendEmail({
-          userName: fullname as string,
-          workShop: "JudJaiSaiJaeGun",
-          date: date as string,
-          email,
-        });
+        const emailForm = new FormData();
+        emailForm.set("userName", fullname as string);
+        emailForm.set("workShop", "MatchaMoments");
+        emailForm.set("date", date as string);
+        emailForm.set("email", email);
+        await assertSendEmail(emailForm);
         console.log("C")
 
         router.push(`/workshop/${link}/submit`);
