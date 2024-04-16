@@ -61,3 +61,20 @@ export const insertToGoogleForm = async (link: string, formData: FormData) => {
     console.error("Error while insertToGoogleForm ", err);
   }
 };
+
+export const assertSendEmail = async (formData: FormData) => {
+  try {
+    const response_google_form = await fetch(`/api/workshop/mail`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response_google_form.ok) {
+      throw new Error("Something went wrong (Email)");
+    }
+
+    return await response_google_form.json();
+  } catch (err) {
+    console.error("Error while Email ", err);
+  }
+};

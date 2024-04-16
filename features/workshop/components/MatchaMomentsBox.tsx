@@ -21,8 +21,8 @@ import {
   insertToGoogleForm,
   updateRegisterCount,
   getRegisterCountByName,
+  assertSendEmail
 } from "../api";
-import { assertSendEmail } from "../mail";
 import { Loader2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -168,12 +168,12 @@ const MatchaMomentsBox = ({
           (error) => console.error("Error updating user count:", error)
         );
         console.log("C")
-        await assertSendEmail({
-          userName: fullname as string,
-          workShop: "MatchaMoments",
-          date: date as string,
-          email,
-        });
+        const emailForm = new FormData();
+        emailForm.set("userName", fullname as string);
+        emailForm.set("workShop", "MatchaMoments");
+        emailForm.set("date", date as string);
+        emailForm.set("email", email);
+        await assertSendEmail(emailForm);
         // router.push(`/workshop/${link}/submit`);
         console.log("PUSH")
       } else {

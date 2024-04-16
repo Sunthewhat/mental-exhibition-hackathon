@@ -6,22 +6,24 @@ import nodemailer from "nodemailer";
 import {
   ReserveConfirmation,
   ReserveConfirmationProps,
-} from "./components/ReserveConfirmation";
+} from "@/features/workshop/components/ReserveConfirmation";
 import React from "react";
-import { getLocByWorkshop } from "./helper";
+import { getLocByWorkshop } from "@/features/workshop/helper";
 
-export const assertSendEmail = async ({
-  userName,
-  workShop,
-  date,
-  email,
-}: ReserveConfirmationProps) => {
+export const POST = async (req: Request, res: Response) => {
+    const formData = await req.formData();  
+    
+    const userName = formData.get("userName") as string;
+    const email = formData.get("email") as string;
+    const workShop = formData.get("workShop") as string;
+    const date = formData.get("date") as string;
+
   if (!email) {
     throw Error("A target email is required.");
   }
   
-  const user = process.env.NODEMAILER_EMAIL;
-  const pass = process.env.NODEMAILER_PASS;
+  const user = "charana.sukr@mail.kmutt.ac.th";
+  const pass = "wsak vsfc pyyg atol";
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -31,7 +33,7 @@ export const assertSendEmail = async ({
     },
   });
 
-  const location = getLocByWorkshop(workShop);
+const location = getLocByWorkshop(workShop);
   try {
     const options = {
       // from: "Mental Exhibition <mentalexhibition@hackmindgallery-kmutt.com>",
@@ -50,7 +52,9 @@ export const assertSendEmail = async ({
 
     await transporter.sendMail(options);
     console.log(`Email (${workShop}) has been sent to user.`);
+    return Response.json({ Message: "Complete", status: 201 });
   } catch (err) {
     console.log(`Error sending email (${workShop}) `);
+    return Response.json({ Message: "Error", status: 404 });
   }
 };
