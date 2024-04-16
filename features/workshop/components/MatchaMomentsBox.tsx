@@ -161,21 +161,17 @@ const MatchaMomentsBox = ({
 
     try {
       const dataGoogleForm = await insertToGoogleForm(link, formData);
-      console.log("A")
       if (dataGoogleForm.Message === "Complete") {
-        console.log("B")
         await updateRegisterCount("MatchaMoments", date as string).catch(
           (error) => console.error("Error updating user count:", error)
         );
-        console.log("C")
         const emailForm = new FormData();
         emailForm.set("userName", fullname as string);
         emailForm.set("workShop", "MatchaMoments");
         emailForm.set("date", date as string);
         emailForm.set("email", email);
         await assertSendEmail(emailForm);
-        // router.push(`/workshop/${link}/submit`);
-        console.log("PUSH")
+        router.push(`/workshop/${link}/submit`);
       } else {
         setIsLoading(false);
         console.error("Submission failed:", dataGoogleForm.error);
@@ -190,7 +186,7 @@ const MatchaMomentsBox = ({
   return (
     <OuterBox>
       <InnerBox>
-        {/* <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
+        <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
           <AlertDialogContent className="flex flex-col items-center justify-center">
             {!isLoading && (
               <div className="flex flex-col items-center justify-center gap-5">
@@ -249,7 +245,7 @@ const MatchaMomentsBox = ({
               </div>
             )}
           </AlertDialogContent>
-        </AlertDialog> */}
+        </AlertDialog>
         <div className="flex flex-col justify-center items-center gap-3 border-b border-[#B9A5D6] pb-6">
           <div className="">
             <Image
