@@ -153,22 +153,19 @@ const JudJaiSaiJaeGunBox = ({
     formData.set("date", date as string);
 
     try {
-      console.log("Start")
       const dataGoogleForm = await insertToGoogleForm(link, formData);
 
       if (dataGoogleForm.Message === "Complete") {
-        console.log("A")
         await updateRegisterCount("JudJaiSaiJaeGun", date as string).catch(
           (error) => console.error("Error updating user count:", error)
         );
-        console.log("B")
+
         const emailForm = new FormData();
         emailForm.set("userName", fullname as string);
         emailForm.set("workShop", "MatchaMoments");
         emailForm.set("date", date as string);
         emailForm.set("email", email);
         await assertSendEmail(emailForm);
-        console.log("C")
 
         router.push(`/workshop/${link}/submit`);
       } else {
