@@ -13,7 +13,7 @@ import { getLocByWorkshop } from "@/features/workshop/helper";
 export const POST = async (req: Request, res: Response) => {
     const formData = await req.formData();  
     
-    const userName = formData.get("userName") as string;
+    const fullName = formData.get("fullName") as string;
     const email = formData.get("email") as string;
     const workShop = formData.get("workShop") as string;
     const date = formData.get("date") as string;
@@ -42,7 +42,7 @@ const location = getLocByWorkshop(workShop);
       subject: "[reservation confirmed] ยืนยันการจองเวิร์คช็อป",
       html: render(
         React.createElement(ReserveConfirmation, {
-          userName,
+          fullName,
           workShop,
           date,
           location,
