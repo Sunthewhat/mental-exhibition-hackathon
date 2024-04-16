@@ -1,3 +1,4 @@
+
 const locations = {
   MatchaMoments: [
     "Design Showcase (ห้องเล็กใกล้ประตูเลื่อน)",

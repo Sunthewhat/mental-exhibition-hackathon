@@ -17,6 +17,7 @@ export const POST = async (req: Request, res: Response) => {
 
   try {
     const formPrefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLScGF2yi0Q9sTRsrM3LedSYcGg4bbf-RaY584VSChH79hCFIVw/formResponse?usp=pp_url&entry.1024483988=${honorificPrefix}&entry.2039753881=${fullname}&entry.467966751=${nickname}&entry.1549112855=${tel}&entry.2037164155=${email}&entry.395983718=${date}&submit=Submit"`;
+    
     try {
       await fetch(formPrefilledLink);
       console.log("Form (Matcha Moments) submitted to Google");
