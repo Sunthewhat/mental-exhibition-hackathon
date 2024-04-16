@@ -10,18 +10,21 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-
 import Image from "next/image";
 import OuterBox from "@/features/hackathon/components/OuterBox";
 import styles from "@/app/hackathon/page.module.css";
 import InnerBox from "@/features/hackathon/components/InnerBox";
 import GButton from "@/features/hackathon/components/GButton";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import InViewAnimation from "@/features/shared/Animation/InViewAnimation";
-import { insertToGoogleForm, updateRegisterCount, getRegisterCountByName } from "../api";
+import {
+  insertToGoogleForm,
+  updateRegisterCount,
+  getRegisterCountByName,
+} from "../api";
 import { assertSendEmail } from "../mail";
 import { Loader2Icon } from "lucide-react";
+import { useRouter } from "next/router";
 
 interface Props {
   textStyle: {
@@ -38,6 +41,8 @@ const MatchaMomentsBox = ({
   title,
   link,
 }: Props) => {
+  const router = useRouter();
+
   const fontColor = {
     blue: "text-[#5A81BC]",
     purple: "text-[#8E7AAB]",
@@ -118,7 +123,6 @@ const MatchaMomentsBox = ({
     setError(false);
     return true;
   };
-  const router = useRouter();
 
   const onSubmit = async () => {
     if (validateForm() === false) return;
@@ -135,7 +139,9 @@ const MatchaMomentsBox = ({
       return;
     }
 
-    const count = await getRegisterCountByName(`MatchaMoments_${date?.toString().substring(0,2)}`);
+    const count = await getRegisterCountByName(
+      `MatchaMoments_${date?.toString().substring(0, 2)}`
+    );
     if (count >= maxParticipant) {
       setIsSubmitting(false);
       setIsLoading(false);
@@ -157,8 +163,9 @@ const MatchaMomentsBox = ({
       const dataGoogleForm = await insertToGoogleForm(link, formData);
 
       if (dataGoogleForm.Message === "Complete") {
-        await updateRegisterCount("MatchaMoments", date as string)
-          .catch((error) => console.error("Error updating user count:", error));
+        await updateRegisterCount("MatchaMoments", date as string).catch(
+          (error) => console.error("Error updating user count:", error)
+        );
 
         await assertSendEmail({
           userName: fullname as string,
@@ -182,9 +189,9 @@ const MatchaMomentsBox = ({
   return (
     <OuterBox>
       <InnerBox>
-      <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
+        <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
           <AlertDialogContent className="flex flex-col items-center justify-center">
-            { !isLoading && (
+            {!isLoading && (
               <div className="flex flex-col items-center justify-center gap-5">
                 <AlertDialogHeader className="flex flex-col items-center justify-center">
                   <Image
@@ -194,20 +201,35 @@ const MatchaMomentsBox = ({
                     className=" opacity-65"
                     alt="cross"
                   />
-                  <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">ดำเนินการไม่สำเร็จ</AlertDialogTitle>
-                  { !isDisabled && <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
-                  พบข้อผิดพลาดในการลงทะเบียน <br className="block md:hidden" />(ที่นั่งเต็มหรือเซิฟเวอร์มีปัญหา)<br />กรุณาลองใหม่อีกครั้ง
-                  </AlertDialogDescription>}
-                  { isDisabled && <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
-                  ขออภัย ฟอร์มดังกล่าวปิดรับสมัครแล้ว
-                  </AlertDialogDescription>}
+                  <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">
+                    ดำเนินการไม่สำเร็จ
+                  </AlertDialogTitle>
+                  {!isDisabled && (
+                    <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                      พบข้อผิดพลาดในการลงทะเบียน{" "}
+                      <br className="block md:hidden" />
+                      (ที่นั่งเต็มหรือเซิฟเวอร์มีปัญหา)
+                      <br />
+                      กรุณาลองใหม่อีกครั้ง
+                    </AlertDialogDescription>
+                  )}
+                  {isDisabled && (
+                    <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                      ขออภัย ฟอร์มดังกล่าวปิดรับสมัครแล้ว
+                    </AlertDialogDescription>
+                  )}
                 </AlertDialogHeader>
                 <AlertDialogFooter className="flex flex-col items-center justify-center">
-                  <AlertDialogCancel onClick={() => window.location.reload()} className="bg-[#BC5A5A] text-[14px]">ลองใหม่</AlertDialogCancel>
+                  <AlertDialogCancel
+                    onClick={() => window.location.reload()}
+                    className="bg-[#BC5A5A] text-[14px]"
+                  >
+                    ลองใหม่
+                  </AlertDialogCancel>
                 </AlertDialogFooter>
               </div>
             )}
-            { isLoading && (
+            {isLoading && (
               <div className="flex flex-col items-center justify-center gap-5 m-5">
                 <AlertDialogHeader className="flex flex-col items-center justify-center">
                   <Image
@@ -216,9 +238,11 @@ const MatchaMomentsBox = ({
                     height={128}
                     alt="loading"
                   />
-                  <AlertDialogTitle className="text-[#5A81BC] text-[20px] font-semibold">กำลังดำเนินการ</AlertDialogTitle>
+                  <AlertDialogTitle className="text-[#5A81BC] text-[20px] font-semibold">
+                    กำลังดำเนินการ
+                  </AlertDialogTitle>
                   <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
-                  ระบบกำลังดำเนินการจอง กรุณารอสักครู่
+                    ระบบกำลังดำเนินการจอง กรุณารอสักครู่
                   </AlertDialogDescription>
                 </AlertDialogHeader>
               </div>
@@ -344,10 +368,16 @@ const MatchaMomentsBox = ({
                 <option value="" className="">
                   เลือกวันและเวลาที่ต้องการเข้าร่วม
                 </option>
-                <option value="22/4/2024, 10.00-12.00" disabled={!date1_avaliable}>
+                <option
+                  value="22/4/2024, 10.00-12.00"
+                  disabled={!date1_avaliable}
+                >
                   22/4/2024, 10.00-12.00 {userCount1}/{maxParticipant} (คน)
                 </option>
-                <option value="23/4/2024, 10.00-12.00" disabled={!date2_avaliable}>
+                <option
+                  value="23/4/2024, 10.00-12.00"
+                  disabled={!date2_avaliable}
+                >
                   23/4/2024, 10.00-12.00 {userCount2}/{maxParticipant} (คน)
                 </option>
               </select>
