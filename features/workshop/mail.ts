@@ -10,14 +10,6 @@ import {
 import React from "react";
 import { getLocByWorkshop } from "./helper";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "charana.sukr@mail.kmutt.ac.th",
-    pass: "wsak vsfc pyyg atol",
-  },
-});
-
 export const assertSendEmail = async ({
   userName,
   workShop,
@@ -27,6 +19,17 @@ export const assertSendEmail = async ({
   if (!email) {
     throw Error("A target email is required.");
   }
+
+  const user = process.env.NODEMAILER_EMAIL;
+  const pass = process.env.NODEMAILER_PASS;
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user,
+      pass,
+    },
+  });
 
   const location = getLocByWorkshop(workShop);
   try {
