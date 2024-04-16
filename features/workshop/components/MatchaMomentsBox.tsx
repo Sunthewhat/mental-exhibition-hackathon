@@ -174,8 +174,8 @@ const MatchaMomentsBox = ({
           date: date as string,
           email,
         });
-        console.log("D")
-        router.push(`/workshop/${link}/submit`);
+        // router.push(`/workshop/${link}/submit`);
+        console.log("PUSH")
       } else {
         setIsLoading(false);
         console.error("Submission failed:", dataGoogleForm.error);
