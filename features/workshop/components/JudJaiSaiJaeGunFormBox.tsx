@@ -160,7 +160,6 @@ const JudJaiSaiJaeGunBox = ({
         await updateRegisterCount("JudJaiSaiJaeGun", date as string).catch(
           (error) => console.error("Error updating user count:", error)
         );
-        
         // await assertSendEmail({
         //   userName: fullname as string,
         //   workShop: "JudJaiSaiJaeGun",
