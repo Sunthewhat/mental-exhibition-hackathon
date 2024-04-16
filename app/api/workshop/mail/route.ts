@@ -8,7 +8,7 @@ import {
 } from "@/features/workshop/components/ReserveConfirmation";
 import { getLocByWorkshop } from "@/features/workshop/helper";
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
   const { userName, workShop, date, email } =
     req.body as ReserveConfirmationProps;
 

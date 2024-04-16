@@ -36,8 +36,10 @@ export const updateRegisterCount = async (
     .then((response) => response.json())
     .then((data) => {
       if (data) {
+        console.log("Workshop count updated successfully")
         return Promise.resolve(0);
       } else {
+        console.log("Workshop count update failed")
         throw new Error(data.error);
       }
     });
