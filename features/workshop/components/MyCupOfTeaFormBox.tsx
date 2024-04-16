@@ -19,9 +19,8 @@ import GButton from "@/features/hackathon/components/GButton";
 import InViewAnimation from "../../shared/Animation/InViewAnimation";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { insertToGoogleForm, updateRegisterCount, getRegisterCountByName } from "../api";
+import { insertToGoogleForm, updateRegisterCount, getRegisterCountByName, assertSendEmail } from "../api";
 import { Loader2Icon } from "lucide-react";
-import { assertSendEmail } from "../mail";
 
 interface Props {
   textStyle: {

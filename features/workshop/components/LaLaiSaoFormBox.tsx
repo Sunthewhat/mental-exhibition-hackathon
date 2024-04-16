@@ -20,8 +20,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Loader2Icon } from "lucide-react";
-import { insertToGoogleForm, updateRegisterCount, getRegisterCountByName } from "../api";
-import { assertSendEmail } from "../mail";
+import { insertToGoogleForm, updateRegisterCount, getRegisterCountByName, assertSendEmail } from "../api";
 
 interface Props {
   textStyle: {
