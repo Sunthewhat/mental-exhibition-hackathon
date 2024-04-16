@@ -36,9 +36,7 @@ export const updateRegisterCount = async (
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        console.log("Workshop booking updated:", data.updatedBooking);
-        console.log("Updated user count:", data.updatedBooking.userCount);
-        return Promise.resolve(data.updatedBooking.userCount);
+        return Promise.resolve(0);
       } else {
         throw new Error(data.error);
       }
