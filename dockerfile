@@ -40,4 +40,8 @@ ENV PORT 3000
 
 ENV HOSTNAME "0.0.0.0"
 
+ENV NODEMAILER_EMAIL charana.sukr@mail.kmutt.ac.th
+
+ENV NODEMAILER_PASS wsak vsfc pyyg atol
+
 CMD ["node", "server.js"]
