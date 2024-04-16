@@ -22,9 +22,9 @@ import {
   insertToGoogleForm,
   updateRegisterCount,
   getRegisterCountByName,
+  assertSendEmail
 } from "../api";
 import { Loader2Icon } from "lucide-react";
-import { assertSendEmail } from "../mail";
 import { set } from "lodash";
 
 interface Props {
