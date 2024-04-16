@@ -155,10 +155,6 @@ const MatchaMomentsBox = ({
     formData.set("email", email);
     formData.set("date", date as string);
 
-    setIsSubmitting(true);
-    setIsLoading(true);
-    setPopUpShow(true);
-
     try {
       const dataGoogleForm = await insertToGoogleForm(link, formData);
       if (dataGoogleForm.Message === "Complete") {
