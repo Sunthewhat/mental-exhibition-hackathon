@@ -8,14 +8,6 @@ import {
 } from "@/features/workshop/components/ReserveConfirmation";
 import { getLocByWorkshop } from "@/features/workshop/helper";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "charana.sukr@mail.kmutt.ac.th",
-    pass: "wsak vsfc pyyg atol",
-  },
-});
-
 export default async function POST(req: NextApiRequest, res: NextApiResponse) {
   const { userName, workShop, date, email } =
     req.body as ReserveConfirmationProps;
@@ -23,6 +15,17 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
   if (!email) {
     return res.status(400).json({ error: "A target email is required." });
   }
+
+  const user = process.env.NODEMAILER_EMAIL;
+  const pass = process.env.NODEMAILER_PASS;
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user,
+      pass,
+    },
+  });
 
   const location = getLocByWorkshop(workShop);
 
