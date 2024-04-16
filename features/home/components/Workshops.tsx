@@ -109,7 +109,7 @@ export default function Workshops() {
       <div className="mt-14">
         <WorkshopsContainer>
           <WorkshopItem
-            linkTo="/workshop/my-cup-of-tea/consent"
+            linkTo="/workshop/matcha-moments/consent"
             title="Matcha moments"
             desc="ปล่อยใจไปกับการชงชา
             แสนอร่อย"
@@ -119,7 +119,7 @@ export default function Workshops() {
             isDisabled={workshop_disable}
           ></WorkshopItem>
           <WorkshopItem
-            linkTo="/workshop/matcha-moments/consent"
+            linkTo="/workshop/my-cup-of-coffee/consent"
             title="My cup of coffee"
             desc="เชื่อมโยงกายและใจด้วยการดริปกาแฟ"
             imgUrl="/assets/home/coffee.png"
