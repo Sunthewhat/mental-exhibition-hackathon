@@ -22,7 +22,7 @@ import {
   insertToGoogleForm,
   updateRegisterCount,
   getRegisterCountByName,
-  assertSendEmail
+  assertSendEmail,
 } from "../api";
 import { Loader2Icon } from "lucide-react";
 import { set } from "lodash";
@@ -66,6 +66,8 @@ const JudJaiSaiJaeGunBox = ({
   const [popUpshow, setPopUpShow] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     getRegisterCountByName("JudJaiSaiJaeGun_22").then((count) => {
@@ -121,7 +123,6 @@ const JudJaiSaiJaeGunBox = ({
     setError(false);
     return true;
   };
-  const router = useRouter();
 
   const onSubmit = async () => {
     if (validateForm() === false) return;
@@ -138,7 +139,9 @@ const JudJaiSaiJaeGunBox = ({
       return;
     }
 
-    const count = await getRegisterCountByName(`JudJaiSaiJaeGun_${date?.toString().substring(0,2)}`);
+    const count = await getRegisterCountByName(
+      `JudJaiSaiJaeGun_${date?.toString().substring(0, 2)}`
+    );
     if (count >= maxParticipant) {
       setIsSubmitting(false);
       setIsLoading(false);
@@ -160,12 +163,12 @@ const JudJaiSaiJaeGunBox = ({
           (error) => console.error("Error updating user count:", error)
         );
 
-        const emailForm = new FormData();
-        emailForm.set("userName", fullname as string);
-        emailForm.set("workShop", "MatchaMoments");
-        emailForm.set("date", date as string);
-        emailForm.set("email", email);
-        await assertSendEmail(emailForm);
+        await assertSendEmail({
+          fullName: fullname,
+          email,
+          date: date as string,
+          workShop: "JudJaiSaiJaeGun",
+        });
 
         router.push(`/workshop/${link}/submit`);
       } else {
@@ -184,7 +187,7 @@ const JudJaiSaiJaeGunBox = ({
       <InnerBox>
         <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
           <AlertDialogContent className="flex flex-col items-center justify-center">
-            { !isLoading && (
+            {!isLoading && (
               <div className="flex flex-col items-center justify-center gap-5">
                 <AlertDialogHeader className="flex flex-col items-center justify-center">
                   <Image
@@ -194,20 +197,35 @@ const JudJaiSaiJaeGunBox = ({
                     className=" opacity-65"
                     alt="cross"
                   />
-                  <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">ดำเนินการไม่สำเร็จ</AlertDialogTitle>
-                  { !isDisabled && <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
-                  พบข้อผิดพลาดในการลงทะเบียน <br className="block md:hidden" />(ที่นั่งเต็มหรือเซิฟเวอร์มีปัญหา)<br />กรุณาลองใหม่อีกครั้ง
-                  </AlertDialogDescription>}
-                  { isDisabled && <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
-                  ขออภัย ฟอร์มดังกล่าวปิดรับสมัครแล้ว
-                  </AlertDialogDescription>}
+                  <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">
+                    ดำเนินการไม่สำเร็จ
+                  </AlertDialogTitle>
+                  {!isDisabled && (
+                    <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                      พบข้อผิดพลาดในการลงทะเบียน{" "}
+                      <br className="block md:hidden" />
+                      (ที่นั่งเต็มหรือเซิฟเวอร์มีปัญหา)
+                      <br />
+                      กรุณาลองใหม่อีกครั้ง
+                    </AlertDialogDescription>
+                  )}
+                  {isDisabled && (
+                    <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                      ขออภัย ฟอร์มดังกล่าวปิดรับสมัครแล้ว
+                    </AlertDialogDescription>
+                  )}
                 </AlertDialogHeader>
                 <AlertDialogFooter className="flex flex-col items-center justify-center">
-                  <AlertDialogCancel onClick={() => window.location.reload()} className="bg-[#BC5A5A] text-[14px]">ลองใหม่</AlertDialogCancel>
+                  <AlertDialogCancel
+                    onClick={() => window.location.reload()}
+                    className="bg-[#BC5A5A] text-[14px]"
+                  >
+                    ลองใหม่
+                  </AlertDialogCancel>
                 </AlertDialogFooter>
               </div>
             )}
-            { isLoading && (
+            {isLoading && (
               <div className="flex flex-col items-center justify-center gap-5 m-5">
                 <AlertDialogHeader className="flex flex-col items-center justify-center">
                   <Image
@@ -216,9 +234,11 @@ const JudJaiSaiJaeGunBox = ({
                     height={128}
                     alt="loading"
                   />
-                  <AlertDialogTitle className="text-[#5A81BC] text-[20px] font-semibold">กำลังดำเนินการ</AlertDialogTitle>
+                  <AlertDialogTitle className="text-[#5A81BC] text-[20px] font-semibold">
+                    กำลังดำเนินการ
+                  </AlertDialogTitle>
                   <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
-                  ระบบกำลังดำเนินการจอง กรุณารอสักครู่
+                    ระบบกำลังดำเนินการจอง กรุณารอสักครู่
                   </AlertDialogDescription>
                 </AlertDialogHeader>
               </div>

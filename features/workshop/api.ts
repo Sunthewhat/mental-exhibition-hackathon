@@ -36,10 +36,10 @@ export const updateRegisterCount = async (
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        console.log("Workshop count updated successfully")
+        console.log("Workshop count updated successfully");
         return Promise.resolve(0);
       } else {
-        console.log("Workshop count update failed")
+        console.log("Workshop count update failed");
         throw new Error(data.error);
       }
     });
@@ -62,11 +62,28 @@ export const insertToGoogleForm = async (link: string, formData: FormData) => {
   }
 };
 
-export const assertSendEmail = async (formData: FormData) => {
+interface sendEmailProps {
+  fullName: string;
+  workShop: string;
+  date: string;
+  email: string;
+}
+export const assertSendEmail = async ({
+  fullName,
+  workShop,
+  date,
+  email,
+}: sendEmailProps) => {
+  const mailData = new FormData();
+  mailData.set("workShop", workShop);
+  mailData.set("userName", fullName);
+  mailData.set("date", date);
+  mailData.set("email", email);
+
   try {
     const response_google_form = await fetch(`/api/workshop/mail`, {
       method: "POST",
-      body: formData,
+      body: mailData,
     });
 
     if (!response_google_form.ok) {

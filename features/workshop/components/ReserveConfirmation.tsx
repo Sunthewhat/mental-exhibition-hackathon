@@ -20,7 +20,7 @@ const iconUrl = "https://hackmindgallery-kmutt.com/assets/hackathon/logo.png";
 
 export interface ReserveConfirmationProps {
   email?: string;
-  userName: string;
+  fullName: string;
   workShop: string;
   date: string;
   location?: {
@@ -30,7 +30,7 @@ export interface ReserveConfirmationProps {
 }
 
 export const ReserveConfirmation = ({
-  userName,
+  fullName,
   workShop,
   date,
   location,
@@ -72,7 +72,7 @@ export const ReserveConfirmation = ({
             Reservation Confirmed ยืนยันการจองเวิร์คช็อป{" "}
           </Text>
 
-          <Text style={paragraph}>เรียน ผู้สมัคร, {userName}</Text>
+          <Text style={paragraph}>เรียน ผู้สมัคร, {fullName}</Text>
 
           <Text style={paragraph}>
             ทีมงาน Mental Health Exhibition & Hackathon
@@ -115,7 +115,7 @@ export const ReserveConfirmation = ({
 
           <Hr style={hr} />
 
-          <Text style={paragraph}>Dear Applicants, {userName}</Text>
+          <Text style={paragraph}>Dear Applicants, {fullName}</Text>
 
           <Text style={paragraph}>
             We would like to send you a confirmation of Workshop &quot;

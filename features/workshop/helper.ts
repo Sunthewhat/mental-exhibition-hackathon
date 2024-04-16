@@ -83,3 +83,4 @@ export const periodToString = (
   const period = isThai ? " น." : " AM";
   return `${hour}:${minute}${period}`;
 };
+

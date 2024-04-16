@@ -20,7 +20,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Loader2Icon } from "lucide-react";
-import { insertToGoogleForm, updateRegisterCount, getRegisterCountByName, assertSendEmail } from "../api";
+import {
+  insertToGoogleForm,
+  updateRegisterCount,
+  getRegisterCountByName,
+  assertSendEmail,
+} from "../api";
 
 interface Props {
   textStyle: {
@@ -133,7 +138,9 @@ const LaLaiSaoBox = ({
       return;
     }
 
-    const count = await getRegisterCountByName(`LaLaiSao_${date?.toString().substring(0,2)}`);
+    const count = await getRegisterCountByName(
+      `LaLaiSao_${date?.toString().substring(0, 2)}`
+    );
     if (count >= maxParticipant) {
       setIsSubmitting(false);
       setIsLoading(false);
@@ -151,15 +158,16 @@ const LaLaiSaoBox = ({
       const dataGoogleForm = await insertToGoogleForm(link, formData);
 
       if (dataGoogleForm.Message === "Complete") {
-        await updateRegisterCount("LaLaiSao", date as string)
-          .catch((error) => console.error("Error updating user count:", error));
+        await updateRegisterCount("LaLaiSao", date as string).catch((error) =>
+          console.error("Error updating user count:", error)
+        );
 
-        const emailForm = new FormData();
-        emailForm.set("userName", fullname as string);
-        emailForm.set("workShop", "MatchaMoments");
-        emailForm.set("date", date as string);
-        emailForm.set("email", email);
-        await assertSendEmail(emailForm);
+        await assertSendEmail({
+          fullName: fullname,
+          email,
+          date: date as string,
+          workShop: "LaLaiSao",
+        });
 
         router.push(`/workshop/${link}/submit`);
       } else {
@@ -176,9 +184,9 @@ const LaLaiSaoBox = ({
   return (
     <OuterBox>
       <InnerBox>
-      <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
+        <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
           <AlertDialogContent className="flex flex-col items-center justify-center">
-            { !isLoading && (
+            {!isLoading && (
               <div className="flex flex-col items-center justify-center gap-5">
                 <AlertDialogHeader className="flex flex-col items-center justify-center">
                   <Image
@@ -188,20 +196,35 @@ const LaLaiSaoBox = ({
                     className=" opacity-65"
                     alt="cross"
                   />
-                  <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">ดำเนินการไม่สำเร็จ</AlertDialogTitle>
-                  { !isDisabled && <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
-                  พบข้อผิดพลาดในการลงทะเบียน <br className="block md:hidden" />(ที่นั่งเต็มหรือเซิฟเวอร์มีปัญหา)<br />กรุณาลองใหม่อีกครั้ง
-                  </AlertDialogDescription>}
-                  { isDisabled && <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
-                  ขออภัย ฟอร์มดังกล่าวปิดรับสมัครแล้ว
-                  </AlertDialogDescription>}
+                  <AlertDialogTitle className="text-[#BC5A5A] text-[20px] font-semibold">
+                    ดำเนินการไม่สำเร็จ
+                  </AlertDialogTitle>
+                  {!isDisabled && (
+                    <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                      พบข้อผิดพลาดในการลงทะเบียน{" "}
+                      <br className="block md:hidden" />
+                      (ที่นั่งเต็มหรือเซิฟเวอร์มีปัญหา)
+                      <br />
+                      กรุณาลองใหม่อีกครั้ง
+                    </AlertDialogDescription>
+                  )}
+                  {isDisabled && (
+                    <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
+                      ขออภัย ฟอร์มดังกล่าวปิดรับสมัครแล้ว
+                    </AlertDialogDescription>
+                  )}
                 </AlertDialogHeader>
                 <AlertDialogFooter className="flex flex-col items-center justify-center">
-                  <AlertDialogCancel onClick={() => window.location.reload()} className="bg-[#BC5A5A] text-[14px]">ลองใหม่</AlertDialogCancel>
+                  <AlertDialogCancel
+                    onClick={() => window.location.reload()}
+                    className="bg-[#BC5A5A] text-[14px]"
+                  >
+                    ลองใหม่
+                  </AlertDialogCancel>
                 </AlertDialogFooter>
               </div>
             )}
-            { isLoading && (
+            {isLoading && (
               <div className="flex flex-col items-center justify-center gap-5 m-5">
                 <AlertDialogHeader className="flex flex-col items-center justify-center">
                   <Image
@@ -210,9 +233,11 @@ const LaLaiSaoBox = ({
                     height={128}
                     alt="loading"
                   />
-                  <AlertDialogTitle className="text-[#5A81BC] text-[20px] font-semibold">กำลังดำเนินการ</AlertDialogTitle>
+                  <AlertDialogTitle className="text-[#5A81BC] text-[20px] font-semibold">
+                    กำลังดำเนินการ
+                  </AlertDialogTitle>
                   <AlertDialogDescription className="flex flex-col items-center justify-center text-center text-[14px] text-[#54595E99]">
-                  ระบบกำลังดำเนินการจอง กรุณารอสักครู่
+                    ระบบกำลังดำเนินการจอง กรุณารอสักครู่
                   </AlertDialogDescription>
                 </AlertDialogHeader>
               </div>
@@ -338,10 +363,16 @@ const LaLaiSaoBox = ({
                 <option value="" className="">
                   เลือกวันและเวลาที่ต้องการเข้าร่วม
                 </option>
-                <option value="22/4/2024, 14.30-16.00" disabled={!date1_avaliable}>
+                <option
+                  value="22/4/2024, 14.30-16.00"
+                  disabled={!date1_avaliable}
+                >
                   22/4/2024, 14.30-16.00 {userCount1}/{maxParticipant} (คน)
                 </option>
-                <option value="23/4/2024, 12.30-14.00" disabled={!date2_avaliable}>
+                <option
+                  value="23/4/2024, 12.30-14.00"
+                  disabled={!date2_avaliable}
+                >
                   23/4/2024, 12.30-14.00 {userCount2}/{maxParticipant} (คน)
                 </option>
               </select>
