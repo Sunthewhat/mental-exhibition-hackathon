@@ -24,7 +24,7 @@ import {
 } from "../api";
 import { assertSendEmail } from "../mail";
 import { Loader2Icon } from "lucide-react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface Props {
   textStyle: {
@@ -189,7 +189,7 @@ const MatchaMomentsBox = ({
   return (
     <OuterBox>
       <InnerBox>
-        <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
+        {/* <AlertDialog open={popUpshow} onOpenChange={setPopUpShow}>
           <AlertDialogContent className="flex flex-col items-center justify-center">
             {!isLoading && (
               <div className="flex flex-col items-center justify-center gap-5">
@@ -248,7 +248,7 @@ const MatchaMomentsBox = ({
               </div>
             )}
           </AlertDialogContent>
-        </AlertDialog>
+        </AlertDialog> */}
         <div className="flex flex-col justify-center items-center gap-3 border-b border-[#B9A5D6] pb-6">
           <div className="">
             <Image
