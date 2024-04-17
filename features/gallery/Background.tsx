@@ -9,6 +9,7 @@ export default function Background({children}: Props) {
     <div
       className="relative"
     >
+      <img src="/assets/" alt="" />
       <div className="relative">
         {children}
       </div>
