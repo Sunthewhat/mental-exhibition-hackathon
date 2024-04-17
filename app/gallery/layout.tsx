@@ -9,16 +9,11 @@ interface HomeLayoutProps {
 }
 
 import React from "react";
-import Layer from "@/features/shared/components/Layer";
-import NavigationBar from "@/features/home/components/navigation/NavigationBar";
 
 const HomePageLayout = ({ children }: HomeLayoutProps) => {
   return (
     <div className={`${styles.defaultBackground} ${noto_sans.className}`}>
-
-      <Layer depth={1}>
-        <NavigationBar>{children}</NavigationBar>
-      </Layer>
+      {children}
     </div>
   );
 };
