@@ -8,7 +8,7 @@ interface GalleryImage {
   isLandScape: boolean;
 }
 
-const galleyData: GalleryImage[] = [
+export const galleryData: GalleryImage[] = [
   {
     id: 0,
     title: "บางสิ่งที่ขาดหายไป",
