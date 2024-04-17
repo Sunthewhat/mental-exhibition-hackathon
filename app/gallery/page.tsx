@@ -4,17 +4,22 @@ import Background from "@/features/gallery/Background";
 import Gallery from "@/features/gallery/Gallery";
 import { motion } from "framer-motion";
 import { Mansalva, Noto_Sans_Thai, Slackside_One } from "next/font/google";
+import { useState } from "react";
+import GalleryDialog from "@/features/gallery/GalleryDialog";
 
 const slackside_one = Slackside_One({subsets: ["latin"], weight: ["400"]});
 const noto_sans = Noto_Sans_Thai({subsets: ["latin"]})
 const mansalva = Mansalva({subsets: ["latin"], weight: ["400"]});
 
 export default function GalleryPage() {
+  const [popUpshow, setPopUpShow] = useState<boolean>(false);
   
   return (
     <>
+      <GalleryDialog open={popUpshow} onOpenChange={setPopUpShow} dataId={1}/>
       <Background >
         <div>
+          <button onClick={() => setPopUpShow(true)}>Click me</button>
           <div className="px-[10px]">
             <div className="w-full flex justify-between items-center mt-16">
               <div>
