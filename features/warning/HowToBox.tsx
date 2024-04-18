@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import ArticleBox from "./ArticleBox";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   textStyle: {
@@ -119,6 +121,10 @@ const HowToBox = ({
             
           </div>
         </div>
+        <Link href='/' className={`${blue} font-bold flex items-center gap-2 mb-8`}>
+          <ChevronLeft />
+          <span>ย้อนกลับ</span>
+        </Link>
       </div>
     </div>
   );

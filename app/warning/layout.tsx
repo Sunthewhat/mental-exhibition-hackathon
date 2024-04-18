@@ -13,7 +13,7 @@ interface WorkshopLayoutProps {
 const WorkshopLayout = ({ children }: WorkshopLayoutProps) => {
   return (
     <Suspense>
-      <div className={`${styles.bg_gradient} ${noto_sans.className} pt-[60px] h-[625px]`}>
+      <div className={`${styles.bg_gradient_l_to_r} ${noto_sans.className} pt-[60px] h-[300px] md:h-[400px] lg:h-[500px]`}>
         <Layer depth={1}>
           <NavigationBar>{children}</NavigationBar>
         </Layer>
