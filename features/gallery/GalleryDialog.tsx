@@ -232,7 +232,8 @@ export default function GalleryDialog({ open, onOpenChange, stateId, setStateId 
             </Button>
             <div className="w-full flex flex-row border bg-background p-6 shadow-lg rounded-lg py-10 px-5 gap-8 text-left items-center">
               
-              <div className="flex-[1]"><img
+              <div className="flex justify-center flex-[1]">
+              <img
                 src={imgUrl ?? ""}
                 width={isLandScape ? '100%' : '80%'}
                 height={isLandScape ? 'auto' : 'auto'}
