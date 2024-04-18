@@ -16,7 +16,7 @@ export default function GalleryPage() {
   
   return (
     <>
-      <GalleryDialog open={popUpshow} onOpenChange={setPopUpShow} dataId={1}/>
+      <GalleryDialog open={popUpshow} onOpenChange={setPopUpShow} dataId={5}/>
       <Background >
         <div>
           <button onClick={() => setPopUpShow(true)}>Click me</button>
