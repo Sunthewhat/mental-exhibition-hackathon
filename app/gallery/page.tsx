@@ -21,13 +21,13 @@ interface TextSize {
 }
 
 export default function GalleryPage() {
-  const [popUpshow, setPopUpShow] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
+  const [dialogId, setDialogId] = useState<number>(0);
   const isMobile = useMediaQuery({minWidth: 320, maxWidth: 680});
   const isTablet = useMediaQuery({minWidth: 680, maxWidth: 768});
   const [textSize, setTextSize] = useState<TextSize>({header: 24, para: 24, sub_para: 12});
 
   const padding = isMobile ? 30 : isTablet ? 40 : 60;
-  
 
   useEffect(() => {
     setTextSize(
@@ -35,11 +35,13 @@ export default function GalleryPage() {
       isTablet ? {header: 28, para: 28, sub_para: 16} :
       {header: 48, para: 48, sub_para: 16}
     )
-  }, [isMobile, isTablet])
+    console.log(dialogId)
+  }, [isMobile, isTablet, dialogId])
   
   return (
     <>
       <Background>
+        <GalleryDialog open={open} onOpenChange={setOpen} dataId={dialogId}  /> 
         <div>
             <GalleryNav />
             <div 
@@ -56,7 +58,7 @@ export default function GalleryPage() {
               <p className={`text-white text-[12px] ${noto_sans.className} w-3/4`} style={{ fontSize: `${textSize.sub_para}px`}}>รวมภาพวาดจากผู้เข้าแข่งขัน Mental Health Exhibition  2024 และขอเชิญทุกท่านร่วมโหวตหาผู้ชนะรางวัล Popular Vote</p>
             </div>
             <div style={{ padding: `0px ${padding}px` }}>
-              <Gallery />
+              <Gallery setOpenT={setOpen} setDataId={setDialogId} dataId={dialogId}/>
             </div>
         </div>
       </Background>

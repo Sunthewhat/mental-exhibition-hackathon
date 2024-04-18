@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 interface Props {
@@ -8,6 +8,10 @@ interface Props {
   desc: string;
   imgUrl: string;
   isLandScape?: boolean;
+  dataId: number;
+  dialogId: number;
+  setDataId: Dispatch<SetStateAction<number>>;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 interface TextSize {
@@ -20,6 +24,10 @@ export default function GalleryItem({
   desc,
   imgUrl,
   isLandScape,
+  dataId,
+  dialogId,
+  setDataId,
+  setOpen
 }: Props) {
   
   const isMobile = useMediaQuery({minWidth: 320, maxWidth: 680});
@@ -38,6 +46,10 @@ export default function GalleryItem({
 
   return (
     <div
+      onClick={() => {
+        setDataId(dialogId => dialogId = dataId)
+        setOpen(true)
+      }}
       className={isLandScape ? "flex flex-col items-center justify-center" : ""}
     >
       <img src={imgUrl} alt="" className="w-full h-full" />
