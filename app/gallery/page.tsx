@@ -3,6 +3,7 @@
 import Background from "@/features/gallery/Background";
 import Gallery from "@/features/gallery/Gallery";
 import GalleryNav from "@/features/gallery/GalleryNav";
+import GalleryDialog from "@/features/gallery/GalleryDialog";
 import { motion } from "framer-motion";
 import { Mansalva, Noto_Sans_Thai, Slackside_One } from "next/font/google";
 import { useEffect, useState } from "react";
@@ -20,7 +21,7 @@ interface TextSize {
 }
 
 export default function GalleryPage() {
-
+  const [popUpshow, setPopUpShow] = useState<boolean>(false);
   const isMobile = useMediaQuery({minWidth: 320, maxWidth: 680});
   const isTablet = useMediaQuery({minWidth: 680, maxWidth: 768});
   const [textSize, setTextSize] = useState<TextSize>({header: 24, para: 24, sub_para: 12});
