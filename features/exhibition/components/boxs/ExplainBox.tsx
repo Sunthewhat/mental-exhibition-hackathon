@@ -12,7 +12,7 @@ interface Props {
     header: string;
     subHeader: string;
     paragraph: string;
-  };
+  }
 }
 
 const ExplainBox = ({ textStyle: { header, subHeader, paragraph } }: Props) => {
