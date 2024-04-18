@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import {
   Dialog,
   DialogContent,
@@ -7,19 +8,17 @@ import {
 } from "@/components/ui/gallery-dialog";
 import { galleryData } from "@/constants/galleryData";
 import { Button } from "@react-email/components";
-import next from "next";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  dataId: number;
+  stateId: number;
+  setStateId: Dispatch<SetStateAction<number>>;
 }
 
-export default function GalleryDialog({ open, onOpenChange, dataId }: Props) {
+export default function GalleryDialog({ open, onOpenChange, stateId, setStateId }: Props) {
   const [isMobile, setIsMobile] = useState<number>(0);
-  const [realDataId, setRealDataId] = useState<number>(dataId);
   const [imgUrl, setImgUrl] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
@@ -28,7 +27,7 @@ export default function GalleryDialog({ open, onOpenChange, dataId }: Props) {
   const [isLandScape, setIsLandScape] = useState<boolean>(false);
 
   useEffect(() => {
-    const data = galleryData.find((data) => data.id === realDataId);
+    const data = galleryData.find((data) => data.id === stateId);
     if (data) {
       setImgUrl(data.imgUrl);
       setTitle(data.title);
@@ -37,7 +36,7 @@ export default function GalleryDialog({ open, onOpenChange, dataId }: Props) {
       setTechnique(data.technique);
       setIsLandScape(data.isLandScape);
     }
-  }, [realDataId]);
+  }, [stateId]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,18 +58,18 @@ export default function GalleryDialog({ open, onOpenChange, dataId }: Props) {
   }, []);
 
   const nextImage = () => {
-    if (realDataId < 6) {
-      setRealDataId(realDataId + 1);
+    if (stateId < 6) {
+      setStateId(stateId + 1);
     } else {
-      setRealDataId(0);
+      setStateId(0);
     }
   };
 
   const backImage = () => {
-    if (realDataId > 0) {
-      setRealDataId(realDataId - 1);
+    if (stateId > 0) {
+      setStateId(stateId - 1);
     } else {
-      setRealDataId(6);
+      setStateId(6);
     }
   };
 

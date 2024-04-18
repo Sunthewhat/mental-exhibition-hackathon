@@ -41,7 +41,7 @@ export default function GalleryPage() {
   return (
     <>
       <Background>
-        <GalleryDialog open={open} onOpenChange={setOpen} dataId={dialogId}  /> 
+        <GalleryDialog open={open} onOpenChange={setOpen} stateId={dialogId} setStateId={setDialogId}  /> 
         <div>
             <GalleryNav />
             <div 
