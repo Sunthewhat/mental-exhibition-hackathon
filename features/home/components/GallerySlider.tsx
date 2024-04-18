@@ -34,7 +34,10 @@ const GallerySlider = () => {
   }, [width, xTranslation]);
 
   return (
-    <main className="py-8 mt-[-2rem] overflow-hidden h-auto min-w-[200px] ">
+    <main
+      id="gallery"
+      className="py-8 mt-[-2rem] overflow-hidden h-auto min-w-[200px] "
+    >
       <motion.div
         className="inline-flex gap-4 overflow-hidden items-center justify-center"
         style={{ x: xTranslation }}
