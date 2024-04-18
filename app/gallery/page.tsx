@@ -35,8 +35,7 @@ export default function GalleryPage() {
       isTablet ? {header: 28, para: 28, sub_para: 16} :
       {header: 48, para: 48, sub_para: 16}
     )
-    console.log(dialogId)
-  }, [isMobile, isTablet, dialogId])
+  }, [isMobile, isTablet])
   
   return (
     <>
