@@ -23,6 +23,13 @@ export default function NavigationBar({ children }: Props) {
     }
   };
 
+  const articleClick = () => {
+    const articleSection = document.getElementById("article");
+    if (articleSection) {
+      articleSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
     <>
       <div className="px-[10px] md:px-[60px] flex justify-between">
@@ -48,11 +55,14 @@ export default function NavigationBar({ children }: Props) {
           className={`${notoThai.className} text-sm text-white hidden lg:flex items-center justify-between gap-[90px]`}
         >
           <Link href="/">Home</Link>
-          <Link href="/hackathon/pdpa">Hackathon</Link>
-          <Link href="/exhibition/explain">Exhibition</Link>
+          {/* <Link href="/hackathon/pdpa">Hackathon</Link>
+          <Link href="/exhibition/explain">Exhibition</Link> */}
           <Link href="/game">Game</Link>
           <button onClick={workshopClick} >
             Workshop
+          </button>
+          <button onClick={articleClick} >
+            Articles
           </button>
         </div>
       </div>

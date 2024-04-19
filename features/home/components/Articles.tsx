@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { truncateText } from "../helper";
 import { getMockupArticles } from "@/constants/articles";
+import Link from "next/link";
 
 interface TextSize {
   header: Number;
@@ -39,7 +40,7 @@ export default function Articles() {
 
   return (
     <>
-      <div className={`relative`}>
+      <div className={`relative`} id="article">
         <div
           className="absolute rounded-full bg-white blur-xl w-full left-1/2 -translate-x-1/2 translate-y-1/2"
           style={{ height: `${isMobile ? 36 : isTablet ? 40 : 56}px` }}
@@ -60,7 +61,7 @@ export default function Articles() {
       </p>
 
       <div className="px-[50px]">
-        <div className="w-full rounded-2xl flex overflow-hidden">
+        <Link href={"/warning/depression"} className="w-full rounded-2xl flex overflow-hidden">
           <div className="w-[275px] xs:w-[300px] md:w-[500px] object-cover ">
             <img src={firstArticle.imgUrl} alt="" className="w-full h-full" />
           </div>
@@ -94,10 +95,10 @@ export default function Articles() {
               อ่านต่อ...
             </p>
           </div>
-        </div>
+        </Link>
 
         <div className="flex justify-between h-[212px] sm:h-[345px] md:h-[445px] gap-4 mt-4">
-          <div className="flex flex-col w-full rounded-2xl overflow-hidden">
+          <Link href={"/warning/stigma"} className="flex flex-col w-full rounded-2xl overflow-hidden">
             <div
               className="h-1/2 bg-blue-500"
               style={{
@@ -133,9 +134,9 @@ export default function Articles() {
                 อ่านต่อ...
               </p>
             </div>
-          </div>
+          </Link>
 
-          <div className="flex flex-col w-full rounded-2xl overflow-hidden">
+          <Link href={"/warning/how-to"} className="flex flex-col w-full rounded-2xl overflow-hidden">
             <div
               className="h-1/2 bg-blue-500"
               style={{
@@ -170,7 +171,7 @@ export default function Articles() {
                 อ่านต่อ...
               </p>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </>

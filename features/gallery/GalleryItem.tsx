@@ -50,7 +50,7 @@ export default function GalleryItem({
         setDataId(dialogId => dialogId = dataId)
         setOpen(true)
       }}
-      className={isLandScape ? "flex flex-col items-center justify-center" : ""}
+      className={isLandScape ? "flex flex-col items-center justify-center cursor-pointer" : "cursor-pointer"}
     >
       <img src={imgUrl} alt="" className="w-full h-full" />
       <h3 className={`text-[#5A81BC] font-bold mt-2`} style={{fontSize: `${textSize.header}px`}}>{title}</h3>

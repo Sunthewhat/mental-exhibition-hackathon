@@ -3,13 +3,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowBigRight } from "lucide-react";
-import { GalleryProp } from "@/constants/gallerys";
+import { GalleryImage } from "@/constants/galleryData";
 import { title } from "process";
 import { Noto_Sans_Thai, Slackside_One } from "next/font/google";
 import { useMediaQuery } from "react-responsive";
+import Link from "next/link";
+import Gallery from "@/features/gallery/Gallery";
 
 interface GalleryItemProp {
-  gallery: GalleryProp;
+  gallery: GalleryImage;
   index: number;
   firstDiv: boolean;
 }
@@ -24,7 +26,7 @@ const slack_side = Slackside_One({ subsets: ["latin"], weight: ["400"] });
 const noto_sans = Noto_Sans_Thai({ subsets: ["latin"], weight: ["700"] });
 
 const GalleryItem: React.FC<GalleryItemProp> = ({
-  gallery: { name, inspiration, imgUrl },
+  gallery: { title, desc, imgUrl, isLandScape },
   index,
   firstDiv,
 }: GalleryItemProp) => {
@@ -49,8 +51,8 @@ const GalleryItem: React.FC<GalleryItemProp> = ({
 
   const logic = index % 2 === (firstDiv ? 0 : 1);
 
-  const containerStyle = logic ? `h-[175px] w-[225px] ` : `h-[225px] w-[175px]`;
-  const marginStyle = logic ? (isMobile ? `mt-[16px]` : `mt-[-24px]`) : ``;
+  const containerStyle = isLandScape ? `h-[175px] w-[225px] ` : `h-[225px] w-[175px]`;
+  const marginStyle = isLandScape ? (isMobile ? `mt-[16px]` : `mt-[-24px]`) : ``;
 
   return (
     <div className="flex flex-col gap-4 ">
@@ -76,7 +78,9 @@ const GalleryItem: React.FC<GalleryItemProp> = ({
                 animate={{ y: 0 }}
                 exit={{ y: 10 }}
               >
-                <span>เข้าชมเลย</span>
+                <Link href={"/gallery"}>
+                  <span>เข้าชมเลย</span>
+                </Link>
                 <ArrowBigRight className="h-4 w-4" />
               </motion.h1>
             </motion.div>
@@ -101,13 +105,13 @@ const GalleryItem: React.FC<GalleryItemProp> = ({
           className="text-[#5A81BC] font-bold"
           style={{ fontSize: `${textSize.header}px` }}
         >
-          {name}
+          {title}
         </h1>
         <p
           className="text-[#5A81BC]"
           style={{ fontSize: `${textSize.para}px` }}
         >
-          {inspiration}
+          {desc.length >= 50 ? `${desc.substring(0, 50)}...` : desc}
         </p>
       </div>
     </div>
