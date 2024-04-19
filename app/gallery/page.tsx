@@ -50,7 +50,7 @@ export default function GalleryPage() {
                 <h2 className={`text-[#5A81BC] ${slackside_one.className}`} style={{ fontSize: `${textSize.para}px`}}>color of feelings</h2>
                 <h1 className={`text-white ${mansalva.className}`} style={{ fontSize: `${textSize.header}px`}}>Art Exhibition Gallery</h1>
               </div>
-              <motion.a whileHover={{scale: 1.1}} href='#' className="flex items-center justify-center shadow-md rounded-full z-20 h-[40px] font-semibold text-[#fff] text-base md:text-[18px]  bg-gradient-to-r from-[#a9dbd0] to-[#89b6fb]" style={{ paddingLeft: isMobile ? 12 : 48, paddingRight: isMobile ? 12 : 48}}>ไปโหวต</motion.a>
+              <motion.a whileHover={{scale: 1.1}} href='https://forms.gle/DbM8PMocTk72mEJr8' className="flex items-center justify-center shadow-md rounded-full z-20 h-[40px] font-semibold text-[#fff] text-base md:text-[18px]  bg-gradient-to-r from-[#a9dbd0] to-[#89b6fb]" style={{ paddingLeft: isMobile ? 12 : 48, paddingRight: isMobile ? 12 : 48}}>ไปโหวต</motion.a>
             </div>
             <div style={{ padding: `0px ${padding}px` }}>
               <hr className="bg-white h-[2px] my-4"/>

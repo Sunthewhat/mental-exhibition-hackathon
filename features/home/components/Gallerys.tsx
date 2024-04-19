@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import GallerySlider from "./GallerySlider";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface TextSize {
   header: number;
@@ -55,11 +56,11 @@ const Gallerys = () => {
 
       <GallerySlider />
 
-      <button
+      <Link href='/gallery'
         className={`${noto_sans.className} px-10 py-2 rounded-2xl bg-gradient-to-r from-[#A9DBD0] via-[#A9DBD0] to-[#89B6FB] text-transparent text-white hover:cursor-pointer`}
       >
         เข้าชมผลงาน
-      </button>
+      </Link>
     </div>
   );
 };
