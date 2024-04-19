@@ -21,6 +21,14 @@ export default function Sidebar({ state, setState }: Props) {
     }
   };
 
+  const articleClick = () => {
+    const articleSection = document.getElementById("article");
+    if (articleSection) {
+      articleSection.scrollIntoView({ behavior: "smooth" });
+      setState(() => false);
+    }
+  };
+
   return (
     <AnimatePresence>
       {state && (
@@ -50,7 +58,7 @@ export default function Sidebar({ state, setState }: Props) {
                 </li>
                 <hr className="bg-white h-[3px] mt-1 mb-8" />
 
-                <li>
+                {/* <li>
                   <Link href="/hackathon/pdpa">Hackathon</Link>
                 </li>
                 <hr className="bg-white h-[3px] mt-1 mb-8" />
@@ -58,7 +66,7 @@ export default function Sidebar({ state, setState }: Props) {
                 <li>
                   <Link href="/exhibition/explain">Exhibition</Link>
                 </li>
-                <hr className="bg-white h-[3px] mt-1 mb-8" />
+                <hr className="bg-white h-[3px] mt-1 mb-8" /> */}
                 
                 <li>
                   <Link href="/game">Game</Link>
@@ -68,6 +76,13 @@ export default function Sidebar({ state, setState }: Props) {
                 <li>
                   <button onClick={workshopClick} >
                     Workshop
+                  </button>
+                </li>
+                <hr className="bg-white h-[3px] mt-1 mb-8" />
+
+                <li>
+                  <button onClick={articleClick} >
+                    Articles
                   </button>
                 </li>
                 <hr className="bg-white h-[3px] mt-1 mb-8" />
