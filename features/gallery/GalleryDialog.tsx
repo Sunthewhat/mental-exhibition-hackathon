@@ -58,7 +58,7 @@ export default function GalleryDialog({ open, onOpenChange, stateId, setStateId 
   }, []);
 
   const nextImage = () => {
-    if (stateId < 6) {
+    if (stateId < galleryData.length - 1) {
       setStateId(stateId + 1);
     } else {
       setStateId(0);
@@ -69,7 +69,7 @@ export default function GalleryDialog({ open, onOpenChange, stateId, setStateId 
     if (stateId > 0) {
       setStateId(stateId - 1);
     } else {
-      setStateId(6);
+      setStateId(galleryData.length - 1);
     }
   };
 
