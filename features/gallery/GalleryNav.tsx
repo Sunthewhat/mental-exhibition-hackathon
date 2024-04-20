@@ -44,8 +44,8 @@ export default function GalleryNav() {
           className={`${notoThai.className} text-sm text-white hidden lg:flex items-center justify-between gap-[90px]`}
         >
           <Link href="/">Home</Link>
-          <Link href="/hackathon/pdpa">Hackathon</Link>
-          <Link href="/exhibition/explain">Exhibition</Link>
+          {/* <Link href="/hackathon/pdpa">Hackathon</Link>
+          <Link href="/exhibition/explain">Exhibition</Link> */}
           <Link href="/game">Game</Link>
           <button onClick={workshopClick} >
             Workshop
